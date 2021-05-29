@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom'
+
 function handleInput(i)
 {
     switch(i)
@@ -14,7 +16,7 @@ export default function NavItem(props)
 
     return (
         <>
-            <h1>{handleInput(props.title)}</h1>
+            <Link to={props.path}>{handleInput(props.title)}</Link>
         </>
     )
 }

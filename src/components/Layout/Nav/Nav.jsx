@@ -9,9 +9,9 @@ export default function Nav()
             <h1>p</h1>
             
             <div className="nav-items">
-                <NavItem title="home"/>
-                <NavItem title="b"/>
-                <NavItem title="c"/>
+                <NavItem title="home" path='/'/>
+                <NavItem title="leaderboard" path='/leaderboard'/>
+                <NavItem title="games" path='/games'/>
             </div>
             <div></div>
         </nav>
