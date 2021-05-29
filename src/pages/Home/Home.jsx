@@ -1,8 +1,10 @@
+import Button from "../../components/Common/Button/Button";
+
 export default function Home()
 {
     return (
         <>
-            <h1>abcd</h1>
+            <Button/>
         </>
     )
 }
