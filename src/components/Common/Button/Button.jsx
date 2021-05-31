@@ -1,4 +1,3 @@
-import "./Button.scss"
 import styled from "styled-components"
 export default function Button(props) {
     const Button = styled.button`
@@ -13,8 +12,7 @@ export default function Button(props) {
         transition:0.5s;
         font-style: normal;
         font-weight: normal;
-        font-size: 24px;
-        line-height: 28px;
+        font-size: 1.1rem;
         &:hover {
             background:#FF9500;
         }
