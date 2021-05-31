@@ -1,6 +1,5 @@
 import styled from "styled-components"
-export default function Button(props) {
-    const Button = styled.button`
+const Btn = styled.button`
         padding-top:10px;
         padding-bottom:10px;
         border:none;
@@ -17,9 +16,11 @@ export default function Button(props) {
             background:#FF9500;
         }
         `
+export default function Button(props) {
+    
     return (
         <div>
-            <Button>{props.content}</Button>
+            <Btn>{props.content}</Btn>
         </div>
     )
 }
