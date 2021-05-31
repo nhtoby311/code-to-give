@@ -1,16 +1,27 @@
 import "./Button.scss"
 import styled from "styled-components"
-export default function Button() {
+export default function Button(props) {
     const Button = styled.button`
-        border-radius: 10px;
-        padding:10px 20px;
-        margin-left:300px;
-        width: 20%;
+        padding-top:10px;
+        padding-bottom:10px;
         border:none;
-    `
+        background: #FFD652;
+        width:100%;
+        border-radius: 10px;
+        text-transform:uppercase;
+        cursor:pointer;
+        transition:0.5s;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 28px;
+        &:hover {
+            background:#FF9500;
+        }
+        `
     return (
         <div>
-            <Button>Test</Button>
+            <Button>{props.content}</Button>
         </div>
     )
 }
