@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import BlockCards from './BlockCards/BlockCards'
 import BlockQuiz from './BlockQuiz/BlockQuiz'
+import TextBlock from './TextBlock/TextBlock'
 
 const Blocked = styled.div`
         min-width:100%;     //to make the horizontal not passed to parent flex div
@@ -26,9 +27,11 @@ export default function Block(props)
         switch (props.type)
         {
             case 'slide':
-                return  <BlockCards/>
+                return <BlockCards data={props.data}/>
             case 'quiz':
-                return <BlockQuiz/>
+                return <BlockQuiz data={props.data}/>
+            case 'text':
+                return <TextBlock data={props.data}/>
             default:
                 return (null)
         }

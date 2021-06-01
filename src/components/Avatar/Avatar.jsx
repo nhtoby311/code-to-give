@@ -25,15 +25,12 @@ const Name = styled.p`
     `
 export default function Avatar (props)
 {
-    
     return(
-        <div>
-            <Avt>
-                <ImageContainer>
+        <Avt>
+            <ImageContainer>
                     <Point>{props.point}pts</Point>
-                </ImageContainer>
-                <Name>{props.name}</Name>
-            </Avt>
-        </div>
+            </ImageContainer>
+            <Name>{props.name}</Name>
+        </Avt>
     )
 }

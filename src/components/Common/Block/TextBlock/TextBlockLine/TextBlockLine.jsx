@@ -11,8 +11,6 @@ const StyledLink = styled(Link)`
 export default function TextBlockLine(props)
 {
     return(
-        <>
         <Line>{props.name} {props.method} <StyledLink to="/">'{props.quiz_name}'</StyledLink> due to  {props.date}</Line>
-        </>
     )
 }

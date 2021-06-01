@@ -8,10 +8,9 @@ const Tbx = styled.div`
 `
 
 export default function TextBlock(props) {
-    console.log(props.tmp);
     return (
         <Tbx>
-                {props.tmp && props.tmp.map((item, index) => <TextBlockLine key={index} name={item.name} method={item.method} quiz_name={item.quiz_name} date={item.date}></TextBlockLine>)}
+            {props.data && props.data.map((item, index) => <TextBlockLine key={index} name={item.name} method={item.method} quiz_name={item.quiz_name} date={item.date}></TextBlockLine>)}
         </Tbx>
     )
 }

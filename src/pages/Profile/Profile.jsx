@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Block from '../../components/Common/Block/Block'
 
@@ -12,11 +13,38 @@ const Container = styled.div`
 
 export default function Profile()
 {
+
+    const[recentGradesData,setRecentGradesData] = useState([])
+    const[topGradesData,setTopGradesData] = useState([])
+
+    const getData = () =>
+    {
+        const getRecentGradesData = async()=>
+        {
+            const response = await fetch('./mock_data/recent_grades.json')
+            const result = await response.json()
+            setRecentGradesData(result)
+        }
+        const getTopGradesData = async()=>
+        {
+            const response = await fetch('./mock_data/recent_grades.json')
+            const result = await response.json()
+            setTopGradesData(result)
+        }
+
+        getRecentGradesData()
+        getTopGradesData()
+    }
+
+    useEffect(()=>{
+        getData()
+    },[])
+
     return(
         <Container className="container">
             <Block title="profile"></Block>
-            <Block title="recent-grades" type="quiz"></Block>
-            <Block title="top-grades" type="quiz"></Block>
+            <Block title="recent-grades" type="quiz" data={recentGradesData}></Block>
+            <Block title="top-grades" type="quiz" data={topGradesData}></Block>
         </Container>
     )
 }

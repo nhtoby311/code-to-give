@@ -11,13 +11,13 @@ const QuizContainer = styled.div`
     border-radius: 15px;
 `
 
-export default function QuizBlockLine()
+export default function QuizBlockLine(props)
 {
     return(
         <QuizContainer>
-            <h3>Quiz123</h3>
-            <h4>25pts</h4>
-            <p>date</p>
+            <h3>{props.quiz_name}</h3>
+            <h4>{props.point} pts</h4>
+            <p>{props.date}</p>
         </QuizContainer>
     )
 }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import * as vars from '../../../styles/var'
 
@@ -17,8 +18,10 @@ const Title = styled.h3`
 export default function GameBlock(props)
 {
     return (
-        <GameBlockDiv>
-            <Title>{props.title}</Title>
-        </GameBlockDiv>
+        <Link to="/games/quiz">
+            <GameBlockDiv>
+                <Title>{props.title}</Title>
+            </GameBlockDiv>
+        </Link>
     )
 }
