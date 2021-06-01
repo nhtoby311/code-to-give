@@ -1,13 +1,12 @@
-import Button from "../../components/Common/Button/Button";
+import Block from '../../components/Common/Block/Block';
 import './Home.scss'
 
 export default function Home() {
     return (
-        <div className="container">
-            <Button/>
-            <h1>abcd</h1>
-            <h2>abcd</h2>
-            <h3>abcd</h3>
+        <div className="container home-cont">
+            <Block title="new-assignment"/>
+            <Block title="reminder"/>
+            <Block title="best-student" type="slide"/>
         </div>
     )
 }

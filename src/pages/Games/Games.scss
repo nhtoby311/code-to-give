@@ -1,0 +1,10 @@
+@import '../../styles/var.scss';
+.container.games-cont
+{
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    div
+    {
+        background: $yellow-color;
+        height: 300px; //remove later
+    }
+}

@@ -1,0 +1,30 @@
+@import '../../styles/var.scss';
+
+.leaderboard-cont
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .leaderboard-title
+    {
+        padding: 25px 65px;
+        border: solid #965529 12px;
+        border-radius: 25px;
+        background: $yellow-color;
+        h1
+        {
+            font-size: 4rem;
+            color: white;
+        }
+    }
+    .test
+    {
+        height: 80vh;
+        background-color: red;
+    }
+    .leaderboard
+    {
+        margin-top: 50px;
+        
+    }
+}

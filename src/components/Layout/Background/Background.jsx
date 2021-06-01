@@ -1,5 +1,5 @@
 import './Background.scss'
-import bg from '../../../assets/background/smth.jpg'
+import bg from '../../../assets/background/background1.png'
 
 export default function Background()
 {
