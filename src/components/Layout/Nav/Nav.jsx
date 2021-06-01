@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Nav.scss'
 import NavItem from './NavItem/NavItem'
 
@@ -6,7 +7,9 @@ export default function Nav()
 {
     return (
         <nav>
-            <h1>p</h1>
+            <Link to='/profile'>
+                <img src="" alt="" className="profile-pic-small"/>
+            </Link>
             
             <div className="nav-items">
                 <NavItem title="home" path='/'/>
