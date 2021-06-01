@@ -7,7 +7,7 @@ import Home from './pages/Home/Home'
 import Leaderboard from './pages/Leaderboard/Leaderboard';
 import Profile from './pages/Profile/Profile';
 import './styles/style.scss'
-
+import PicQuizz from './components/PicQuizz/PicQuizz';
 
 let routes = (
   <>
@@ -16,6 +16,7 @@ let routes = (
     <Route exact path="/games" component={Games}/>
     <Route exact path="/profile" component={Profile}/>
     <Route exact path="/games/quiz" component={Quiz}/>
+    <Route exact path="/games/pic-quizz" component={PicQuizz}/>
   </>
 )
 

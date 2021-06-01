@@ -4,6 +4,7 @@ import * as vars from "../../../styles/var"
 const Pf = styled.div`
     width: 100%;
     height: 100%;
+    min-height: 450px;
     grid-area: profile;
     position: relative;
     background-color: white;

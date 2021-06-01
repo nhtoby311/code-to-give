@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import * as vars from '../../../styles/var'
-
 const DivContent = styled.div`
 width: 70%;
 height: 350px;
