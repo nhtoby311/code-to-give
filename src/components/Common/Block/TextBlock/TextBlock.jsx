@@ -6,7 +6,6 @@ const Tbx = styled.div`
     overflow:auto;
     max-height: 500px;
 `
-
 export default function TextBlock(props) {
     return (
         <Tbx>
