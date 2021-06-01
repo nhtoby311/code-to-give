@@ -1,20 +1,17 @@
 import styled from "styled-components"
+import TextBlockLine from "./TextBlockLine/TextBlockLine"
 const Tbx = styled.div`
     width: 100%;
     margin-top: 20px;
-    overflow: scroll;
-
-`
-const Line = styled.p`
-
+    overflow:auto;
+    max-height: 500px;
 `
 
 export default function TextBlock(props) {
+    console.log(props.tmp);
     return (
-        <>
-            <ul>
-               {props.data.map(l )}
-            </ul>
-        </>
+        <Tbx>
+                {props.tmp && props.tmp.map((item, index) => <TextBlockLine key={index} name={item.name} method={item.method} quiz_name={item.quiz_name} date={item.date}></TextBlockLine>)}
+        </Tbx>
     )
 }
