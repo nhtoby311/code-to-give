@@ -1,9 +1,11 @@
 import styled from "styled-components"
 import Button from "../Button/Button"
 import * as vars from "../../../styles/var"
+
 const Pf = styled.div`
     width: 100%;
     height: 100%;
+    min-height: 450px;
     grid-area: profile;
     position: relative;
     background-color: white;
@@ -58,7 +60,6 @@ export default function ProfileBlock(props) {
     return (
         <>
             <Pf>
-
                 <Badge>
                     <InforContainer>
                         <Avatar></Avatar>

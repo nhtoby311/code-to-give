@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import * as vars from '../../styles/var'
-import QuizFour from './QuizFour/QuizFour'
+//import QuizFour from './QuizFour/QuizFour'
 import QuizWrite from './QuizWrite/QuizWrite'
 
 const QuizCont = styled.div`

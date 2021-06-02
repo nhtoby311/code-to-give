@@ -42,7 +42,7 @@ export default function Profile()
 
     return(
         <Container className="container">
-            <ProfileBlock></ProfileBlock>
+            <ProfileBlock name="lorem"></ProfileBlock>
             {/* <Block title="profile"></Block> */}
             <Block title="recent-grades" type="quiz" data={recentGradesData}></Block>
             <Block title="top-grades" type="quiz" data={topGradesData}></Block>
