@@ -16,7 +16,7 @@ export default function QuizAnswer(props)
 {
 
     return(
-        <AnswerDiv>
+        <AnswerDiv onClick={props.funcNext}>
             <p>A.{props.content}</p>
         </AnswerDiv>
     )

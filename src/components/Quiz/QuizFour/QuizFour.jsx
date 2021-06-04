@@ -17,17 +17,17 @@ const DivAnswerCont = styled.div`
 `
 
 
-export default function QuizFour()
+export default function QuizFour(props)
 {
     return (
         <>
             <DivContent/>
 
             <DivAnswerCont>
-                <QuizAnswer content="answer1"/>
-                <QuizAnswer content="answer2"/>
-                <QuizAnswer content="answer3"/>
-                <QuizAnswer content="answer4"/>
+                <QuizAnswer funcNext= {props.funcNext} content="answer1"/>
+                <QuizAnswer funcNext= {props.funcNext} content="answer2"/>
+                <QuizAnswer funcNext= {props.funcNext} content="answer3"/>
+                <QuizAnswer funcNext= {props.funcNext} content="answer4"/>
             </DivAnswerCont>
         </>
     )  

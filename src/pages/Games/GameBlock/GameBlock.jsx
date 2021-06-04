@@ -7,6 +7,7 @@ const GameBlockDiv = styled.div`
     position: relative;
     height: 500px;
     background : ${vars.greenColor};
+    border-radius: 25px;
 `
 const Title = styled.h3`
     font-size: 5rem;
@@ -18,7 +19,7 @@ const Title = styled.h3`
 export default function GameBlock(props)
 {
     return (
-        <Link to="/games/quiz">
+        <Link to={`/games/${props.title}`}>
             <GameBlockDiv>
                 <Title>{props.title}</Title>
             </GameBlockDiv>

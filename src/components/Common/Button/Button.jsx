@@ -1,7 +1,8 @@
 import styled from "styled-components"
 const Btn = styled.button`
-        padding-top:10px;
-        padding-bottom:10px;
+        padding: ${(props)=>{if (props.pad!=undefined) {return props.pad} 
+        else {return `10px`}}} 30px;
+        //padding: ${(props)=>{return props.pad}} 30px;
         border:none;
         background: #FFD652;
         width:100%;
@@ -17,10 +18,7 @@ const Btn = styled.button`
         }
         `
 export default function Button(props) {
-    
     return (
-        <div>
-            <Btn>{props.content}</Btn>
-        </div>
+        <Btn pad={props.pad}>{props.content}</Btn>
     )
 }

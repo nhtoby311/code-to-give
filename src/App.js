@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Background from './components/Layout/Background/Background';
 import Nav from './components/Layout/Nav/Nav';
+import List from './components/List/List';
 import Quiz from './components/Quiz/Quiz';
 import Scribbly from './components/Scribbly/Scribbly';
 import Games from './pages/Games/Games';
@@ -18,6 +19,7 @@ let routes = (
     <Route exact path="/profile" component={Profile}/>
     <Route exact path="/games/quiz" component={Quiz}/>
 
+    <Route exact path="/games/list" component={List}/>
     <Route exact path="/games/scribbly" component={Scribbly}/>
   </>
 )

@@ -1,10 +1,21 @@
 import styled from 'styled-components'
 import * as vars from '../../../styles/var'
+import Button from '../../Common/Button/Button'
 
 const DivContent = styled.div`
 width: 70%;
 height: 350px;
 background: ${vars.greenColor};
+`
+
+const Wrapper = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: ${vars.greenColor};
+    border-radius: 25px;
 `
 
 const DivAnswerCont = styled.div`
@@ -13,8 +24,8 @@ const DivAnswerCont = styled.div`
     padding: 50px;
     justify-content: center;
     gap: 50px;
-    border-radius: 25px;
-    background: ${vars.greenColor};
+    
+    
 `
 
 const Letter = styled.input`
@@ -27,19 +38,30 @@ const Letter = styled.input`
     font-size: 2rem;
 `
 
-export default function QuizWrite()
+const ButtonDiv = styled.div`
+    width: 20%;
+    margin: 50px 0;
+`
+
+export default function QuizWrite(props)
 {
     return(
         <>
             <DivContent/>
-            <DivAnswerCont>
-                {/* MOCK DATA, PROPS ARRAY */}
-                <Letter type="text" maxLength="1"/>
-                <Letter type="text" maxLength="1"/>
-                <Letter type="text" maxLength="1"/>
-                <Letter type="text" maxLength="1"/>
-                <Letter type="text" maxLength="1"/>
-            </DivAnswerCont>
+            <Wrapper>
+                <DivAnswerCont>
+                    {/* MOCK DATA, PROPS ARRAY */}
+                    <Letter type="text" maxLength="1"/>
+                    <Letter type="text" maxLength="1"/>
+                    <Letter type="text" maxLength="1"/>
+                    <Letter type="text" maxLength="1"/>
+                    <Letter type="text" maxLength="1"/>
+                </DivAnswerCont>
+                <ButtonDiv onClick={props.funcNext}>
+                    <Button  content="NEXT"/>
+                </ButtonDiv>
+            </Wrapper>
+            
         </>
     )
 }

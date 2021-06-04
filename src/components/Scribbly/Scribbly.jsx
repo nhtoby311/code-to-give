@@ -1,6 +1,13 @@
 import { useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
 import DescriptionBlock from '../Common/DescriptionBlock/DescriptionBlock'
+import {ReactSketchCanvas} from "react-sketch-canvas"
+import Pen from './Tools/Pen/Pen'
+import Eraser from './Tools/Eraser/Eraser'
+import Colors from './Tools/Colors/Colors'
+import Undo from './Tools/Undo/Undo'
+import Redo from './Tools/Redo/Redo'
+import Clear from './Tools/Clear/Clear'
 
 const Container = styled.div`
     width: 80%;
@@ -20,11 +27,8 @@ const CanvasContainer = styled.div`
     min-height: 100%;
     grid-area: canvas;
     display: flex;
-`
-const Canvas = styled.canvas`
-    border: 2px solid red;
-    background-color: white;
     border-radius: 25px;
+    overflow: hidden;
 `
 
 const CanvasToolCont = styled.div`
@@ -42,71 +46,69 @@ const CanvasTools = styled.div`
     height: 100%;
     background: green;
     border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 10%;
+    gap: 15px;
 `
 
+const styles = {
+    border: "none",
+  };
 
 export default function Scribbly()
 {
-    
+    const [color,setColor] = useState('black')
+
     const canvasRef = useRef(null)
-    const contextRef = useRef(null)
-    const [isDrawing, setIsDrawing] = useState(false)
-
-    useEffect(()=>{
-        const canvas = canvasRef.current;
-        canvas.width = canvas.parentNode.offsetWidth *2
-        canvas.height = canvas.parentNode.offsetHeight *2
-        canvas.style.width = `${canvas.parentNode.offsetWidth}px`
-        canvas.style.height = `${canvas.parentNode.offsetHeight}px`
-        
-        const context = canvas.getContext("2d")
-        context.scale(2,2)
-        context.lineCap = "round"
-        context.strokeStyle = 'blue'
-        context.lineWidth = 5
-        contextRef.current = context;
+    const parentCanvasRef = useRef(null)
 
 
 
-    },[])
-
-    const startDrawing = ({nativeEvent}) => {
-        const {offsetX,offsetY} = nativeEvent
-        contextRef.current.beginPath()
-        contextRef.current.moveTo(offsetX,offsetY)
-        setIsDrawing(true)
+    const undoHandle = () =>{
+        canvasRef.current.undo()
     }
-    const finishDrawing = () => {
-        contextRef.current.closePath()
-        setIsDrawing(false)
+    const redoHandle = () =>{
+        canvasRef.current.redo()
     }
-    const draw = ({nativeEvent}) =>
+    const clearHandle = () =>{
+        canvasRef.current.clearCanvas()
+    }
+    const penHandle = () =>{
+        canvasRef.current.eraseMode(false)
+    }
+    const eraseHandle = () =>{
+        console.log(canvasRef.current)
+        canvasRef.current.eraseMode(true)
+    }
+
+    const setColorHandle = (color) =>
     {
-        if (!isDrawing)
-        {
-            return 
-        }
-        console.log(nativeEvent)
-        const {offsetX,offsetY} = nativeEvent
-        contextRef.current.lineTo(offsetX,offsetY)
-        contextRef.current.stroke()
+        console.log(color)
+        setColor(color)
     }
 
-    const touchdraw = ({nativeEvent}) =>
-    {
-        console.log(nativeEvent)
-    }
 
     return(
         <Container>
-            <CanvasContainer>
-                <Canvas onMouseDown={startDrawing}
-                onMouseUp={finishDrawing}
-                onMouseMove={draw}
-                onTouchMove={touchdraw}
-                ref={canvasRef}></Canvas>
+            <CanvasContainer ref={parentCanvasRef}>
+                <ReactSketchCanvas
+                style={styles}
+                strokeWidth={4}
+                strokeColor={color}
+                eraserWidth={28}
+                ref={canvasRef}
+                />
                 <CanvasToolCont>
-                    <CanvasTools/>
+                    <CanvasTools>
+                        <Undo func={undoHandle}/>
+                        <Pen func={penHandle}/>
+                        <Eraser func={eraseHandle}/>
+                        <Colors func={(e)=>{setColorHandle(e)}}/>
+                        <Redo func={redoHandle}/>
+                        <Clear func={clearHandle}/>
+                    </CanvasTools>
                 </CanvasToolCont>
             </CanvasContainer>
             <DescriptionBlock/>

@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import BlockCards from './BlockCards/BlockCards'
 import BlockQuiz from './BlockQuiz/BlockQuiz'
 import TextBlock from './TextBlock/TextBlock'
+import * as vars from '../../../styles/var'
 
 const Blocked = styled.div`
         min-width:100%;     //to make the horizontal not passed to parent flex div
@@ -9,7 +10,7 @@ const Blocked = styled.div`
         max-height:500px;
         display:flex;
         flex-direction:column;
-        background: green;
+        background: ${vars.greenPlainLightColor};
         grid-area: ${props => props.title};
         padding: 25px 50px;
         border-radius: 25px;
