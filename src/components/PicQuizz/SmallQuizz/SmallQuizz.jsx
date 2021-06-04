@@ -8,6 +8,10 @@ const SmQuizz = styled.div`
     align-items: center;
     justify-content: center;
     transition: 0.5s;
+    grid-area: ${(props) => {
+        if (props.grid != undefined) { return props.grid }
+        else { return "unset" }
+    }};
     .lable 
     {
         background: linear-gradient(180deg, #FF9500 , #E8BB09 );
@@ -33,7 +37,7 @@ export default function SmallQuizz(props) {
                 <p>
                     {props.number}
                 </p>
-                
+
             </div>
         </SmQuizz>
     )
