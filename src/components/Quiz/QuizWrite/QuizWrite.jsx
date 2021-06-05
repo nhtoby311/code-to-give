@@ -23,9 +23,8 @@ const DivAnswerCont = styled.div`
     display: flex;
     padding: 50px;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 50px;
-    
-    
 `
 
 const Letter = styled.input`
@@ -36,6 +35,8 @@ const Letter = styled.input`
     padding: 10px;
     outline: none;
     font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 600;
 `
 
 const ButtonDiv = styled.div`

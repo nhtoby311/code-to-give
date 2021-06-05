@@ -1,10 +1,14 @@
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom'
 import './Nav.scss'
 import NavItem from './NavItem/NavItem'
 
 
 export default function Nav()
 {
+    
+
+
     return (
         <nav>
             <Link to='/profile'>

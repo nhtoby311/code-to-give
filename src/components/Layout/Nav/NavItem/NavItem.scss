@@ -1,0 +1,7 @@
+.active-nav{
+    transition: border 0.1s;
+    border-bottom: 2px solid var(--yellowPlainColor);
+    svg{
+        fill: var(--yellowPlainColor);
+    }
+}

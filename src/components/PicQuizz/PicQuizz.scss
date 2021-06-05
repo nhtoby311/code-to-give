@@ -1,6 +1,12 @@
 .pic-quizz-container
 {
-    grid-template-columns: repeat(4,auto);
-    grid-template-rows: auto auto;
+    /*grid-template-columns: repeat(4,auto);
+    grid-template-rows: auto auto;*/
     grid-gap: 20px;
+    .done-quiz
+    {
+        opacity: 0;
+        pointer-events: none;
+    }
 }
+

@@ -18,7 +18,6 @@ let routes = (
     <Route exact path="/games" component={Games}/>
     <Route exact path="/profile" component={Profile}/>
     <Route exact path="/games/quiz" component={Quiz}/>
-
     <Route exact path="/games/list" component={List}/>
     <Route exact path="/games/scribbly" component={Scribbly}/>
     <Route exact path="/games/pic-quizz" component={PicQuizz}/>

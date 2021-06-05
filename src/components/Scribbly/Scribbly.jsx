@@ -44,7 +44,7 @@ const CanvasToolCont = styled.div`
 const CanvasTools = styled.div`
     width: 100%;
     height: 100%;
-    background: green;
+    background: var(--greenLightPlainColor);
     border-radius: 25px;
     display: flex;
     align-items: center;

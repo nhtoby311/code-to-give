@@ -1,4 +1,9 @@
+import gsap from "gsap/gsap-core"
+import { useEffect,useRef,useState } from "react"
 import styled from "styled-components"
+import {Window} from '../../List/List'
+import FourQuiz from "./FourQuiz/FourQuiz"
+import WriteQuiz from "./WriteQuiz/WriteQuiz"
 const SmQuizz = styled.div`
     background: #77BC1F;
     border: 2px solid #FFD42A;
@@ -9,8 +14,8 @@ const SmQuizz = styled.div`
     justify-content: center;
     transition: 0.5s;
     grid-area: ${(props) => {
-        if (props.grid != undefined) { return props.grid }
-        else { return "unset" }
+        if (props.grid !== undefined) { return props.grid }
+        else { return `unset` }
     }};
     .lable 
     {
@@ -30,15 +35,84 @@ const SmQuizz = styled.div`
         background: #3CA915;
     }
 `
-export default function SmallQuizz(props) {
-    return (
-        <SmQuizz>
-            <div className="lable">
-                <p>
-                    {props.number}
-                </p>
 
-            </div>
-        </SmQuizz>
+const QuestionTitle = styled.h3`
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 35px;
+`
+const QuestionContent = styled.div`
+    width: 60%;
+    height: 200px;
+    background: #12b127;
+    margin-bottom: 35px;
+`
+const Close = styled.h3`
+    font-size: 1.5rem;
+    position: absolute;
+    top: 35px;
+    right: 35px;
+    cursor: pointer;
+`
+
+
+export default function SmallQuizz(props) {
+    const [window,setWindow] = useState(false)
+    const [done,setDone] = useState(false)
+    const windowRef = useRef(null)
+
+    const handleDone = ()=>{
+        setWindow(false)
+        setDone(true)
+    }
+
+
+    const doneClass = ()=>{
+        if(done === true) return "done-quiz"
+        return ""
+    }
+
+    useEffect(()=>{
+        console.log(props.cur)
+        if(window === true && props.cur === props.number)
+        {
+            gsap.to(windowRef.current,{
+                opacity: 1,
+                duration:0.3,
+                pointerEvents:'auto'
+            })
+        }
+        else
+        {
+            gsap.to(windowRef.current,{
+                opacity: 0,
+                duration:0.3,
+                pointerEvents:'none'
+            })
+        }
+    },[window,props.cur])
+    // 
+    return (
+        <>
+            <Window ref={windowRef}>
+                <Close onClick={()=>{setWindow(false)}}>
+                    X
+                </Close>
+                <QuestionTitle>abvascfs</QuestionTitle>
+                <QuestionContent/>
+                {/* <FourQuiz func={handleDone}/> */}
+                <WriteQuiz func={handleDone}/>
+            </Window>
+            <SmQuizz className={`${doneClass()}`} onClick={()=>{
+                props.funcCur()
+                setWindow(true)
+                }}>
+                <div className="lable">
+                    <p>
+                        {props.number}
+                    </p>
+                </div>
+            </SmQuizz>
+        </>
     )
 }

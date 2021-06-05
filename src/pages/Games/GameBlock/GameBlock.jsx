@@ -18,10 +18,14 @@ const Title = styled.h3`
 
 export default function GameBlock(props)
 {
+    const toString = () => {
+        return props.title.replace("-"," ")
+    }
+
     return (
         <Link to={`/games/${props.title}`}>
             <GameBlockDiv>
-                <Title>{props.title}</Title>
+                <Title>{toString()}</Title>
             </GameBlockDiv>
         </Link>
     )

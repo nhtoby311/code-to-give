@@ -17,7 +17,6 @@ const Blocked = styled.div`
     `
 const H2 = styled.h2`
     text-transform: capitalize;
-    color: black;
     margin-bottom: 12px;
 `
 

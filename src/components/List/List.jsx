@@ -33,7 +33,7 @@ const TitleBlock = styled.div`
     }
 `
 
-const Window = styled.div`
+export const Window = styled.div`
     position: fixed;
     width: 40%;
     padding: 30px;
@@ -46,6 +46,7 @@ const Window = styled.div`
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 12px 10px 10px 7px rgba(0,0,0,0.25);
+    align-items: center;
     opacity: 0;
 `
 
