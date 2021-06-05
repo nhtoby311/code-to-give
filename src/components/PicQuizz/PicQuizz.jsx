@@ -76,6 +76,7 @@ const LetterCont = styled.div`
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 15px;
     margin: 55px 0;
     margin-top: 25px;

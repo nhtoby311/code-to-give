@@ -52,31 +52,6 @@ export const Window = styled.div`
     opacity: 0;
 `
 
-const TitleWindow = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    align-items: center;
-    margin-bottom: 35px;
-    p{
-        font-size: 2.6rem;
-    }
-`
-const Grid = styled.div`
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 35px;
-    margin-bottom: 35px;
-    p{
-        &:nth-of-type(even)
-        {
-            text-align: end;
-        }
-    }
-`
 
 
 export default function List()

@@ -73,8 +73,7 @@ export default function SmallQuizz(props) {
     }
 
     useEffect(()=>{
-        console.log(props.cur)
-        if(window === true && props.cur === props.number)
+        if(window === true)
         {
             gsap.to(windowRef.current,{
                 opacity: 1,
@@ -90,7 +89,15 @@ export default function SmallQuizz(props) {
                 pointerEvents:'none'
             })
         }
-    },[window,props.cur])
+    },[window])
+
+    useEffect(()=>{                             //whenever props.cur is updated and diff than the number, will set the window the not right number and current to false   
+        if(props.cur !== props.number)
+        {
+            setWindow(false)
+        }
+    },[props.cur])
+
     // 
     return (
         <>
@@ -105,7 +112,7 @@ export default function SmallQuizz(props) {
             </Window>
             <SmQuizz className={`${doneClass()}`} onClick={()=>{
                 props.funcCur()
-                setWindow(true)
+                setWindow(!window)
                 }}>
                 <div className="lable">
                     <p>

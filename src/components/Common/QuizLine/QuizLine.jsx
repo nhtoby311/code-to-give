@@ -21,6 +21,8 @@ const DateAndArrow = styled.div`
 `
 
 
+
+
 export default function QuizLine(props) {
     const [windowActive, setWindowActive] = useState(false)
     const windowRef=useRef(null)
@@ -42,12 +44,29 @@ export default function QuizLine(props) {
         }
 
     }, [windowActive])
+
+
+    useEffect(()=>{                             //whenever props.cur is updated and diff than the number, will set the window the not right number and current to false   
+        if(props.cur !== props.id)
+        {
+            setWindowActive(false)
+        }
+    },[props.cur])
     
     return (
         <>
-        <Window windowRef={windowRef} quiz_name={props.quiz_name} attempt={props.attempt} date = {props.date} time = {props.time} point = {props.point}>
-        </Window>
-        <Qline onClick = {()=>setWindowActive(!windowActive)}>
+        <Window windowRef={windowRef} 
+        quiz_name={props.quiz_name} 
+        attempt={props.attempt} 
+        date = {props.date} 
+        time = {props.time} 
+        point = {props.point}
+        funcClose={()=>{setWindowActive(false)}}/>
+
+        <Qline onClick = {()=>{
+            props.funcCur()
+            setWindowActive(!windowActive)
+        }}>
             <p>{props.quiz_name}</p>
             <DateAndArrow>
                 <p>Due {props.date}</p>

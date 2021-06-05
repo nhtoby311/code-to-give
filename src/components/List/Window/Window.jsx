@@ -45,12 +45,22 @@ const Grid = styled.div`
         }
     }
 `
+
+const Close = styled.h3`
+    font-size: 1.5rem;
+    position: absolute;
+    top: 35px;
+    right: 35px;
+    cursor: pointer;
+`
 export default function Window(props)
 {
     return(
         
         <WindowDiv className="window"  ref={props.windowRef}>
-            
+            <Close onClick={props.funcClose}>
+                X
+            </Close>
             <TitleWindow>
                 <p>{props.quiz_name}</p>
             </TitleWindow>
