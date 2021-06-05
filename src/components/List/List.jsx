@@ -4,13 +4,14 @@ import Button from '../Common/Button/Button'
 import * as vars from '../../styles/var'
 import { useEffect, useState } from 'react'
 import gsap from "gsap";
+import QuizLine from '../Common/QuizLine/QuizLine'
 
 const Container = styled.div`
     width: 80%;
     margin-left: 12%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows:auto 1fr;
     gap: 0px 0px;
     grid-template-areas:
         "title title title title title title title"
@@ -23,6 +24,7 @@ const TitleBlock = styled.div`
     width: 100%;
     padding: 30px;
     display: flex;
+    max-height:200px;
     justify-content: center;
     align-items: center;
     grid-area: title;
@@ -69,7 +71,6 @@ const Grid = styled.div`
     grid-gap: 35px;
     margin-bottom: 35px;
     p{
-       
         &:nth-of-type(even)
         {
             text-align: end;
@@ -80,48 +81,23 @@ const Grid = styled.div`
 
 export default function List()
 {
-    const [windowActive,setWindowActive] = useState(false)
-
-    
+    const [data, setData] = useState([])
     useEffect(()=>{
-        if(windowActive)
-        {
-            gsap.to('.window',{
-                opacity: 1,
-                duration:0.3,
-                pointerEvents:'auto'
-            })
+        const getData = async () => {
+            const response = await fetch('../mock_data/quiz_line.json')
+            const result = await response.json()
+            setData(result)
         }
-        else
-        {
-            gsap.to('.window',{
-                opacity: 0,
-                duration:0.3,
-                pointerEvents:'none'
-            })
-        }
-        
-    },[windowActive])
-
+        getData();
+    },[])
+    
     return(
         <Container>
-            <Window className="window">
-                <TitleWindow>
-                    <p>Quiz_123</p>
-                </TitleWindow>
-                <Grid>
-                    <p>Time-limit: 13 minutes</p>
-                    <p>Point: 12pts</p>
-                    <p>Due date: 22 May 2021</p>
-                    <p>Possible Attemps: 1</p>
-                </Grid>
-                <Button content="start" pad="15px"></Button>
-            </Window>
+            
             <TitleBlock>
                 <span>Quiz</span>
             </TitleBlock>
-            <button onClick={()=>setWindowActive(!windowActive)}>asdasd</button>
-            <Block title="need-to-do" type="quiz" >
+            <Block title="need-to-do" type="popup" data= {data}>
             </Block>
             <Block title="finished" type="quiz" >
 

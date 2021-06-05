@@ -6,8 +6,6 @@ export default function Home() {
     const [newAssignmentData,setNewAssignmentData] = useState([])
     const [reminderData,setReminderData] = useState([])
     const [bestStudentData,setBestStudentData] = useState([])
-
-
     const getData = ()=>
     {
         const getNewAssignmentData = async()=>
