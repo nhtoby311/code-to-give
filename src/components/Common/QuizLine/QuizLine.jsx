@@ -1,0 +1,60 @@
+import styled from "styled-components"
+import * as vars from '../../../styles/var'
+import Window from "../../List/Window/Window"
+import gsap from "gsap/gsap-core"
+import { useEffect, useRef, useState } from 'react'
+const Qline = styled.div`
+    width: 100%;
+    background-color: ${vars.plainYellow};
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top:20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+`
+const DateAndArrow = styled.div`
+    display: flex;
+    gap:10px;
+`
+
+
+export default function QuizLine(props) {
+    const [windowActive, setWindowActive] = useState(false)
+    const windowRef=useRef(null)
+    useEffect(() => {
+        
+        if (windowActive) {
+            gsap.to(windowRef.current, {
+                opacity: 1,
+                duration: 0.3,
+                pointerEvents: 'auto'
+            })
+        }
+        else {
+            gsap.to(windowRef.current, {
+                opacity: 0,
+                duration: 0.3,
+                pointerEvents: 'none'
+            })
+        }
+
+    }, [windowActive])
+    
+    return (
+        <>
+        <Window windowRef={windowRef} quiz_name={props.quiz_name} attempt={props.attempt} date = {props.date} time = {props.time} point = {props.point}>
+        </Window>
+        <Qline onClick = {()=>setWindowActive(!windowActive)}>
+            <p>{props.quiz_name}</p>
+            <DateAndArrow>
+                <p>Due {props.date}</p>
+                <p>A</p>
+            </DateAndArrow>
+        </Qline>
+        </>
+
+    )
+}

@@ -2,7 +2,9 @@ import styled from 'styled-components'
 import BlockCards from './BlockCards/BlockCards'
 import BlockQuiz from './BlockQuiz/BlockQuiz'
 import TextBlock from './TextBlock/TextBlock'
+import BlockPopup from './BlockPopup/BlockPopup'
 import * as vars from '../../../styles/var'
+import Notification from '../../Common/Notification/Notification'
 
 const Blocked = styled.div`
         min-width:100%;     //to make the horizontal not passed to parent flex div
@@ -14,6 +16,7 @@ const Blocked = styled.div`
         grid-area: ${props => props.title};
         padding: 25px 50px;
         border-radius: 25px;
+        position: relative;
     `
 const H2 = styled.h2`
     text-transform: capitalize;
@@ -33,6 +36,8 @@ export default function Block(props)
                 return <BlockQuiz data={props.data}/>
             case 'text':
                 return <TextBlock data={props.data}/>
+            case 'popup':
+                return <BlockPopup data={props.data}/>
             default:
                 return (null)
         }
@@ -41,7 +46,8 @@ export default function Block(props)
     return(
         <Blocked title = {props.title}>
             <H2>{props.title && props.title.replace('-',' ')}</H2>
-            {handleTypeContent()}
+           
+            {handleTypeContent()} 
         </Blocked>
     )
 }
