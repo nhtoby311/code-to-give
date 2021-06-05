@@ -10,16 +10,16 @@ const Noti = styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding: ${(props) => { if (props.pad != undefined) { return props.pad } else return `10px`}};
+    padding: ${(props) => { if (props.pad !== undefined) { return props.pad } else return `10px`}};
     top:${(props)=>{
-        if(props.top!=undefined)
+        if(props.top!==undefined)
         {
             return props.top;
         }
         else return `0px`
     }};
     left:${(props)=>{
-        if(props.left!=undefined)
+        if(props.left!==undefined)
         {
             return props.left
         }

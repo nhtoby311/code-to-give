@@ -2,7 +2,7 @@ import styled from "styled-components"
 import "./PicQuizz.scss"
 import "./SmallQuizz/SmallQuizz"
 import SmallQuizz from "./SmallQuizz/SmallQuizz"
-import QuizWrite from "../Quiz/QuizWrite/QuizWrite"
+//import QuizWrite from "../Quiz/QuizWrite/QuizWrite"
 import { useState } from "react"
 import Button from "../Common/Button/Button"
 const QuizzTitle = styled.div`

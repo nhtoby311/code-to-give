@@ -69,6 +69,7 @@ export default function Quiz()
                 </>)
                 break;
         }
+        // eslint-disable-next-line
     },[quizInd])
     
 

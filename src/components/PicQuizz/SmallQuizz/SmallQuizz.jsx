@@ -2,7 +2,7 @@ import gsap from "gsap/gsap-core"
 import { useEffect,useRef,useState } from "react"
 import styled from "styled-components"
 import {Window} from '../../List/List'
-import FourQuiz from "./FourQuiz/FourQuiz"
+//import FourQuiz from "./FourQuiz/FourQuiz"
 import WriteQuiz from "./WriteQuiz/WriteQuiz"
 const SmQuizz = styled.div`
     background: #77BC1F;
@@ -96,6 +96,7 @@ export default function SmallQuizz(props) {
         {
             setWindow(false)
         }
+        // eslint-disable-next-line
     },[props.cur])
 
     // 

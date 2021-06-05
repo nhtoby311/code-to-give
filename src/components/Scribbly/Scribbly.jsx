@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import styled from 'styled-components'
 import DescriptionBlock from '../Common/DescriptionBlock/DescriptionBlock'
 import {ReactSketchCanvas} from "react-sketch-canvas"

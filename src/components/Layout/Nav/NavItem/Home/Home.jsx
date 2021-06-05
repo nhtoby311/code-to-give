@@ -1,5 +1,3 @@
-import gsap from 'gsap/gsap-core'
-import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 
 const SVG = styled.svg`

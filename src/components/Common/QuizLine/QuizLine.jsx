@@ -51,6 +51,7 @@ export default function QuizLine(props) {
         {
             setWindowActive(false)
         }
+        // eslint-disable-next-line
     },[props.cur])
     
     return (

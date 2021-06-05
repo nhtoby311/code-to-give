@@ -1,8 +1,7 @@
 import styled from "styled-components"
-import * as vars from '../../../styles/var'
 const Btn = styled.button`
         padding: ${(props) => {
-        if (props.pad != undefined) { return props.pad }
+        if (props.pad !== undefined) { return props.pad }
         else { return `10px` }
     }} 30px;
         //padding: ${(props) => { return props.pad }} 30px;

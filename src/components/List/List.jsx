@@ -1,10 +1,7 @@
 import styled from 'styled-components'
 import Block from '../Common/Block/Block'
-import Button from '../Common/Button/Button'
 import * as vars from '../../styles/var'
 import { useEffect, useState } from 'react'
-import gsap from "gsap";
-import QuizLine from '../Common/QuizLine/QuizLine'
 
 const Container = styled.div`
     width: 80%;

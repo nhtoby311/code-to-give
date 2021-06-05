@@ -1,7 +1,5 @@
-import gsap from "gsap/gsap-core"
 import styled from "styled-components"
 import * as vars from "../../../styles/var"
-import { useEffect, useState } from 'react'
 import Button from '../../Common/Button/Button'
 const WindowDiv = styled.div`
     position: fixed;
