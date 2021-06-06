@@ -1,4 +1,4 @@
-import gsap from "gsap/gsap-core"
+import gsap from "gsap"
 import { useEffect,useRef,useState } from "react"
 import styled from "styled-components"
 import {Window} from '../../List/List'
@@ -102,7 +102,7 @@ export default function SmallQuizz(props) {
     // 
     return (
         <>
-            <Window ref={windowRef}>
+            <Window className="test" ref={windowRef}>
                 <Close onClick={()=>{setWindow(false)}}>
                     X
                 </Close>

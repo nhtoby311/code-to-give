@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import * as vars from '../../../styles/var'
 import Window from "../../List/Window/Window"
-import gsap from "gsap/gsap-core"
 import { useEffect, useRef, useState } from 'react'
+import gsap from "gsap"
 const Qline = styled.div`
     width: 100%;
     background-color: ${vars.plainYellow};
@@ -62,6 +62,8 @@ export default function QuizLine(props) {
         date = {props.date} 
         time = {props.time} 
         point = {props.point}
+        path={props.game}
+        id = {props.id}
         funcClose={()=>{setWindowActive(false)}}/>
 
         <Qline onClick = {()=>{

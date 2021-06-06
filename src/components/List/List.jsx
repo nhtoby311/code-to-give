@@ -51,27 +51,54 @@ export const Window = styled.div`
 
 
 
-export default function List()
+export default function List(props)
 {
     const [data, setData] = useState([])
-    useEffect(()=>{
-        const getData = async () => {
-            const response = await fetch('../mock_data/quiz_line.json')
+
+    const getData = async (url) => {
+        if(url)
+        {
+            const response = await fetch(url)
             const result = await response.json()
             setData(result)
         }
-        getData();
+    }
+
+    const handleGameFetch = ()=>{
+        switch (props.game)
+        {
+            case 'Scribbly':
+                {
+                    return getData('../mock_data/Scribbly.json')
+                }
+            case 'Quiz':
+                {
+                    return getData('../mock_data/Quiz.json')
+                }
+            case 'Pic-Quizz':
+                {
+                    return getData('../mock_data/Pic-Quizz.json')
+                }
+            default:
+                {
+                    return getData()
+                } 
+        }
+    }
+
+    useEffect(()=>{
+        handleGameFetch()
     },[])
     
     return(
         <Container>
             
             <TitleBlock>
-                <span>Quiz</span>
+                <span>{props.game}</span>
             </TitleBlock>
             <Block title="need-to-do" type="popup" data= {data}>
             </Block>
-            <Block title="finished" type="quiz" >
+            <Block title="finished" type="quiz" data= {data}>
 
             </Block>
         </Container>

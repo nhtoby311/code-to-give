@@ -8,7 +8,6 @@ export default function Games()
             <GameBlock title='Scribbly'/>
             <GameBlock title='Quiz'/>
             <GameBlock title='Pic-Quizz'/>
-            <GameBlock title='List'/>
         </div>
     )
 }

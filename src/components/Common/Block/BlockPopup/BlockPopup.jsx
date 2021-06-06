@@ -12,8 +12,6 @@ const QuizContainer = styled.div`
 
 export default function BlockPopup(props) {
     const [currentWindow,setCurrentWindow] = useState(0)
-    
-
 
     return (
         <> 
@@ -27,8 +25,11 @@ export default function BlockPopup(props) {
                         attempt={element.attempt} 
                         point={element.point}
                         cur={currentWindow} 
-                        id = {ind}
-                        funcCur={()=>setCurrentWindow(ind)}></QuizLine>)
+                        id = {element.id}
+                        game = {element.game}
+                        funcCur={()=>{
+                            setCurrentWindow(element.id)
+                        }}></QuizLine>)
                 })}
             </QuizContainer>
         </>

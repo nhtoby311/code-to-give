@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 import * as vars from "../../../styles/var"
 import Button from '../../Common/Button/Button'
@@ -68,7 +69,9 @@ export default function Window(props)
                 <p>Due date: {props.date}</p>
                 <p>Possible Attemps: {props.attempt}</p>
             </Grid>
-            <Button content="start" pad="15px"></Button>
+            <Link to={`${props.path}/${props.id}`}>
+                <Button content="start" pad="15px"></Button>
+            </Link>
         </WindowDiv>
     )
 }
