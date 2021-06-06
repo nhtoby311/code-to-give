@@ -88,11 +88,11 @@ export default function List(props)
 
     useEffect(()=>{
         handleGameFetch()
+        // eslint-disable-next-line
     },[])
     
     return(
         <Container>
-            
             <TitleBlock>
                 <span>{props.game}</span>
             </TitleBlock>
