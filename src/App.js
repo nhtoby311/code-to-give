@@ -13,27 +13,32 @@ import PicQuizz from './components/PicQuizz/PicQuizz';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Admin from './pages/Admin/Admin';
+import { useContext, useState } from 'react';
+import { AuthContext } from './context/AuthContext';
+import AuthRoute from './components/AuthRoute/AuthRoute';
 
+let routes = (
+  <Switch>
+    <AuthRoute exact path="/" component={Home}/>
+    <AuthRoute exact path="/leaderboard" component={Leaderboard}/>
+    <AuthRoute exact path="/games" component={Games}/>
+    <AuthRoute exact path="/profile" component={Profile}/>
+    <Route exact path="/login" component={Login}/>
+    <Route exact path="/register" component={Register}/>
+    <AuthRoute exact path="/games/quiz" component={()=>{return <List game="Quiz"/>}}/>
+    <AuthRoute exact path="/games/quiz/:id" component={Quiz}/>
+    <AuthRoute exact path="/games/scribbly" component={()=>{return <List game="Scribbly"/>}}/>
+    <AuthRoute exact path="/games/scribbly/:id" component={Scribbly}/>
+    <AuthRoute exact path="/games/pic-quizz" component={()=>{return <List game="Pic-Quizz"/>}}/>
+    <AuthRoute exact path="/games/pic-quizz/:id" component={PicQuizz}/>
+    <AuthRoute path="/games/admin" component={Admin}/>
+    <Route path="*" component={()=>{return "404 NOT FOUND 404 NOT FOUND"}}/>
+  </Switch>
+)
 
 function App() {
-  let routes = (
-    <Switch>
-      <Route exact path="/" component={Home}/>
-      <Route exact path="/leaderboard" component={Leaderboard}/>
-      <Route exact path="/games" component={Games}/>
-      <Route exact path="/profile" component={Profile}/>
-      <Route exact path="/login" component={Login}/>
-      <Route exact path="/register" component={Register}/>
-      <Route exact path="/games/quiz" component={()=>{return <List game="Quiz"/>}}/>
-      <Route exact path="/games/quiz/:id" component={Quiz}/>
-      <Route exact path="/games/scribbly" component={()=>{return <List game="Scribbly"/>}}/>
-      <Route exact path="/games/scribbly/:id" component={Scribbly}/>
-      <Route exact path="/games/pic-quizz" component={()=>{return <List game="Pic-Quizz"/>}}/>
-      <Route exact path="/games/pic-quizz/:id" component={PicQuizz}/>
-      <Route path="/games/admin" component={Admin}/>
-    </Switch>
-  )
-  
+  const { auth } = useContext(AuthContext);
+
   return (
     <Router>
       <div id="wrapper">

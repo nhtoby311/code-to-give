@@ -1,7 +1,9 @@
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Input from '../../components/Common/Input/Input'
+import { AuthContext } from '../../context/AuthContext'
+import { useContext } from 'react'
 
 export const Form = styled.form`
     width: 50%;
@@ -78,9 +80,29 @@ export const LinkStyled = styled(Link)`
 export default function Login()
 {
     const {register , handleSubmit} = useForm()
+    const { auth , login } = useContext(AuthContext);
+    const history = useHistory()
+    console.log(auth)
 
-    const handleSubmitCallBack = (data)=>{
-        console.log(data)
+    const handleSubmitCallBack = async (data)=>{
+        try{
+            const response = await fetch('https://code-to-give.herokuapp.com/users/login',{
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(data)
+            })
+            if(!response.ok)
+                throw new Error(response.statusText)
+            const result = await response.json()
+            localStorage.setItem('token',result.token)      //save token to localStorage
+            login()
+            console.log(localStorage.getItem('token'))
+            history.push('/')
+        } catch(err){
+            console.log(err)
+        }
     }
 
     return(

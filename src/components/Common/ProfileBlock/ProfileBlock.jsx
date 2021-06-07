@@ -11,8 +11,11 @@ const Pf = styled.div`
     background-color: white;
     overflow: hidden;
     border-radius: 25px;
+    background-image: url(${props => props.img});
+    background-size: cover;
+    background-position: center;
 `
-const Avatar = styled.div`
+const Avatar = styled.img`
     position: absolute;
     width: 250px;
     height: 250px;
@@ -57,13 +60,14 @@ const DivInner = styled.div`
     padding-top: 80px;
 `
 export default function ProfileBlock(props) {
+
     return (
         <>
-            <Pf>
+            <Pf img={props.data && props.data.coverPhotoURL}>
                 <Badge>
                     <InforContainer>
-                        <Avatar></Avatar>
-                        <Name>{props.name}</Name>
+                        <Avatar src={props.data && props.data.avatarURL}></Avatar>
+                        <Name>{props.data && props.data.firstName +" "+ props.data.lastName}</Name>
                     </InforContainer>
                     <DivOuter>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, enim veritatis! Placeat fugiat impedit animi hic praesentium nobis molestias minima aut architecto a nostrum ea veniam, laudantium cumque ex neque.</p> 

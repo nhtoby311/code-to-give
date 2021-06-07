@@ -8,6 +8,7 @@ import Colors from './Tools/Colors/Colors'
 import Undo from './Tools/Undo/Undo'
 import Redo from './Tools/Redo/Redo'
 import Clear from './Tools/Clear/Clear'
+import { useLocation, useParams } from 'react-router'
 
 const Container = styled.div`
     width: 80%;
@@ -57,11 +58,12 @@ const styles = {
     border: "none",
   };
 
-export default function Scribbly({match})
+export default function Scribbly()
 {
     const [color,setColor] = useState('black')
     const [data,setData] = useState()
 
+    const id = useParams().id               //get current id parameter from route
     const canvasRef = useRef(null)
     const parentCanvasRef = useRef(null)
 
@@ -69,7 +71,7 @@ export default function Scribbly({match})
         const response = await fetch ('../../../mock_data/Scribbly.json')
         const result = await response.json()
 
-        setData(result.filter((ele)=>{return (ele.id == match.params.id)}))
+        setData(result.filter((ele)=>{return (ele.id == id)}))
     }
 
     useEffect(()=>{
