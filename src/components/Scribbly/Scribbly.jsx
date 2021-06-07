@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import DescriptionBlock from '../Common/DescriptionBlock/DescriptionBlock'
 import {ReactSketchCanvas} from "react-sketch-canvas"
@@ -57,12 +57,24 @@ const styles = {
     border: "none",
   };
 
-export default function Scribbly()
+export default function Scribbly({match})
 {
     const [color,setColor] = useState('black')
+    const [data,setData] = useState()
 
     const canvasRef = useRef(null)
     const parentCanvasRef = useRef(null)
+
+    const fetchData = async()=>{
+        const response = await fetch ('../../../mock_data/Scribbly.json')
+        const result = await response.json()
+
+        setData(result.filter((ele)=>{return (ele.id == match.params.id)}))
+    }
+
+    useEffect(()=>{
+        fetchData()
+    },[])
 
 
 
@@ -111,7 +123,7 @@ export default function Scribbly()
                     </CanvasTools>
                 </CanvasToolCont>
             </CanvasContainer>
-            <DescriptionBlock/>
+            <DescriptionBlock data={data}/>
         </Container>
     )
 }

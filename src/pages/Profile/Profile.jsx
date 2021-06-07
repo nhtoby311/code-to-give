@@ -19,6 +19,13 @@ export default function Profile()
 
     const getData = () =>
     {
+        const getUserData = async()=>
+        {
+            const response = await fetch('https://code-to-give.herokuapp.com/users/vantoan_19')
+            const result = await response.json()
+            console.log(result)
+        }
+
         const getRecentGradesData = async()=>
         {
             const response = await fetch('./mock_data/recent_grades.json')
@@ -34,6 +41,7 @@ export default function Profile()
 
         getRecentGradesData()
         getTopGradesData()
+        getUserData()
     }
 
     useEffect(()=>{

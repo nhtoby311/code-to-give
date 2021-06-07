@@ -1,12 +1,15 @@
-import { Link} from 'react-router-dom'
+import { Link, useLocation} from 'react-router-dom'
 import './Nav.scss'
 import NavItem from './NavItem/NavItem'
 
 
 export default function Nav()
 {
-    
-
+    let location = useLocation()
+    if(location.pathname == '/login' || location.pathname == '/register')
+    {
+        return null
+    }
 
     return (
         <nav>

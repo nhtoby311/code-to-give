@@ -96,7 +96,7 @@ export default function List(props)
             <TitleBlock>
                 <span>{props.game}</span>
             </TitleBlock>
-            <Block title="need-to-do" type="popup" data= {data}>
+            <Block title="need-to-do" type="popup" data={data}>
             </Block>
             <Block title="finished" type="quiz" data= {data}>
 

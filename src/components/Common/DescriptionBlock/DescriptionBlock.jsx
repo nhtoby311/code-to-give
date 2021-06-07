@@ -32,7 +32,7 @@ const QuizDescription = styled.li`
     margin-bottom: 15px;
 `
 
-export default function DescriptionBlock()
+export default function DescriptionBlock(props)
 {
     return(
         <Block>
@@ -42,7 +42,7 @@ export default function DescriptionBlock()
             <QuizDescriptions>              
                 {/* ARRAY OF QUIZ DESCRIPTION */}
                 <QuizDescription>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, exercitationem!
+                    {props.data && props.data[0].quiz_name}
                 </QuizDescription>
                 <QuizDescription>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, exercitationem!
