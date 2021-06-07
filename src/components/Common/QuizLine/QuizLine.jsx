@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import * as vars from '../../../styles/var'
 import Window from "../../List/Window/Window"
-import gsap from "gsap/gsap-core"
 import { useEffect, useRef, useState } from 'react'
+import gsap from "gsap"
 const Qline = styled.div`
     width: 100%;
     background-color: ${vars.plainYellow};
@@ -19,6 +19,8 @@ const DateAndArrow = styled.div`
     display: flex;
     gap:10px;
 `
+
+
 
 
 export default function QuizLine(props) {
@@ -42,12 +44,32 @@ export default function QuizLine(props) {
         }
 
     }, [windowActive])
+
+
+    useEffect(()=>{                             //whenever props.cur is updated and diff than the number, will set the window the not right number and current to false   
+        if(props.cur !== props.id)
+        {
+            setWindowActive(false)
+        }
+        // eslint-disable-next-line
+    },[props.cur])
     
     return (
         <>
-        <Window windowRef={windowRef} quiz_name={props.quiz_name} attempt={props.attempt} date = {props.date} time = {props.time} point = {props.point}>
-        </Window>
-        <Qline onClick = {()=>setWindowActive(!windowActive)}>
+        <Window windowRef={windowRef} 
+        quiz_name={props.quiz_name} 
+        attempt={props.attempt} 
+        date = {props.date} 
+        time = {props.time} 
+        point = {props.point}
+        path={props.game}
+        id = {props.id}
+        funcClose={()=>{setWindowActive(false)}}/>
+
+        <Qline onClick = {()=>{
+            props.funcCur()
+            setWindowActive(!windowActive)
+        }}>
             <p>{props.quiz_name}</p>
             <DateAndArrow>
                 <p>Due {props.date}</p>

@@ -4,7 +4,6 @@ import BlockQuiz from './BlockQuiz/BlockQuiz'
 import TextBlock from './TextBlock/TextBlock'
 import BlockPopup from './BlockPopup/BlockPopup'
 import * as vars from '../../../styles/var'
-import Notification from '../../Common/Notification/Notification'
 
 const Blocked = styled.div`
         min-width:100%;     //to make the horizontal not passed to parent flex div
@@ -20,7 +19,6 @@ const Blocked = styled.div`
     `
 const H2 = styled.h2`
     text-transform: capitalize;
-    color: black;
     margin-bottom: 12px;
 `
 

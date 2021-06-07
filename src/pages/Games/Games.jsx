@@ -5,10 +5,9 @@ export default function Games()
 {
     return (
         <div className="container games-cont">
-            <GameBlock title='scribbly'/>
+            <GameBlock title='Scribbly'/>
             <GameBlock title='Quiz'/>
-            <GameBlock title='scrabble'/>
-            <GameBlock title='list'/>
+            <GameBlock title='Pic-Quizz'/>
         </div>
     )
 }

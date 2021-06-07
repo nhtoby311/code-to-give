@@ -4,7 +4,7 @@ import Button from '../Button/Button'
 const Block = styled.div`
     width: 100%;
     height: 100%;
-    background: green;
+    background: var(--greenLightPlainColor);
     grid-area: block;
     border-radius: 25px;
     display: flex;
@@ -13,8 +13,11 @@ const Block = styled.div`
     justify-content: space-between;
     padding: 30px 40px;
 `
-const QuizName = styled.h3`
-    font-size: 21px;
+const QuizTitle = styled.h3`
+    font-size: 3rem;
+    padding: 5px;
+    color: var(--yellowPlainColor);
+    border-bottom: solid white 2px;
 `
 
 const QuizDescriptions = styled.div`
@@ -29,17 +32,17 @@ const QuizDescription = styled.li`
     margin-bottom: 15px;
 `
 
-export default function DescriptionBlock()
+export default function DescriptionBlock(props)
 {
     return(
         <Block>
-            <QuizName>
-                lmao
-            </QuizName>
+            <QuizTitle>
+                Let's Draw
+            </QuizTitle>
             <QuizDescriptions>              
                 {/* ARRAY OF QUIZ DESCRIPTION */}
                 <QuizDescription>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, exercitationem!
+                    {props.data && props.data[0].quiz_name}
                 </QuizDescription>
                 <QuizDescription>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, exercitationem!

@@ -1,7 +1,6 @@
-import gsap from "gsap/gsap-core"
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 import * as vars from "../../../styles/var"
-import { useEffect, useState } from 'react'
 import Button from '../../Common/Button/Button'
 const WindowDiv = styled.div`
     position: fixed;
@@ -45,12 +44,22 @@ const Grid = styled.div`
         }
     }
 `
+
+const Close = styled.h3`
+    font-size: 1.5rem;
+    position: absolute;
+    top: 35px;
+    right: 35px;
+    cursor: pointer;
+`
 export default function Window(props)
 {
     return(
         
         <WindowDiv className="window"  ref={props.windowRef}>
-            
+            <Close onClick={props.funcClose}>
+                X
+            </Close>
             <TitleWindow>
                 <p>{props.quiz_name}</p>
             </TitleWindow>
@@ -60,7 +69,9 @@ export default function Window(props)
                 <p>Due date: {props.date}</p>
                 <p>Possible Attemps: {props.attempt}</p>
             </Grid>
-            <Button content="start" pad="15px"></Button>
+            <Link to={`${props.path}/${props.id}`}>
+                <Button content="start" pad="15px"></Button>
+            </Link>
         </WindowDiv>
     )
 }

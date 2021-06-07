@@ -14,7 +14,6 @@ const AnswerDiv = styled.div`
 
 export default function QuizAnswer(props)
 {
-
     return(
         <AnswerDiv onClick={props.funcNext}>
             <p>A.{props.content}</p>

@@ -1,10 +1,7 @@
 import styled from 'styled-components'
 import Block from '../Common/Block/Block'
-import Button from '../Common/Button/Button'
 import * as vars from '../../styles/var'
 import { useEffect, useState } from 'react'
-import gsap from "gsap";
-import QuizLine from '../Common/QuizLine/QuizLine'
 
 const Container = styled.div`
     width: 80%;
@@ -35,7 +32,7 @@ const TitleBlock = styled.div`
     }
 `
 
-const Window = styled.div`
+export const Window = styled.div`
     position: fixed;
     width: 40%;
     padding: 30px;
@@ -48,57 +45,60 @@ const Window = styled.div`
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 12px 10px 10px 7px rgba(0,0,0,0.25);
+    align-items: center;
     opacity: 0;
 `
 
-const TitleWindow = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    align-items: center;
-    margin-bottom: 35px;
-    p{
-        font-size: 2.6rem;
-    }
-`
-const Grid = styled.div`
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 35px;
-    margin-bottom: 35px;
-    p{
-        &:nth-of-type(even)
-        {
-            text-align: end;
-        }
-    }
-`
 
 
-export default function List()
+export default function List(props)
 {
     const [data, setData] = useState([])
-    useEffect(()=>{
-        const getData = async () => {
-            const response = await fetch('../mock_data/quiz_line.json')
+
+    const getData = async (url) => {
+        if(url)
+        {
+            const response = await fetch(url)
             const result = await response.json()
             setData(result)
         }
-        getData();
+    }
+
+    const handleGameFetch = ()=>{
+        switch (props.game)
+        {
+            case 'Scribbly':
+                {
+                    return getData('../mock_data/Scribbly.json')
+                }
+            case 'Quiz':
+                {
+                    return getData('../mock_data/Quiz.json')
+                }
+            case 'Pic-Quizz':
+                {
+                    return getData('../mock_data/Pic-Quizz.json')
+                }
+            default:
+                {
+                    return getData()
+                } 
+        }
+    }
+
+    useEffect(()=>{
+        handleGameFetch()
+        // eslint-disable-next-line
     },[])
     
     return(
         <Container>
-            
             <TitleBlock>
-                <span>Quiz</span>
+                <span>{props.game}</span>
             </TitleBlock>
-            <Block title="need-to-do" type="popup" data= {data}>
+            <Block title="need-to-do" type="popup" data={data}>
             </Block>
-            <Block title="finished" type="quiz" >
+            <Block title="finished" type="quiz" data= {data}>
 
             </Block>
         </Container>

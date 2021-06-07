@@ -1,6 +1,7 @@
 import styled from "styled-components"
 const Noti = styled.div`
-    background: #FF523A;
+    background: #ff5a44;
+    box-shadow: 2px 3px 13px 5px rgba(246, 67, 43, 0.37);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -9,16 +10,16 @@ const Noti = styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding: ${(props) => { if (props.pad != undefined) { return props.pad } else return `10px`}};
+    padding: ${(props) => { if (props.pad !== undefined) { return props.pad } else return `10px`}};
     top:${(props)=>{
-        if(props.top!=undefined)
+        if(props.top!==undefined)
         {
             return props.top;
         }
         else return `0px`
     }};
     left:${(props)=>{
-        if(props.left!=undefined)
+        if(props.left!==undefined)
         {
             return props.left
         }
