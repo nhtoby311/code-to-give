@@ -1,5 +1,4 @@
-nav
-{
+nav {
     position: fixed;
     height: 100vh;
     top: 0;
@@ -11,8 +10,8 @@ nav
     justify-content: space-between;
     background-image: url('../../../assets/nav/tree.svg');
     z-index: 999;
-    &::after
-    {
+
+    &::after {
         content: '';
         position: fixed;
         bottom: 0;
@@ -25,16 +24,31 @@ nav
     }
 }
 
-.nav-items
-{
+.nav-items {
     display: flex;
     flex-direction: column;
     text-align: center;
     gap: 40px;
 }
 
-.profile-pic-small
-{
+.profile-pic-small {
     width: 70px;
     height: 70px;
+}
+
+@media screen and (max-width: 750px) {
+    nav{
+        display: none;
+    }
+    .profile-pic-small
+    {
+        height: 50px;
+        width: 50px;
+        position: absolute;
+        left: 0;
+    }
+    .nav-items
+    {
+        padding: 20px 0px;
+    }
 }

@@ -9,6 +9,9 @@
     border: solid blue 2px;
     display: grid;
     grid-gap: 50px 30px;
+    @media screen and (max-width:500px) {
+        margin: 0px 10vw;
+    }
 }
 
 .container.home-cont
@@ -16,5 +19,10 @@
     grid-template-areas:
     "new-assignment new-assignment reminder"
     "best-student best-student best-student";
-    
+    @media screen and (max-width: 500px){
+        grid-template-areas:
+        "new-assignment"
+        "reminder"
+        "best-student";
+    }
 }

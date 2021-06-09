@@ -4,10 +4,16 @@ import Avatar from '../../../Avatar/Avatar'
 
 const BlockCardDiv = styled.div`
     width: 100%;
-    //height: 300px;
     display: flex;
     gap: 5%;
     overflow-x: auto;
+    @media screen and (max-width:500px)
+    {
+        flex-direction: column;
+        gap: 30px;
+        height: auto;
+        overflow: visible;
+    }
     
 `
 

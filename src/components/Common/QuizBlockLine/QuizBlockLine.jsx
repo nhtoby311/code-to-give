@@ -9,6 +9,10 @@ const QuizContainer = styled.div`
     background : ${vars.yellowColor};
     padding: 10px 20px;
     border-radius: 15px;
+    @media (max-width:500px)
+    {
+        flex-direction: column;
+    }
 `
 
 export default function QuizBlockLine(props)

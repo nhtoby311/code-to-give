@@ -16,6 +16,10 @@ const Blocked = styled.div`
         padding: 25px 50px;
         border-radius: 25px;
         position: relative;
+        @media screen and (max-width:500px)
+        {
+            max-height: none;
+        }
     `
 const H2 = styled.h2`
     text-transform: capitalize;
@@ -44,7 +48,6 @@ export default function Block(props)
     return(
         <Blocked title = {props.title}>
             <H2>{props.title && props.title.replace('-',' ')}</H2>
-           
             {handleTypeContent()} 
         </Blocked>
     )

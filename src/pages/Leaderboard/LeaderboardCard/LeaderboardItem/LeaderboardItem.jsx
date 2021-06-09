@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import gsap from "gsap/gsap-core"
-import { duration } from '@material-ui/core';
 const Item = styled.div`
         gap:10px;
         width:100%;
@@ -42,7 +41,6 @@ export default function LeaderboardItem() {
                 height: tmp.scrollHeight,
             })
         }
-        console.log(itemRef.current)
     }, [expandItem])
     return (
         <Item ref={itemRef} onClick={()=>{setExpandItem(!expandItem)}}>
