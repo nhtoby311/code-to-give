@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import QuizLine from '../../../Common/QuizLine/QuizLine'
 import Notification from '../../../Common/Notification/Notification'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { QuizContext } from '../../../../context/QuizContext'
 const QuizContainer = styled.div`
     width: 100%;
     gap: 35px;
@@ -12,21 +13,25 @@ const QuizContainer = styled.div`
 
 export default function BlockPopup(props) {
     const [currentWindow,setCurrentWindow] = useState(0)
+    const {data} = useContext(QuizContext)
+
+    const Noti = () => {
+        if(props.noti){
+            return (<Notification pad='5px' top='25px' left='200px' content={data.length} />)
+        }
+        else {
+            return (null)
+        }
+    }
 
     return (
         <> 
-            <Notification pad='5px' top='25px' left='200px' content={props.data.length} />
+            {Noti()}
             <QuizContainer>
-                {props.data && props.data.map((element, ind) => {
-                    return (<QuizLine key={ind} 
-                        quiz_name={element.quiz_name} 
-                        date={element.date} 
-                        time={element.time} 
-                        attempt={element.attempt} 
-                        point={element.point}
+                {data && data.map((element, ind) => {
+                    return (<QuizLine key={ind}
+                        data={element}
                         cur={currentWindow} 
-                        id = {element.id}
-                        game = {element.game}
                         funcCur={()=>{
                             setCurrentWindow(element.id)
                         }}></QuizLine>)

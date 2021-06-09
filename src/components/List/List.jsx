@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import Block from '../Common/Block/Block'
 import * as vars from '../../styles/var'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { QuizContext, QuizProvider } from '../../context/QuizContext'
 
 const Container = styled.div`
     width: 80%;
@@ -53,41 +54,10 @@ export const Window = styled.div`
 
 export default function List(props)
 {
-    const [data, setData] = useState([])
-
-    const getData = async (url) => {
-        if(url)
-        {
-            const response = await fetch(url)
-            const result = await response.json()
-            setData(result)
-        }
-    }
-
-    const handleGameFetch = ()=>{
-        switch (props.game)
-        {
-            case 'Scribbly':
-                {
-                    return getData('../mock_data/Scribbly.json')
-                }
-            case 'Quiz':
-                {
-                    return getData('../mock_data/Quiz.json')
-                }
-            case 'Pic-Quizz':
-                {
-                    return getData('../mock_data/Pic-Quizz.json')
-                }
-            default:
-                {
-                    return getData()
-                } 
-        }
-    }
+    const {handleGameFetching} = useContext(QuizContext)
 
     useEffect(()=>{
-        handleGameFetch()
+        handleGameFetching(props.game)
         // eslint-disable-next-line
     },[])
     
@@ -96,10 +66,9 @@ export default function List(props)
             <TitleBlock>
                 <span>{props.game}</span>
             </TitleBlock>
-            <Block title="need-to-do" type="popup" data={data}>
+            <Block title="need-to-do" type="popup" noti={true}>
             </Block>
-            <Block title="finished" type="quiz" data= {data}>
-
+            <Block title="finished" type="popup" noti={false}>
             </Block>
         </Container>
     )

@@ -5,7 +5,7 @@ export  const  AuthContext  =  React.createContext();
 
 export function AuthProvider({children})
 {
-    const [auth,setAuth] = useState(false)
+    const [auth,setAuth] = useState((localStorage.getItem('token') != null))
     const [user,setUser] = useState(null)
     const isMounted = useIsMounted()    //prevent data leak when setState before mounted
 
@@ -13,13 +13,19 @@ export function AuthProvider({children})
         setAuth(true)
     }
 
+    const logout = () =>{
+        setAuth(false)
+        localStorage.removeItem('token')
+        console.log(localStorage.getItem('token'))
+    }
+
     const getData = () =>{
         const getUserData = async()=>
         {
-            const response = await fetch('https://code-to-give.herokuapp.com/users/me',{
+            const response = await fetch('https://code-to-give.herokuapp.com/api/users/me',{
                 method:"GET",
                 headers:{
-                    'Authorization': localStorage.getItem('token')
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             })
             const result = await response.json()
@@ -38,7 +44,7 @@ export function AuthProvider({children})
     },[auth])
 
     return(
-        <AuthContext.Provider value={{auth,login,user}}>
+        <AuthContext.Provider value={{auth,login,user,logout}}>
             {children}
         </AuthContext.Provider>
     )

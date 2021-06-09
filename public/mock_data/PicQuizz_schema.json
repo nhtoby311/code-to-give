@@ -1,0 +1,45 @@
+{
+  "message": "Get data successfully",
+  "quiz": {
+    "quizId": "HEYZO-1234",
+    "quizType": "Scribbly",  
+    "dueDate":"24 May 2021",
+    "quizName": "GuessIdol",
+    "maxPoint": 100,
+    "numberOfAttempt": 5,
+    "maxTime": 12,
+    "_id": "60bf4e5672791d425a308fdb",
+    "class": "ABC",
+    "bigQuestion": "Who is this?",
+    "bigAnswer": "RinaIshihara",
+    "createdDate": "2020-12-31T23:00:00.000Z",
+    "smallQuestions": [
+      {
+        "options": [
+          "3",
+          "4",
+          "2",
+          "1"
+        ],
+        "_id": "60bf4e5672791d425a308fdc",
+        "question": "1+1 = ?",
+        "questionType": "multiple-choice",
+        "smallAnswer": "2"
+      },
+      {
+        "options": [
+          
+        ],
+        "_id": "60bf4e5672791d425a308fdd",
+        "question": "3+5 = ?",
+        "questionType": "fill-in-blank",
+        "smallAnswer": "8"
+      }
+    ],
+    "participants": [
+      
+    ],
+    "__v": 0,
+    "bigQuestionImageURL": "https://code-to-give.herokuapp.com/guesspic/HEYZO-1234/image"
+  }
+}

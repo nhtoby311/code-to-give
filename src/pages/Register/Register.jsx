@@ -25,6 +25,7 @@ export default function Register()
             <h2>Register</h2>
             <Input label="Username" register={register('account')}/>
             <Input label="Password" type="password" register={register('password')}/>
+            <Input label="E-mail" type="password" register={register('email')}/>
             {/* <LinkStyled to="/"> */}
                 <Button>
                     <span>SIGN UP</span>

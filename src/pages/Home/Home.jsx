@@ -34,8 +34,6 @@ export default function Home() {
         getBestStudentData()
     }
 
-    
-
     useEffect(()=>{
         getData()
     },[])

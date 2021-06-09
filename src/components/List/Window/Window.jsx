@@ -61,15 +61,15 @@ export default function Window(props)
                 X
             </Close>
             <TitleWindow>
-                <p>{props.quiz_name}</p>
+                <p>{props.data.quizName}</p>
             </TitleWindow>
             <Grid>
-                <p>Time-limit: {props.time} minutes</p>
-                <p>Point: {props.point}pts</p>
-                <p>Due date: {props.date}</p>
-                <p>Possible Attemps: {props.attempt}</p>
+                <p>Time-limit: {props.data.maxTime} minutes</p>
+                <p>Point: {props.data.maxPoint}pts</p>
+                <p>Due date: {props.data.dueDate}</p>
+                <p>Possible Attemps: {props.data.numberOfAttempt}</p>
             </Grid>
-            <Link to={`${props.path}/${props.id}`}>
+            <Link to={`${props.data.quizType}/${props.data.quizId}`}>
                 <Button content="start" pad="15px"></Button>
             </Link>
         </WindowDiv>

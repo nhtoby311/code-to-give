@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import Button from "../Button/Button"
 import * as vars from "../../../styles/var"
+import { useContext } from "react"
+import { AuthContext } from "../../../context/AuthContext"
 
 const Pf = styled.div`
     width: 100%;
@@ -60,6 +62,7 @@ const DivInner = styled.div`
     padding-top: 80px;
 `
 export default function ProfileBlock(props) {
+    const {logout} = useContext(AuthContext)
 
     return (
         <>
@@ -71,7 +74,7 @@ export default function ProfileBlock(props) {
                     </InforContainer>
                     <DivOuter>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, enim veritatis! Placeat fugiat impedit animi hic praesentium nobis molestias minima aut architecto a nostrum ea veniam, laudantium cumque ex neque.</p> 
-                        <DivInner>
+                        <DivInner onClick={logout}>
                         <Button content="Edit Profile"></Button>
                         </DivInner>
                     </DivOuter>

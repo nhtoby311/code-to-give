@@ -1,14 +1,14 @@
-import { Link, useLocation} from 'react-router-dom'
+import { Link, matchPath, useLocation} from 'react-router-dom'
+import usePathDisable from '../../../hooks/usePathDisable'
 import './Nav.scss'
 import NavItem from './NavItem/NavItem'
 
 
 export default function Nav()
 {
-    let location = useLocation()
-    if(location.pathname == '/login' || location.pathname == '/register')
-    {
-        return null
+    const {match} = usePathDisable(["/login/*","/register/*","/admin/*"])
+    if(match){                                                     //IF EXIST, THEN DISABLE THIS NAV ON ROUTE
+        return (null)
     }
 
     return (
