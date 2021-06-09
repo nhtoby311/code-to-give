@@ -4,11 +4,18 @@ import Block from '../../components/Common/Block/Block'
 import ProfileBlock from '../../components/Common/ProfileBlock/ProfileBlock'
 import { AuthContext } from '../../context/AuthContext'
 const Container = styled.div`
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
     grid-template-areas:
     "profile profile"
     "recent-grades top-grades";
+
+    @media (max-width:500px)
+    {
+        margin-top: 100px;
+        grid-template-areas:
+        "profile"
+        "recent-grades"
+        "top-grades";
+    }
 `
 
 

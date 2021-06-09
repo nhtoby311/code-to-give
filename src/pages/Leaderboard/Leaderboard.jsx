@@ -23,7 +23,6 @@ export default function Leaderboard()
                     <SplideSlide>
                         <LeaderboardCard/>
                     </SplideSlide>
-                    
                     <SplideSlide>
                         <LeaderboardCard/>
                     </SplideSlide>

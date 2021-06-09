@@ -4,9 +4,9 @@ const Btn = styled.button`
         if (props.pad !== undefined) { return props.pad }
         else { return `10px` }
     }} 30px;
-        //padding: ${(props) => { return props.pad }} 30px;
         border:none;
         background: #FFD652;
+        height: fit-content;
         width:100%;
         border-radius: 10px;
         text-transform:uppercase;
