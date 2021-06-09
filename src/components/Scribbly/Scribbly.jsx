@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import DescriptionBlock from '../Common/DescriptionBlock/DescriptionBlock'
-import {ReactSketchCanvas} from "react-sketch-canvas"
+import { ReactSketchCanvas } from "react-sketch-canvas"
 import Pen from './Tools/Pen/Pen'
 import Eraser from './Tools/Eraser/Eraser'
 import Colors from './Tools/Colors/Colors'
@@ -19,6 +19,14 @@ const Container = styled.div`
     grid-template-rows: 1fr;
     grid-template-areas:
     "canvas canvas canvas block";
+    @media (max-width:1200px)
+    {
+        grid-template-columns: 1fr;
+        grid-template-rows: 90vh 1fr;
+        grid-template-areas:
+        "canvas"
+        "block";
+    }
     gap: 35px;
 `
 const CanvasContainer = styled.div`
@@ -55,75 +63,73 @@ const CanvasTools = styled.div`
 
 const styles = {
     border: "none",
-  };
+};
 
-export default function Scribbly({match})
-{
-    const [color,setColor] = useState('black')
-    const [data,setData] = useState()
+export default function Scribbly({ match }) {
+    const [color, setColor] = useState('black')
+    const [data, setData] = useState()
 
     const canvasRef = useRef(null)
     const parentCanvasRef = useRef(null)
 
-    const fetchData = async()=>{
-        const response = await fetch ('../../../mock_data/Scribbly.json')
+    const fetchData = async () => {
+        const response = await fetch('../../../mock_data/Scribbly.json')
         const result = await response.json()
 
-        setData(result.filter((ele)=>{return (ele.id == match.params.id)}))
+        setData(result.filter((ele) => { return (ele.id == match.params.id) }))
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchData()
-    },[])
+    }, [])
 
 
 
-    const undoHandle = () =>{
+    const undoHandle = () => {
         canvasRef.current.undo()
     }
-    const redoHandle = () =>{
+    const redoHandle = () => {
         canvasRef.current.redo()
     }
-    const clearHandle = () =>{
+    const clearHandle = () => {
         canvasRef.current.clearCanvas()
     }
-    const penHandle = () =>{
+    const penHandle = () => {
         canvasRef.current.eraseMode(false)
     }
-    const eraseHandle = () =>{
+    const eraseHandle = () => {
         console.log(canvasRef.current)
         canvasRef.current.eraseMode(true)
     }
 
-    const setColorHandle = (color) =>
-    {
+    const setColorHandle = (color) => {
         console.log(color)
         setColor(color)
     }
 
 
-    return(
+    return (
         <Container>
             <CanvasContainer ref={parentCanvasRef}>
                 <ReactSketchCanvas
-                style={styles}
-                strokeWidth={4}
-                strokeColor={color}
-                eraserWidth={28}
-                ref={canvasRef}
+                    style={styles}
+                    strokeWidth={4}
+                    strokeColor={color}
+                    eraserWidth={28}
+                    ref={canvasRef}
                 />
                 <CanvasToolCont>
                     <CanvasTools>
-                        <Undo func={undoHandle}/>
-                        <Pen func={penHandle}/>
-                        <Eraser func={eraseHandle}/>
-                        <Colors func={(e)=>{setColorHandle(e)}}/>
-                        <Redo func={redoHandle}/>
-                        <Clear func={clearHandle}/>
+                        <Undo func={undoHandle} />
+                        <Pen func={penHandle} />
+                        <Eraser func={eraseHandle} />
+                        <Colors func={(e) => { setColorHandle(e) }} />
+                        <Redo func={redoHandle} />
+                        <Clear func={clearHandle} />
                     </CanvasTools>
                 </CanvasToolCont>
             </CanvasContainer>
-            <DescriptionBlock data={data}/>
+            <DescriptionBlock data={data} />
         </Container>
     )
 }

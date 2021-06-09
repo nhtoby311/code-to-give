@@ -20,6 +20,7 @@ const Bell = styled.div`
 `
 const Burger = styled.div`
     display: none;
+
     @media screen and (max-width: 750px)
     {
         display: block;
@@ -30,26 +31,29 @@ const Burger = styled.div`
 `
 const HorBav = styled.div`
     display: none;
-    margin: 0px 0px 10vw;
-    @media screen and (max-width:500px)
+    @media screen and (max-width:750px)
     {
+        margin: 0px 0px 10vw;
+        padding: 20px 40px;
         display: flex;
+        position:fixed;
         z-index: 99;
-        position: sticky;
         top: 0;
-        justify-content:flex-end;
-        background: cyan;
+        justify-content:space-between;
         width: 100vw;
     }
 `
 const Dropdown = styled.div`
-    display: hidden;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
     width: 100vw;
     height: 0px;
     position: fixed;
-    top: 50px;
+    top:0;
     background: antiquewhite;
-    z-index: 99;
+    z-index: 95;
     overflow: hidden;
 `
 const ItemLine = styled.div`
@@ -60,6 +64,9 @@ const ItemLine = styled.div`
         margin: auto 20px auto;
     }
 `
+const StyledLink = styled(Link)`
+    text-decoration: none;
+`
 export default function NavMobile() {
     const [isOpen, setIsopen] = useState(false)
     const dropRef = useRef(null)
@@ -67,7 +74,7 @@ export default function NavMobile() {
         if (isOpen === true) {
             const hgt = dropRef.current.scrollHeight;
             gsap.to(dropRef.current, {
-                height: hgt,
+                height: "100vh",
             })
         }
         else {
@@ -77,31 +84,35 @@ export default function NavMobile() {
             })
         }
 
-    },[isOpen])
+    }, [isOpen])
     return (
         <>
             <HorBav>
-                <Link to='/profile'>
-                    <img src="" alt="" className="profile-pic-small" />
-                </Link>
                 <Burger onClick={() => setIsopen(!isOpen)}>Burger</Burger>
                 <Bell>Bell</Bell>
             </HorBav>
             <Dropdown ref={dropRef}>
                 <div className="nav-items">
-                    <ItemLine>
-                        <NavItem title="home" path='/' />
-                        <p>Home</p>
+                    <ItemLine onClick={() => { setIsopen(false) }}>
+                        <StyledLink to='/' >
+                            <p>Home</p>
+                        </StyledLink>
                     </ItemLine>
-                    <ItemLine>
-                        <NavItem title="leaderboard" path='/leaderboard' />
-                        <p>Leaderboard</p>
+                    <ItemLine onClick={() => { setIsopen(false) }}>
+                        <StyledLink to='/leaderboard'>
+                            <p>Leaderboard</p>
+                        </StyledLink>
                     </ItemLine>
-                    <ItemLine>
-                        <NavItem title="games" path='/games' />
-                        <p>Games</p>
+                    <ItemLine onClick={() => { setIsopen(false) }}>
+                        <StyledLink to='/games'>
+                            <p>Games</p>
+                        </StyledLink>
                     </ItemLine>
-                    
+                    <ItemLine onClick={()=>{setIsopen(false)}}>
+                        <StyledLink to='/profile'>
+                            <p>Profile</p>
+                        </StyledLink>
+                    </ItemLine>
                 </div>
             </Dropdown>
         </>

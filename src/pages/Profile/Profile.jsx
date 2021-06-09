@@ -6,8 +6,10 @@ const Container = styled.div`
     grid-template-areas:
     "profile profile"
     "recent-grades top-grades";
+
     @media (max-width:500px)
     {
+        margin-top: 100px;
         grid-template-areas:
         "profile"
         "recent-grades"

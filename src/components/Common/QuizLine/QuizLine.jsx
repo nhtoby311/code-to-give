@@ -8,15 +8,18 @@ const Qline = styled.div`
     background-color: ${vars.plainYellow};
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-top:20px;
     margin-bottom: 20px;
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
+
 `
 const DateAndArrow = styled.div`
     display: flex;
+    flex-wrap: wrap;
     gap:10px;
 `
 

@@ -13,6 +13,15 @@ const Container = styled.div`
     grid-template-areas:
         "title title title title title title title"
         "need-to-do need-to-do need-to-do need-to-do finished finished finished";
+    @media (max-width:1124px)
+    {
+        grid-template-columns: 1fr;
+        grid-template-rows:auto 1fr 1fr;
+        grid-template-areas:
+        "title"
+        "need-to-do"
+        "finished";
+    }
     grid-gap: 50px 30px;
     margin-top: 150px;
     
@@ -99,7 +108,6 @@ export default function List(props)
             <Block title="need-to-do" type="popup" data={data}>
             </Block>
             <Block title="finished" type="quiz" data= {data}>
-
             </Block>
         </Container>
     )

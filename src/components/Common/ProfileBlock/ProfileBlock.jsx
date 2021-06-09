@@ -31,7 +31,7 @@ const Name = styled.h3`
     z-index: 90;
     @media (max-width:500px){
         margin-top: 30px;
-        padding-bottom: 0;
+        padding-bottom: 50px;
     }
 
 `
@@ -87,6 +87,7 @@ export default function ProfileBlock(props) {
         const tmp = bd.current.offsetHeight;
         if (window.innerWidth > 500)
             gsap.to(inforRef.current, {
+                duration:0,
                 bottom: tmp - 50,
             })
         gsap.to(avaRef.current, {
