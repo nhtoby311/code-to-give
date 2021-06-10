@@ -8,6 +8,7 @@
     --blackColor: #353331;
     --greenLightPlainColor: #76BA1B;
     --yellowPlainColor:#FFD652;
+    --yellowColor:#FFD42A;
 }
 
 *{
@@ -16,5 +17,27 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     color: var(--blackColor);
+    
 }
+
+
+*::-webkit-scrollbar-track
+{
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+    background-color: #fafafa38;
+}
+
+*::-webkit-scrollbar
+{
+	width: 10px;
+	//background-color: #eaff2f81;
+}
+
+*::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-image: var(--yellowGradientColor);
+}
+
 // 

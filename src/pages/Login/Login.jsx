@@ -32,6 +32,7 @@ export const Button = styled.button`
     font-size: 1.4rem;
     border: none;
     font-weight: 700;
+    cursor: pointer;
     span{
         color: white;
     }
@@ -47,7 +48,7 @@ export default function Login()
     const {register , handleSubmit} = useForm()
     const { auth , login } = useContext(AuthContext);
     const history = useHistory()
-    console.log(auth)
+    //console.log(auth)
 
     const handleSubmitCallBack = async (data)=>{
         try{

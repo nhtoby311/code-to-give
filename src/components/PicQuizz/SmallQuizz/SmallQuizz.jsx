@@ -2,7 +2,7 @@ import gsap from "gsap"
 import { useEffect,useRef,useState } from "react"
 import styled from "styled-components"
 import {Window} from '../../List/List'
-//import FourQuiz from "./FourQuiz/FourQuiz"
+import FourQuiz from "./FourQuiz/FourQuiz"
 import WriteQuiz from "./WriteQuiz/WriteQuiz"
 const SmQuizz = styled.div`
     background: #77BC1F;
@@ -13,10 +13,6 @@ const SmQuizz = styled.div`
     align-items: center;
     justify-content: center;
     transition: 0.5s;
-    grid-area: ${(props) => {
-        if (props.grid !== undefined) { return props.grid }
-        else { return `unset` }
-    }};
     .lable 
     {
         background: linear-gradient(180deg, #FF9500 , #E8BB09 );
@@ -38,6 +34,7 @@ const SmQuizz = styled.div`
 
 const QuestionTitle = styled.h3`
     font-size: 2rem;
+    padding: 0 35px;
     text-align: center;
     margin-bottom: 35px;
 `
@@ -60,6 +57,8 @@ export default function SmallQuizz(props) {
     const [window,setWindow] = useState(false)
     const [done,setDone] = useState(false)
     const windowRef = useRef(null)
+
+    const quizData = props.data.info
 
     const handleDone = ()=>{
         setWindow(false)
@@ -99,6 +98,20 @@ export default function SmallQuizz(props) {
         // eslint-disable-next-line
     },[props.cur])
 
+
+    const handleTypeQuiz = () =>{
+        if(quizData.questionType === "fill-in-blank")
+        {
+            return <WriteQuiz data={quizData} func={handleDone}/>
+        }
+        else if(quizData.questionType === "multiple-choice"){
+            return <FourQuiz data={quizData} func={handleDone}/>
+        }
+        else{
+            return (<h1>ERROR UNKNOWN QUESTION TYPE</h1>)
+        }
+    }
+
     // 
     return (
         <>
@@ -106,10 +119,9 @@ export default function SmallQuizz(props) {
                 <Close onClick={()=>{setWindow(false)}}>
                     X
                 </Close>
-                <QuestionTitle>abvascfs</QuestionTitle>
+                <QuestionTitle>{quizData.question}</QuestionTitle>
                 <QuestionContent/>
-                {/* <FourQuiz func={handleDone}/> */}
-                <WriteQuiz func={handleDone}/>
+                {handleTypeQuiz()}
             </Window>
             <SmQuizz className={`${doneClass()}`} onClick={()=>{
                 props.funcCur()

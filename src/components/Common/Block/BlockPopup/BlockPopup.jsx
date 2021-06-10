@@ -9,15 +9,16 @@ const QuizContainer = styled.div`
     overflow-y: auto;
     max-height: 600px;
     position: relative;
+    padding-right: 30px;
 `
 
 export default function BlockPopup(props) {
-    const [currentWindow,setCurrentWindow] = useState(0)
+    const [currentWindow,setCurrentWindow] = useState('')
     const {data} = useContext(QuizContext)
 
     const Noti = () => {
         if(props.noti){
-            return (<Notification pad='5px' top='25px' left='200px' content={data.length} />)
+            return (<Notification pad='5px' top='30px' left='250px' content={data.length} />)
         }
         else {
             return (null)
@@ -33,7 +34,7 @@ export default function BlockPopup(props) {
                         data={element}
                         cur={currentWindow} 
                         funcCur={()=>{
-                            setCurrentWindow(element.id)
+                            setCurrentWindow(element.quizId)
                         }}></QuizLine>)
                 })}
             </QuizContainer>

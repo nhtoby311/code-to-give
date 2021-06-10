@@ -66,16 +66,10 @@ const styles = {
     border: "none",
 };
 
-<<<<<<< HEAD
 export default function Scribbly()
 {
     const [color,setColor] = useState('black')
     const [data,setData] = useState()
-=======
-export default function Scribbly({ match }) {
-    const [color, setColor] = useState('black')
-    const [data, setData] = useState()
->>>>>>> 632d748744d3c7170ce7aac06838e23dff885ea3
 
     const id = useParams().id               //get current id parameter from route
     const canvasRef = useRef(null)
@@ -85,11 +79,7 @@ export default function Scribbly({ match }) {
         const response = await fetch('../../../mock_data/Scribbly.json')
         const result = await response.json()
 
-<<<<<<< HEAD
         setData(result.filter((ele)=>{return (ele.id == id)}))
-=======
-        setData(result.filter((ele) => { return (ele.id == match.params.id) }))
->>>>>>> 632d748744d3c7170ce7aac06838e23dff885ea3
     }
 
     useEffect(() => {

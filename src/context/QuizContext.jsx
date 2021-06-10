@@ -27,7 +27,7 @@ export function QuizProvider({children})
                 {
                     return getData('../mock_data/Quiz.json')
                 }*/
-            case 'Pic-Quizz':
+            case 'PicQuizz':
                 {
                     return getData('https://code-to-give.herokuapp.com/api/pic-quiz/need-to-do')
                 }

@@ -8,7 +8,7 @@ const WindowDiv = styled.div`
     z-index: 90;
     width: 40%;
     padding: 30px;
-    background: ${vars.greenPlainLightColor};
+    background: linear-gradient(271.53deg, #76d42d 24.62%, #82E439 74.93%);
     border-radius: 25px;
     left: 50%;
     top: 20%;
@@ -32,6 +32,7 @@ const TitleWindow = styled.div`
     display: flex;
     justify-content: center;
     gap: 25px;
+    font-weight: 600;
     align-items: center;
     margin-bottom: 35px;
     p{
@@ -44,8 +45,10 @@ const Grid = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-gap: 35px;
-    margin-bottom: 35px;
+    margin-top: 30px;
+    margin-bottom: 80px;
     p{
+        font-weight: 500;
         &:nth-of-type(even)
         {
             text-align: end;

@@ -31,6 +31,7 @@ const Avatar = styled.img`
     `
 const Name = styled.h3`
     padding: 0px 40px 50px;
+    margin-left: 250px;
     font-size: 1.5rem;
     text-transform: uppercase;
     z-index: 90;
@@ -47,9 +48,11 @@ const Badge = styled.div`
     padding: 20px;
     padding-left: 70px;
     padding-top: 70px;
+    padding-bottom: 70px;
     display: grid;
     grid-template-columns: 40% 200px;
     align-items: flex-end;
+    border-radius: 0 0 25px 25px;
     justify-content: space-between;
     background: ${vars.greenColor};
     p 
@@ -120,12 +123,10 @@ export default function ProfileBlock(props) {
                         <Name>{props.data && props.data.firstName +" "+ props.data.lastName}</Name>
                     </InforContainer>
                     <Badge ref={bd}>
-                        <DivOuter>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, enim veritatis! Placeat fugiat impedit animi hic praesentium nobis molestias minima aut architecto a nostrum ea veniam, laudantium cumque ex neque.</p> 
-                            <DivInner onClick={logout}>
-                                <Button pad="10px" content="Edit Profile"></Button>
-                            </DivInner>
-                        </DivOuter>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, enim veritatis! Placeat fugiat impedit animi hic praesentium nobis molestias minima aut architecto a nostrum ea veniam, laudantium cumque ex neque.</p> 
+                        <div onClick={logout}>
+                            <Button pad="10px" content="Edit Profile"></Button>
+                        </div>
                     </Badge>
             </Pf>
         </>

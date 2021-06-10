@@ -40,8 +40,8 @@ export default function Home() {
 
     return (
         <div className="container home-cont">
-            <Block title="new-assignment" type="text" data={newAssignmentData}/>
-            <Block title="reminder" type="text" data={reminderData}/>
+            <Block title="new-assignment" color="" type="text" data={newAssignmentData}/>
+            <Block title="reminder" color="orange-red" type="text" data={reminderData}/>
             <Block title="best-student" type="slide" data={bestStudentData}/>
         </div>
     )

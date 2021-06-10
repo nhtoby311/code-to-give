@@ -66,7 +66,7 @@ const MainRoute = () => {
         <AuthRoute exact path="/games/Quiz/:id" component={Quiz}/>
         <AuthRoute exact path="/games/Scribbly" component={()=>{return <List game="Scribbly"/>}}/>
         <AuthRoute exact path="/games/Scribbly/:id" component={Scribbly}/>
-        <AuthRoute exact path="/games/PicQuizz" component={()=>{return <List game="Pic-Quizz"/>}}/>
+        <AuthRoute exact path="/games/PicQuizz" component={()=>{return <List game="PicQuizz"/>}}/>
         <AuthRoute exact path="/games/PicQuizz/:id" component={PicQuizz}/>
       </Switch>
     </QuizProvider>

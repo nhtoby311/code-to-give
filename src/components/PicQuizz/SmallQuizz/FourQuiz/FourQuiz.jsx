@@ -10,12 +10,12 @@ grid-gap: 35px;
 
 export default function FourQuiz(props)
 {
+    console.log(props.data)
     return(
         <AnswerCont>
-            <Answer content="A.asasc" func={props.func}/>
-            <Answer content="B.sacasc" func={props.func}/>
-            <Answer content="C.asdasda" func={props.func}/>
-            <Answer content="D.askdoasd" func={props.func}/>
+            {props.data && props.data.options.map((ele,ind)=>{
+                return <Answer color={ind} key={ind} content={ele} func={props.func}/>
+            })}
         </AnswerCont>
     )
 }

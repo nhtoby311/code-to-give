@@ -35,10 +35,11 @@ const TitleBlock = styled.div`
     justify-content: center;
     align-items: center;
     grid-area: title;
-    background-color: green;
+    background: linear-gradient(126.58deg, #BBE416 6.53%, #49C41D 91.96%);
     border-radius: 25px;
     span{
         font-size: 3.5rem;
+        font-weight: 600;
     }
 `
 

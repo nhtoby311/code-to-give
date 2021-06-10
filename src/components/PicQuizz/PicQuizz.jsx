@@ -3,8 +3,10 @@ import "./PicQuizz.scss"
 import "./SmallQuizz/SmallQuizz"
 import SmallQuizz from "./SmallQuizz/SmallQuizz"
 //import QuizWrite from "../Quiz/QuizWrite/QuizWrite"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Button from "../Common/Button/Button"
+import { QuizContext } from "../../context/QuizContext"
+import { useLocation, useParams } from "react-router"
 const QuizzTitle = styled.div`
     width: 100%;
 
@@ -82,19 +84,33 @@ const LetterCont = styled.div`
     margin-top: 25px;
 `
 
+
+const linearSearch = (list, item) => {
+    for (const element of list.entries()) {
+      if (element[1].quizId === item) {
+        return element[1]
+      }
+    }
+}
+  
+
 export default function PicQuizz() {
     const [currentWindow,setCurrentWindow] = useState(0) //CLICK ON ANOTHER QUIZ WILL REMOVE THE CURRENT QUIZ
+    const params = useParams()              //Getting ID route
+    const {data} = useContext(QuizContext)
+
+    console.log(params.id)
+    console.log(data)
+    const quizData = linearSearch(data,params.id)
+    console.log(quizData)
 
     return (
         <div className="container pic-quizz-container">
-            <QuizzTitle><p>Who is this ?</p></QuizzTitle>
+            <QuizzTitle><p>{quizData.bigQuestion}</p></QuizzTitle>
             <PicArea>
-                <SmallQuizz cur={currentWindow} funcCur={()=>setCurrentWindow(1)} number={1} grid="one" />
-                <SmallQuizz cur={currentWindow} funcCur={()=>setCurrentWindow(2)} number={2} grid="two"/>
-                <SmallQuizz cur={currentWindow} funcCur={()=>setCurrentWindow(3)} number={3} grid="three"/>
-                <SmallQuizz cur={currentWindow} funcCur={()=>setCurrentWindow(4)} number={4} grid="four"/>
-                <SmallQuizz cur={currentWindow} funcCur={()=>setCurrentWindow(5)} number={5} grid="five"/>
-                <SmallQuizz cur={currentWindow} funcCur={()=>setCurrentWindow(6)} number={6} grid="six"/>
+                {quizData.smallQuestions && quizData.smallQuestions.map((ele,ind)=>{
+                    return <SmallQuizz cur={currentWindow} funcCur={()=>setCurrentWindow(ind+1)} number={ind+1} data={ele} />
+                })}
             </PicArea>
             <AnswerArea>
                 <AnswerBox>
