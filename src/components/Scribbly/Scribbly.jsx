@@ -126,17 +126,23 @@ export default function Scribbly()
 
     const exportImage = async() => {
         const img = await canvasRef.current.exportImage("png")
-        let file;
-        fetch(img)
-        .then(res => res.blob())
-        .then(blob => {
-            file = new File([blob], "File name",{ type: "image/png" })
-            console.log(file)
-        })
+        function dataURLtoFile(dataurl, filename) {                 //MAGIC
+            var arr = dataurl.split(','),
+                mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]), 
+                n = bstr.length, 
+                u8arr = new Uint8Array(n);
+                
+            while(n--){
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            
+            return new File([u8arr], filename, {type:mime});
+        }
 
+        const file = dataURLtoFile(img,'img.png');
         const formData = new FormData()  
         formData.append("studentWork",file)
-        //console.log(img)
         const response = await fetch (`https://code-to-give.herokuapp.com/api/scribbly/submit/${params.id}`,{
             method:"POST",
             headers: {
