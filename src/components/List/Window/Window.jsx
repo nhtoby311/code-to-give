@@ -82,9 +82,9 @@ export default function Window(props) {
                 <p>{props.data.quizName}</p>
             </TitleWindow>
             <Grid>
-                <p>Time-limit: {props.data.maxTime/60} minutes</p>
+                <p>Time-limit: {props.data.maxTime && props.data.maxTime/60} minutes</p>
                 <p>Point: {props.data.maxPoint}pts</p>
-                <p>Due date: {props.data.dueDate.substring(0,10)}</p>
+                <p>Due date: {props.data.dueDate && props.data.dueDate.substring(0,10)}</p>
                 <p>Possible Attemps: {props.data.numberOfAttempt}</p>
             </Grid>
             <Link to={`${props.data.quizType}/${props.data.quizId}`}>

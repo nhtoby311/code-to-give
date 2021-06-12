@@ -4,23 +4,41 @@ export const QuizContext = React.createContext();
 
 export function QuizProvider({children})
 {
-    const [data,setData] = useState([])
-    const [loading,setLoading] = useState(true)
+    const [dataToDo,setDataToDo] = useState([])
+    const [dataFinished,setDataFinished] = useState([])
+    const [loadingToDo,setLoadingToDo] = useState(true)
+    const [loadingFinished,setLoadingFinished] = useState(true)
 
-    const getData = async (url) => {
+    const getDataToDo = async (url) => {
         if(url)
         {
-            const response = await fetch(url,{
+            const responseTodo = await fetch(url,{
                 method:"GET",
                 headers:{
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             })
-            const result = await response.json()
-            setLoading(false)
-            console.log(result.quizzes)             //set temp for picquizz
-            setData(result.quizzes)
-            console.log(result)
+            const resultTodo = await responseTodo.json()
+            
+            setLoadingToDo(false)
+            console.log(resultTodo.quizzes)             //set temp for picquizz
+            
+            setDataToDo(resultTodo.quizzes)
+        }
+    }
+
+    const getDataFinished = async(url)=>{
+        if(url)
+        {
+            const responseFinished = await fetch(url,{
+                method:"GET",
+                headers:{
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+            const resultFinished = await responseFinished.json()
+            setDataFinished(resultFinished.quizzes)
+            setLoadingFinished(false)
         }
     }
 
@@ -37,11 +55,13 @@ export function QuizProvider({children})
                 }*/
             case 'PicQuizz':
                 {
-                    return getData('https://code-to-give.herokuapp.com/api/pic-quiz/get-list/need-to-do')
+                    getDataFinished('https://code-to-give.herokuapp.com/api/pic-quiz/get-list/finished')
+                    getDataToDo('https://code-to-give.herokuapp.com/api/pic-quiz/get-list/need-to-do')
                 }
             default:
                 {
-                    return getData()
+                    getDataFinished()
+                    getDataToDo()
                 } 
         }
     }
@@ -51,7 +71,7 @@ export function QuizProvider({children})
     },[data])*/
 
     return(
-        <QuizContext.Provider value={{data,handleGameFetching,loading}}>
+        <QuizContext.Provider value={{dataToDo,dataFinished,handleGameFetching,loadingToDo,loadingFinished}}>
             {children}
         </QuizContext.Provider>
     )

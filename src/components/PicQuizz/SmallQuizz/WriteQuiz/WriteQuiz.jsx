@@ -30,23 +30,21 @@ const Space = styled.div`
 
 export default function WriteQuiz(props)
 {
-    console.log(props.data)
-    console.log(props.data.answer.length)
+    //console.log(props.data)
+    //console.log(props.data.answer.length)
 
     const Letters = [...props.data.answer]
-
-
 
     return(
         <>
             <LetterCont>
-                { props.data && Letters.map((ele)=>{
+                { props.data && Letters.map((ele,ind)=>{
                     console.log(ele)
                     if(ele === " "){
-                        return <Space/>
+                        return <Space key={ind}/>
                     }
                     else {
-                        return <Letter/>
+                        return <Letter key={ind}/>
                     }
                 })}
             </LetterCont>

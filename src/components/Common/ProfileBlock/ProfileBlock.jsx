@@ -92,7 +92,6 @@ export default function ProfileBlock(props) {
     const inforRef = useRef(null)
     const avaRef = useRef(null)
     useEffect(() => {
-        console.log(bd.current.offsetHeight);
         const tmp = bd.current.offsetHeight;
         if (window.innerWidth > 500)
             gsap.to(inforRef.current, {

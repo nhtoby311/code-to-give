@@ -64,7 +64,7 @@ export const Window = styled.div`
 
 export default function List(props)
 {
-    const {handleGameFetching} = useContext(QuizContext)
+    const {handleGameFetching,dataToDo,loadingToDo,dataFinished,loadingFinished} = useContext(QuizContext)
 
     useEffect(()=>{
         handleGameFetching(props.game)
@@ -76,9 +76,9 @@ export default function List(props)
             <TitleBlock>
                 <span>{props.game}</span>
             </TitleBlock>
-            <Block title="need-to-do" type="popup" noti={true}>
+            <Block data={dataToDo} loading={loadingToDo} title="need-to-do" type="popup" noti={true}>
             </Block>
-            <Block title="finished" type="popup" noti={false}>
+            <Block data={dataFinished} loading={loadingFinished} title="finished" type="popup" noti={false}>
             </Block>
         </Container>
     )

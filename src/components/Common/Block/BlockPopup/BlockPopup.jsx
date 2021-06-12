@@ -14,12 +14,11 @@ const QuizContainer = styled.div`
     padding-right: 30px;
 `
 
-export default function BlockPopup(props) {
+export default function BlockPopup({data,loading,noti}) {
     const [currentWindow,setCurrentWindow] = useState('')
-    const {data,loading} = useContext(QuizContext)
-
+    //const {data,loading} = useContext(QuizContext)
     const Noti = () => {
-        if(props.noti){
+        if(noti){
             return (<Notification pad='5px' top='30px' left='250px' content={data.length} />)
         }
         else {

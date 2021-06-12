@@ -51,7 +51,7 @@ export default function Block(props)
             case 'text':
                 return <TextBlock data={props.data}/>
             case 'popup':
-                return <BlockPopup noti={props.noti}/>
+                return <BlockPopup data={props.data} loading={props.loading} noti={props.noti}/>
             default:
                 return (null)
         }

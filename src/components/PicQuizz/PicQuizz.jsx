@@ -26,10 +26,12 @@ const QuizzTitle = styled.div`
     }
 `
 const PicArea = styled.div`
-    grid-area: 2 / 1 / span 1 / 5;
-    height: 600px; /*remove later*/ 
+    grid-area: 2 / 1 / span 1 / 5; 
     min-width: 60vw;
-    background-color: aqua;
+    min-height: 600px;
+    background: aqua;
+    //background-image: url(${props => props.url});  /*ENABLE LATER */
+    background-size: cover;
     display: grid;
     position: relative;
     grid-template-columns: 1fr 1fr 1fr;
@@ -84,6 +86,10 @@ const LetterCont = styled.div`
     margin-top: 25px;
 `
 
+const Space = styled.div`
+    width: 40px;
+`
+
 
 const linearSearch = (list, item) => {
     for (const element of list.entries()) {
@@ -97,34 +103,35 @@ const linearSearch = (list, item) => {
 export default function PicQuizz() {
     const [currentWindow,setCurrentWindow] = useState(0) //CLICK ON ANOTHER QUIZ WILL REMOVE THE CURRENT QUIZ
     const params = useParams()              //Getting ID route
-    const {data} = useContext(QuizContext)
-
-    console.log(params.id)
-    console.log(data)
-    const quizData = linearSearch(data,params.id)
-    console.log(quizData)
+    const {dataToDo} = useContext(QuizContext)
+    
+    //console.log(params.id)
+    console.log(dataToDo)
+    const quizData = linearSearch(dataToDo,params.id)
+    //console.log(quizData)
+    const Letters = [...quizData.bigAnswer]
 
     return (
         <div className="container pic-quizz-container">
             <QuizzTitle><p>{quizData.bigQuestion}</p></QuizzTitle>
-            <PicArea>
+            <PicArea url={quizData.bigQuestionImageURL}>
                 {quizData.smallQuestions && quizData.smallQuestions.map((ele,ind)=>{
-                    return <SmallQuizz cur={currentWindow} funcCur={()=>setCurrentWindow(ind+1)} number={ind+1} data={ele} />
+                    return <SmallQuizz key={ind} cur={currentWindow} funcCur={()=>setCurrentWindow(ind+1)} number={ind+1} data={ele} />
                 })}
             </PicArea>
             <AnswerArea>
                 <AnswerBox>
                     <h3>Answer</h3>
                     <LetterCont>
-                        <Letter type="text" maxLength="1"></Letter>
-                        <Letter type="text" maxLength="1"></Letter>
-                        <Letter type="text" maxLength="1"></Letter>
-                        <Letter type="text" maxLength="1"></Letter>
-                        <Letter type="text" maxLength="1"></Letter>
-                        <Letter type="text" maxLength="1"></Letter>
-                        <Letter type="text" maxLength="1"></Letter>
-                        <Letter type="text" maxLength="1"></Letter>
-                        <Letter type="text" maxLength="1"></Letter>
+                        { dataToDo && Letters.map((ele,ind)=>{
+                            console.log(ele)
+                            if(ele === " "){
+                                return <Space key={ind}/>
+                            }
+                            else {
+                                return <Letter type="text" key={ind}/>
+                            }
+                        })}
                     </LetterCont>
                     <Button content="SUBMIT" pad="15px"/>
                 </AnswerBox>
