@@ -48,10 +48,7 @@ const Badge = styled.div`
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding: 20px;
-    padding-left: 70px;
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding: 70px 70px 30px;
     display: grid;
     grid-template-columns: 40% 200px;
     align-items: flex-end;
@@ -89,7 +86,7 @@ function getWidth(a) {
     return a.offsetWidth;
 }
 export default function ProfileBlock(props) {
-    const {logout} = useContext(AuthContext)
+    const { logout } = useContext(AuthContext)
     const pf = useRef(null)
     const bd = useRef(null)
     const inforRef = useRef(null)
@@ -98,7 +95,7 @@ export default function ProfileBlock(props) {
         const tmp = bd.current.offsetHeight;
         if (window.innerWidth > 500)
             gsap.to(inforRef.current, {
-                duration:0,
+                duration: 0,
                 bottom: tmp - 50,
             })
         gsap.to(avaRef.current, {
@@ -106,12 +103,12 @@ export default function ProfileBlock(props) {
         })
         if (window.innerWidth < 500) {
             gsap.to(pf.current, {
-                height: tmp + avaRef.current.offsetHeight +100,
+                height: tmp + avaRef.current.offsetHeight + 100,
             })
         }
         else {
             gsap.to(pf.current, {
-                height: tmp + avaRef.current.offsetHeight + 50 ,
+                height: tmp + avaRef.current.offsetHeight + 50,
             })
         }
 
@@ -120,16 +117,16 @@ export default function ProfileBlock(props) {
     return (
         <>
             <Pf img={props.data && props.data.coverPhotoURL} ref={pf}>
-                    <InforContainer ref={inforRef}>
-                        <Avatar ref={avaRef} src={props.data && props.data.avatarURL}></Avatar>
-                        <Name>{props.data && props.data.firstName +" "+ props.data.lastName} Tran Toan</Name>
-                    </InforContainer>
-                    <Badge ref={bd}>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, enim veritatis! Placeat fugiat impedit animi hic praesentium nobis molestias minima aut architecto a nostrum ea veniam, laudantium cumque ex neque.</p> 
-                        <div onClick={logout}>
-                            <Button pad="10px" content="Edit Profile"></Button>
-                        </div>
-                    </Badge>
+                <InforContainer ref={inforRef}>
+                    <Avatar ref={avaRef} src={props.data && props.data.avatarURL}></Avatar>
+                    <Name>{props.data && props.data.firstName + " " + props.data.lastName}</Name>
+                </InforContainer>
+                <Badge ref={bd}>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, enim veritatis! Placeat fugiat impedit animi hic praesentium nobis molestias minima aut architecto a nostrum ea veniam, laudantium cumque ex neque.</p>
+                    <div onClick={logout}>
+                        <Button pad="10px" content="Edit Profile"></Button>
+                    </div>
+                </Badge>
             </Pf>
         </>
     )
