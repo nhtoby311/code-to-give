@@ -11,7 +11,18 @@ const Blocked = styled.div`
         max-height:500px;
         display:flex;
         flex-direction:column;
-        background: ${vars.greenPlainLightColor};
+        background: ${(props) => {
+        if (props.color !== undefined) { 
+            switch(props.color){
+                case 'grad-green':
+                    return 'var(--greenGradientColor)'
+                case 'orange-red':
+                    return 'linear-gradient(110.47deg, #f1bf19 13.07%, #e78308 87.95%);'
+                default :
+                    return '#76BA1B'
+            }}
+        else { return `linear-gradient(126.58deg, #BBE416 6.53%, #49C41D 91.96%)` }
+    }} ;
         grid-area: ${props => props.title};
         padding: 25px 50px;
         border-radius: 25px;
@@ -23,6 +34,7 @@ const Blocked = styled.div`
         }
     `
 const H2 = styled.h2`
+    font-size: 2.1rem;
     text-transform: capitalize;
     margin-bottom: 12px;
     @media (max-width:500px)
@@ -44,14 +56,14 @@ export default function Block(props)
             case 'text':
                 return <TextBlock data={props.data}/>
             case 'popup':
-                return <BlockPopup data={props.data}/>
+                return <BlockPopup noti={props.noti}/>
             default:
                 return (null)
         }
     }
 
     return(
-        <Blocked title = {props.title}>
+        <Blocked color={props.color} title = {props.title}>
             <H2>{props.title && props.title.replace('-',' ')}</H2>
             {handleTypeContent()} 
         </Blocked>

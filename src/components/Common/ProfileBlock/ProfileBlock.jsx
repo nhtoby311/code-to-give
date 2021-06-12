@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import Button from "../Button/Button"
 import * as vars from "../../../styles/var"
+import { useContext } from "react"
+import { AuthContext } from "../../../context/AuthContext"
 import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 
@@ -11,9 +13,12 @@ const Pf = styled.div`
     position: relative;
     background-color: white;
     border-radius: 25px;
-    overflow: hidden;
+    background-image: url(${props => props.img});
+    background-size: cover;
+    background-position: center;
 `
-const Avatar = styled.div`
+const Avatar = styled.img`
+    position: absolute;
     width: 250px;
     height: 250px;
     background-color: gray;
@@ -26,6 +31,7 @@ const Avatar = styled.div`
     `
 const Name = styled.h3`
     padding: 0px 40px 50px;
+    margin-left: 250px;
     font-size: 1.5rem;
     text-transform: uppercase;
     z-index: 90;
@@ -42,9 +48,11 @@ const Badge = styled.div`
     padding: 20px;
     padding-left: 70px;
     padding-top: 70px;
+    padding-bottom: 70px;
     display: grid;
     grid-template-columns: 40% 200px;
     align-items: flex-end;
+    border-radius: 0 0 25px 25px;
     justify-content: space-between;
     background: ${vars.greenColor};
     p 
@@ -78,6 +86,7 @@ function getWidth(a) {
     return a.offsetWidth;
 }
 export default function ProfileBlock(props) {
+    const {logout} = useContext(AuthContext)
     const pf = useRef(null)
     const bd = useRef(null)
     const inforRef = useRef(null)
@@ -105,18 +114,21 @@ export default function ProfileBlock(props) {
         }
 
     }, [])
+
     return (
-        <Pf ref={pf}>
-            <InforContainer ref={inforRef}>
-                <Avatar ref={avaRef}></Avatar>
-                <Name>{props.name}</Name>
-            </InforContainer>
-            <Badge ref={bd}>
-                <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem sed dolores vero modi reprehenderit omnis et doloribus optio quam ratione nam quae illum excepturi doloremque aut corporis fugit, facere eius.
-                    </p>
-                <Button pad="10px" content="Edit profile"></Button>
-            </Badge>
-        </Pf>
+        <>
+            <Pf img={props.data && props.data.coverPhotoURL} ref={pf}>
+                    <InforContainer ref={inforRef}>
+                        <Avatar ref={avaRef} src={props.data && props.data.avatarURL}></Avatar>
+                        <Name>{props.data && props.data.firstName +" "+ props.data.lastName}</Name>
+                    </InforContainer>
+                    <Badge ref={bd}>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, enim veritatis! Placeat fugiat impedit animi hic praesentium nobis molestias minima aut architecto a nostrum ea veniam, laudantium cumque ex neque.</p> 
+                        <div onClick={logout}>
+                            <Button pad="10px" content="Edit Profile"></Button>
+                        </div>
+                    </Badge>
+            </Pf>
+        </>
     )
 }

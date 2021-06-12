@@ -1,7 +1,9 @@
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import Input from '../../components/Common/Input/Input'
+import { AuthContext } from '../../context/AuthContext'
+import { useContext } from 'react'
 
 export const Form = styled.form`
     width: 50%;
@@ -22,41 +24,6 @@ export const Form = styled.form`
     }
 `
 
-/*const InputBox = styled.div`
-    width: 100%;
-    position: relative;
-    span{
-        color: var(--blackColor);
-        position: absolute;
-        left: 0;
-        padding: 15px 0;
-        font-size: 18px;
-        margin: 10px 25px;
-        pointer-events: none;
-        -webkit-transition: 0.3s;
-        background: white;
-        border-radius: 25px;
-        transition: 0.3s;
-        letter-spacing: 1.2px;
-        font-weight: 600;
-    }
-    input:focus ~span ,input:valid ~span
-    {
-        font-size: 12px;
-        padding: 15px 25px;
-        transform: translateY(-35px);
-    }
-`
-
-export const Input = styled.input`
-    width: 100%;
-    padding: 20px 25px;
-    border-radius: 25px;
-    border: solid 2px var(--blackColor);
-    outline: none;
-    font-size: 1.4rem;
-`*/
-
 export const Button = styled.button`
     width: 100%;
     padding: 25px;
@@ -65,6 +32,7 @@ export const Button = styled.button`
     font-size: 1.4rem;
     border: none;
     font-weight: 700;
+    cursor: pointer;
     span{
         color: white;
     }
@@ -78,9 +46,29 @@ export const LinkStyled = styled(Link)`
 export default function Login()
 {
     const {register , handleSubmit} = useForm()
+    const { auth , login } = useContext(AuthContext);
+    const history = useHistory()
+    //console.log(auth)
 
-    const handleSubmitCallBack = (data)=>{
-        console.log(data)
+    const handleSubmitCallBack = async (data)=>{
+        try{
+            const response = await fetch('https://code-to-give.herokuapp.com/api/users/login',{
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(data)
+            })
+            if(!response.ok)
+                throw new Error(response.statusText)
+            const result = await response.json()
+            localStorage.setItem('token',result.token)      //save token to localStorage
+            login()                                 //UPDATE CONTEXT AUTH STATE
+            console.log(localStorage.getItem('token'))
+            history.push('/')
+        } catch(err){
+            console.log(err)
+        }
     }
 
     return(

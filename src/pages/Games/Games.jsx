@@ -7,7 +7,7 @@ export default function Games()
         <div className="container games-cont">
             <GameBlock title='Scribbly'/>
             <GameBlock title='Quiz'/>
-            <GameBlock title='Pic-Quizz'/>
+            <GameBlock title='PicQuizz'/>
         </div>
     )
 }

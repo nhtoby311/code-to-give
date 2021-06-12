@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import {Link} from "react-router-dom"
 const Line = styled.li`
-    font-size: 1.1rem;
-    margin-bottom: 10px;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
     color: white;
     @media (max-width:500px)
     {

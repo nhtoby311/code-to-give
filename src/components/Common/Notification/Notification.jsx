@@ -1,6 +1,6 @@
 import styled from "styled-components"
 const Noti = styled.div`
-    background: #ff5a44;
+    background: #ff432a;
     box-shadow: 2px 3px 13px 5px rgba(246, 67, 43, 0.37);
     color: white;
     border-radius: 50%;
@@ -9,6 +9,7 @@ const Noti = styled.div`
     height: 30px;
     align-items: center;
     justify-content: center;
+    font-weight: 600;
     position: absolute;
     padding: ${(props) => { if (props.pad !== undefined) { return props.pad } else return `10px`}};
     top:${(props)=>{

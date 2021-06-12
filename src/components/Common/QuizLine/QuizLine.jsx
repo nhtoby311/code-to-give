@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import gsap from "gsap"
 const Qline = styled.div`
     width: 100%;
-    background-color: ${vars.plainYellow};
+    background: var(--yellowColor);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -15,11 +15,13 @@ const Qline = styled.div`
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
+    p{
+        font-weight: 500;
+    }
     @media (max-width:500px)
     {
         font-size: 0.9rem;
     }
-
 `
 const DateAndArrow = styled.div`
     display: flex;
@@ -54,32 +56,26 @@ export default function QuizLine(props) {
 
 
     useEffect(()=>{                             //whenever props.cur is updated and diff than the number, will set the window the not right number and current to false   
-        if(props.cur !== props.id)
+        if(props.cur !== props.data.quizId)
         {
             setWindowActive(false)
         }
         // eslint-disable-next-line
     },[props.cur])
-    
+    //console.log(props.data)
     return (
         <>
         <Window windowRef={windowRef} 
-        quiz_name={props.quiz_name} 
-        attempt={props.attempt} 
-        date = {props.date} 
-        time = {props.time} 
-        point = {props.point}
-        path={props.game}
-        id = {props.id}
+        data={props.data}
         funcClose={()=>{setWindowActive(false)}}/>
 
         <Qline onClick = {()=>{
             props.funcCur()
             setWindowActive(!windowActive)
         }}>
-            <p>{props.quiz_name}</p>
+            <p>{props.data.quizName}</p>
             <DateAndArrow>
-                <p>Due {props.date}</p>
+                <p>Due {props.data.dueDate && props.data.dueDate.substring(0, 10)}</p>
                 <p>A</p>
             </DateAndArrow>
         </Qline>
