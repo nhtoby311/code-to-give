@@ -70,9 +70,10 @@ export const Window = styled.div`
 
 export default function List(props)
 {
-    const {handleGameFetching,dataToDo,loadingToDo,dataFinished,loadingFinished} = useContext(QuizContext)
+    const {handleGameFetching,dataToDo,loadingToDo,dataFinished,loadingFinished,resetLoading} = useContext(QuizContext)
 
     useEffect(()=>{
+        resetLoading()
         handleGameFetching(props.game)
         // eslint-disable-next-line
     },[])

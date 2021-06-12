@@ -32,8 +32,13 @@ const QuizDescription = styled.li`
     margin-bottom: 15px;
 `
 
+const ButtonDiv = styled.div`
+    width:100%;
+`
+
 export default function DescriptionBlock(props)
 {
+    console.log(props)
     return(
         <Block>
             <QuizTitle>
@@ -42,7 +47,7 @@ export default function DescriptionBlock(props)
             <QuizDescriptions>              
                 {/* ARRAY OF QUIZ DESCRIPTION */}
                 <QuizDescription>
-                    {props.data && props.data[0].quiz_name}
+                    {props.data && props.data.quizName}
                 </QuizDescription>
                 <QuizDescription>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, exercitationem!
@@ -55,7 +60,9 @@ export default function DescriptionBlock(props)
                 </QuizDescription>
                 
             </QuizDescriptions>
-            <Button content="abcs" pad="15px"/>
+            <ButtonDiv onClick={props.func}>
+                <Button content="Submit" pad="15px"/>
+            </ButtonDiv>
         </Block>
     )
 }

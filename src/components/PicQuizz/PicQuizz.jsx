@@ -7,6 +7,7 @@ import { useContext, useState } from "react"
 import Button from "../Common/Button/Button"
 import { QuizContext } from "../../context/QuizContext"
 import { useLocation, useParams } from "react-router"
+import Letter from "../Common/Letter/Letter"
 const QuizzTitle = styled.div`
     width: 100%;
 
@@ -30,7 +31,7 @@ const PicArea = styled.div`
     min-width: 60vw;
     min-height: 600px;
     background: aqua;
-    //background-image: url(${props => props.url});  /*ENABLE LATER */
+    background-image: url(${props => props.url});  /*ENABLE LATER */
     background-size: cover;
     display: grid;
     position: relative;
@@ -65,7 +66,7 @@ const AnswerBox = styled.div`
     flex-direction: column;
     align-items: center;
 `
-const Letter = styled.input`
+/*const Letter = styled.input`
     width: 30px;
     font-size: 0.95rem;
     background: transparent;
@@ -75,7 +76,7 @@ const Letter = styled.input`
     outline: none;
     text-transform: uppercase;
     font-weight: 600;
-`
+`*/
 const LetterCont = styled.div`
     width: 100%;
     display: flex;
@@ -101,6 +102,7 @@ const linearSearch = (list, item) => {
   
 
 export default function PicQuizz() {
+    const [array,setArray] = useState([])
     const [currentWindow,setCurrentWindow] = useState(0) //CLICK ON ANOTHER QUIZ WILL REMOVE THE CURRENT QUIZ
     const params = useParams()              //Getting ID route
     const {dataToDo} = useContext(QuizContext)
@@ -110,6 +112,28 @@ export default function PicQuizz() {
     const quizData = linearSearch(dataToDo,params.id)
     //console.log(quizData)
     const Letters = [...quizData.bigAnswer]
+
+
+    const addValue = (e) =>{
+        const temp = array;              //Add Object to array of true
+        temp.push(e)
+        console.log(array)
+        setArray(temp)
+    }
+
+    const removeValue = (i) =>{
+        let temp = array;
+        temp = temp.filter((ele)=>{return ele.ind !== i})       //remove an value with index of input send from Letter JSX{value:bool,ind:int}
+        console.log(array)
+        setArray(temp)
+    }
+
+    const done = ()=>{
+        if(array.filter((ele)=>ele.value===true).length === Letters.filter((ele)=>{return ele!= ' '}).length)        //If number of true inputs same as number of letter of answer minus space ' ', then correct
+        {
+            console.log("yeet")
+        }
+    }
 
     return (
         <div className="container pic-quizz-container">
@@ -124,12 +148,18 @@ export default function PicQuizz() {
                     <h3>Answer</h3>
                     <LetterCont>
                         { dataToDo && Letters.map((ele,ind)=>{
-                            console.log(ele)
                             if(ele === " "){
                                 return <Space key={ind}/>
                             }
                             else {
-                                return <Letter type="text" key={ind}/>
+                                return <Letter 
+                                ind = {ind}
+                                answer={ele} 
+                                funcAdd={(e)=>addValue(e)} 
+                                funcRemove={(i)=>removeValue(i)}
+                                color="red" 
+                                type="text" 
+                                key={ind}/>
                             }
                         })}
                     </LetterCont>
