@@ -27,6 +27,7 @@ const Avatar = styled.img`
     @media (max-width:500px)
     {
         width: 100%;
+        position: static;
     }
     `
 const Name = styled.h3`
@@ -37,7 +38,9 @@ const Name = styled.h3`
     z-index: 90;
     @media (max-width:500px){
         margin-top: 30px;
-        padding-bottom: 50px;
+        padding:  10px 0px;
+        margin: auto;
+        position: static;
     }
 
 `
@@ -78,7 +81,7 @@ const InforContainer = styled.div`
     @media (max-width:500px)
     {
         flex-direction: column;
-        padding: 30px;
+        padding: 20px;
         align-items: center;
     }
     `
@@ -101,14 +104,14 @@ export default function ProfileBlock(props) {
         gsap.to(avaRef.current, {
             height: getWidth(avaRef.current),
         })
-        if (window.innerWidth > 500) {
+        if (window.innerWidth < 500) {
             gsap.to(pf.current, {
-                height: tmp + inforRef.current.offsetHeight +50,
+                height: tmp + avaRef.current.offsetHeight +100,
             })
         }
         else {
             gsap.to(pf.current, {
-                height: tmp + inforRef.current.offsetHeight,
+                height: tmp + avaRef.current.offsetHeight + 50 ,
             })
         }
 
@@ -119,7 +122,7 @@ export default function ProfileBlock(props) {
             <Pf img={props.data && props.data.coverPhotoURL} ref={pf}>
                     <InforContainer ref={inforRef}>
                         <Avatar ref={avaRef} src={props.data && props.data.avatarURL}></Avatar>
-                        <Name>{props.data && props.data.firstName +" "+ props.data.lastName}</Name>
+                        <Name>{props.data && props.data.firstName +" "+ props.data.lastName} Tran Toan</Name>
                     </InforContainer>
                     <Badge ref={bd}>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, enim veritatis! Placeat fugiat impedit animi hic praesentium nobis molestias minima aut architecto a nostrum ea veniam, laudantium cumque ex neque.</p> 
