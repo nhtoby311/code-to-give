@@ -4,6 +4,10 @@ const Line = styled.li`
     font-size: 1.3rem;
     margin-bottom: 20px;
     color: white;
+    @media (max-width:500px)
+    {
+        font-size: 1rem;
+    }
 `
 const StyledLink = styled(Link)`
     color: #FBFF2C;

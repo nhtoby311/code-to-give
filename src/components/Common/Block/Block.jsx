@@ -30,12 +30,17 @@ const Blocked = styled.div`
         @media screen and (max-width:500px)
         {
             max-height: none;
+            padding: 20px;
         }
     `
 const H2 = styled.h2`
     font-size: 2.1rem;
     text-transform: capitalize;
     margin-bottom: 12px;
+    @media (max-width:500px)
+    {
+        font-size: 1.3rem;
+    }
 `
 
 export default function Block(props)

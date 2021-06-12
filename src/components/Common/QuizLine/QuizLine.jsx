@@ -18,6 +18,10 @@ const Qline = styled.div`
     p{
         font-weight: 500;
     }
+    @media (max-width:500px)
+    {
+        font-size: 0.9rem;
+    }
 `
 const DateAndArrow = styled.div`
     display: flex;

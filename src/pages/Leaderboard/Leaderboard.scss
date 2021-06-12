@@ -1,31 +1,37 @@
 @import '../../styles/var.scss';
 
-.leaderboard-cont
-{
+.leaderboard-cont {
     display: flex;
     flex-direction: column;
     align-items: center;
-    .leaderboard-title
-    {
+    margin-top: 100px;
+
+    .leaderboard-title {
         padding: 25px 65px;
         border: solid #965529 12px;
         border-radius: 25px;
         background: $yellow-color;
         text-align: center;
-        h1
-        {
+
+        h1 {
             font-size: 4rem;
             color: white;
-            
+
+        }
+
+        @media (max-width:500px) {
+            h1 {
+                font-size: 2.5rem;
+            }
         }
     }
-    .test
-    {
+
+    .test {
         height: 80vh;
         background-color: red;
     }
-    .leaderboard
-    {
+
+    .leaderboard {
         margin-top: 50px;
         margin-left: 5%;
     }
