@@ -10,6 +10,7 @@ import Redo from './Tools/Redo/Redo'
 import Clear from './Tools/Clear/Clear'
 import { useLocation, useParams } from 'react-router'
 import { QuizContext } from '../../context/QuizContext'
+import { useHistory } from 'react-router-dom'
 
 const Container = styled.div`
     width: 80%;
@@ -80,6 +81,7 @@ export default function Scribbly()
     const [color,setColor] = useState('black')
     const [data,setData] = useState()
     const params = useParams() 
+    const history = useHistory()
 
     const canvasRef = useRef(null)
     const parentCanvasRef = useRef(null)
@@ -152,6 +154,7 @@ export default function Scribbly()
         })
         const result = await response.json()
         console.log(result)
+        history.push('/games/Scribbly')
     }
 
 

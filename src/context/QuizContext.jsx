@@ -38,6 +38,7 @@ export function QuizProvider({children})
             })
             const resultFinished = await responseFinished.json()
             setDataFinished(resultFinished.quizzes)
+            console.log(resultFinished.quizzes)
             setLoadingFinished(false)
         }
     }
