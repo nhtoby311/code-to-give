@@ -3,6 +3,8 @@ import QuizLine from '../../../Common/QuizLine/QuizLine'
 import Notification from '../../../Common/Notification/Notification'
 import { useContext, useState } from 'react'
 import { QuizContext } from '../../../../context/QuizContext'
+import Loading from '../../../Common/Loading/Loading'
+
 const QuizContainer = styled.div`
     width: 100%;
     gap: 35px;
@@ -14,7 +16,7 @@ const QuizContainer = styled.div`
 
 export default function BlockPopup(props) {
     const [currentWindow,setCurrentWindow] = useState('')
-    const {data} = useContext(QuizContext)
+    const {data,loading} = useContext(QuizContext)
 
     const Noti = () => {
         if(props.noti){
@@ -29,7 +31,8 @@ export default function BlockPopup(props) {
         <> 
             {Noti()}
             <QuizContainer>
-                {data && data.map((element, ind) => {
+                {loading ? <Loading/> : 
+                data && data.map((element, ind) => {
                     return (<QuizLine key={ind}
                         data={element}
                         cur={currentWindow} 

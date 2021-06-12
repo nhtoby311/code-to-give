@@ -21,6 +21,7 @@ import Assignment from './components/Admin/Assignment/Assignment';
 import AdminNav from './components/Admin/AdminNav/AdminNav';
 import styled from 'styled-components'
 import Create from './components/Admin/Assignment/Create/Create';
+import Finished from './components/Scribbly/Finished/Finished';
 
 const ContainerAdmin = styled.div`
   width: 75%;
@@ -66,6 +67,7 @@ const MainRoute = () => {
         <AuthRoute exact path="/games/Quiz/:id" component={Quiz}/>
         <AuthRoute exact path="/games/Scribbly" component={()=>{return <List game="Scribbly"/>}}/>
         <AuthRoute exact path="/games/Scribbly/:id" component={Scribbly}/>
+        <AuthRoute exact path="/games/Scribbly/finished/:id" component={Finished}/>
         <AuthRoute exact path="/games/PicQuizz" component={()=>{return <List game="PicQuizz"/>}}/>
         <AuthRoute exact path="/games/PicQuizz/:id" component={PicQuizz}/>
       </Switch>

@@ -7,9 +7,9 @@ const WindowDiv = styled.div`
     position: fixed;
     z-index: 90;
     width: 40%;
-    padding: 30px;
-    background: linear-gradient(271.53deg, #76d42d 24.62%, #82E439 74.93%);
-    border-radius: 25px;
+    padding: 35px 45px;
+    background: linear-gradient(271.53deg, #68c720 24.62%, #79da30 74.93%);
+    border-radius: 35px;
     left: 50%;
     top: 20%;
     margin-left: -17%;
@@ -82,9 +82,9 @@ export default function Window(props) {
                 <p>{props.data.quizName}</p>
             </TitleWindow>
             <Grid>
-                <p>Time-limit: {props.data.maxTime} minutes</p>
+                <p>Time-limit: {props.data.maxTime/60} minutes</p>
                 <p>Point: {props.data.maxPoint}pts</p>
-                <p>Due date: {props.data.dueDate}</p>
+                <p>Due date: {props.data.dueDate.substring(0,10)}</p>
                 <p>Possible Attemps: {props.data.numberOfAttempt}</p>
             </Grid>
             <Link to={`${props.data.quizType}/${props.data.quizId}`}>
