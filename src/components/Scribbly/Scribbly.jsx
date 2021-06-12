@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import DescriptionBlock from '../Common/DescriptionBlock/DescriptionBlock'
 import { ReactSketchCanvas } from "react-sketch-canvas"
@@ -9,6 +9,7 @@ import Undo from './Tools/Undo/Undo'
 import Redo from './Tools/Redo/Redo'
 import Clear from './Tools/Clear/Clear'
 import { useLocation, useParams } from 'react-router'
+import { QuizContext } from '../../context/QuizContext'
 
 const Container = styled.div`
     width: 80%;
@@ -66,16 +67,28 @@ const styles = {
     border: "none",
 };
 
+const linearSearch = (list, item) => {
+    for (const element of list.entries()) {
+      if (element[1].quizId === item) {
+        return element[1]
+      }
+    }
+}
+
 export default function Scribbly()
 {
     const [color,setColor] = useState('black')
     const [data,setData] = useState()
+    const params = useParams() 
 
-    const id = useParams().id               //get current id parameter from route
     const canvasRef = useRef(null)
     const parentCanvasRef = useRef(null)
 
-    const fetchData = async () => {
+    const {dataToDo} = useContext(QuizContext)
+    const quizData = linearSearch(dataToDo,params.id)
+    console.log(quizData)
+
+    /*const fetchData = async () => {
         const response = await fetch('../../../mock_data/Scribbly.json')
         const result = await response.json()
 
@@ -84,7 +97,7 @@ export default function Scribbly()
 
     useEffect(() => {
         fetchData()
-    }, [])
+    }, [])*/
 
 
 
@@ -111,6 +124,31 @@ export default function Scribbly()
     }
 
 
+    const exportImage = async() => {
+        const img = await canvasRef.current.exportImage("png")
+        let file;
+        fetch(img)
+        .then(res => res.blob())
+        .then(blob => {
+            file = new File([blob], "File name",{ type: "image/png" })
+            console.log(file)
+        })
+
+        const formData = new FormData()  
+        formData.append("studentWork",file)
+        //console.log(img)
+        const response = await fetch (`https://code-to-give.herokuapp.com/api/scribbly/submit/${params.id}`,{
+            method:"POST",
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+            body:formData
+        })
+        const result = await response.json()
+        console.log(result)
+    }
+
+
     return (
         <Container>
             <CanvasContainer ref={parentCanvasRef}>
@@ -132,7 +170,7 @@ export default function Scribbly()
                     </CanvasTools>
                 </CanvasToolCont>
             </CanvasContainer>
-            <DescriptionBlock data={data} />
+            <DescriptionBlock data={quizData} func={exportImage} />
         </Container>
     )
 }

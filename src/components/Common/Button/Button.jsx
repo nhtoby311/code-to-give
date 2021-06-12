@@ -22,6 +22,6 @@ const Btn = styled.button`
         `
 export default function Button(props) {
     return (
-        <Btn pad={props.pad}>{props.content}</Btn>
+        <Btn onClick={props.func} pad={props.pad}>{props.content}</Btn>
     )
 }

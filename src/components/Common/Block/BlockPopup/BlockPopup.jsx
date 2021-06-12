@@ -15,7 +15,7 @@ const QuizContainer = styled.div`
 `
 
 export default function BlockPopup({data,loading,noti}) {
-    const [currentWindow,setCurrentWindow] = useState('')
+    const [currentWindow,setCurrentWindow] = useState('')       //When click on another window, will close the previous one
     //const {data,loading} = useContext(QuizContext)
     const Noti = () => {
         if(noti){

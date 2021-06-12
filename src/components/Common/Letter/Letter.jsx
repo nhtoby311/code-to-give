@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 
 const LetterStyled = styled.input`
@@ -17,7 +18,24 @@ const LetterStyled = styled.input`
 `
 
 export default function Letter(props){
+    const [value,setValue] = useState()
+    const firstRender = useRef(true)
+
+    useEffect(()=>{
+        if(!firstRender.current){
+            if(value === props.answer)
+            {
+                props.funcAdd({value:true,ind:props.ind})
+            }
+            else{
+                props.funcRemove(props.ind)
+            }
+        }else{
+            firstRender.current = false
+        }
+    },[value])
+
     return (
-        <LetterStyled color={props.color} type="text" maxLength="1"/>
+        <LetterStyled onChange={(e)=>setValue(e.target.value)} color={props.color} type="text" maxLength="1"/>
     )
 }
