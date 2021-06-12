@@ -39,6 +39,12 @@ const TitleBlock = styled.div`
     span{
         font-size: 3.5rem;
     }
+    @media (max-width:500px)
+    {
+        span{
+            font-size: 3rem;
+        }
+    }
 `
 
 export const Window = styled.div`

@@ -11,7 +11,7 @@ const QuizContainer = styled.div`
     border-radius: 15px;
     @media (max-width:500px)
     {
-        flex-direction: column;
+        font-size:0.9rem;
     }
 `
 
@@ -20,7 +20,7 @@ export default function QuizBlockLine(props)
     return(
         <QuizContainer>
             <h3>{props.quiz_name}</h3>
-            <h4>{props.point} pts</h4>
+            <p>{props.point} pts</p>
             <p>{props.date}</p>
         </QuizContainer>
     )

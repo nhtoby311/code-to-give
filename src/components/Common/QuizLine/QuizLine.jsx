@@ -15,6 +15,10 @@ const Qline = styled.div`
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
+    @media (max-width:500px)
+    {
+        font-size: 0.9rem;
+    }
 
 `
 const DateAndArrow = styled.div`

@@ -5,6 +5,10 @@ const Point = styled.p`
     right:0;
     font-weight: bold;
     font-size: 57px;
+    @media (max-width:500px)
+    {
+        font-size: 2.4rem;
+    }
     `
 const ImageContainer = styled.div`
         background-color: #aeb4b7;
