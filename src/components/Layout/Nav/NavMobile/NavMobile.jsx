@@ -72,7 +72,6 @@ export default function NavMobile() {
     const dropRef = useRef(null)
     useEffect(() => {
         if (isOpen === true) {
-            const hgt = dropRef.current.scrollHeight;
             gsap.to(dropRef.current, {
                 height: "100vh",
             })

@@ -22,7 +22,7 @@ export default function Nav()
         <>
             <nav>
                 <div>
-                        <img src="" alt="" className="profile-pic-small"  onClick ={()=>{setIsShow(!isShow)}}/>
+                    <img src="" alt="" className="profile-pic-small"  onClick ={()=>{setIsShow(!isShow)}}/>
                     <SmallMenu isShow={isShow} itemList={["My Profile", "Activities", "Badges", "Inventory", "Settings", "Logout"]}></SmallMenu>
                 </div>
                 <div className="nav-items">
