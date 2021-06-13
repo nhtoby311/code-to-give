@@ -12,7 +12,7 @@ const SmMenu = styled.div`
     box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.36);
 `
 const SmMenuItem =styled.div`
-    padding: 10px 20px;
+    padding: 10px 50px;
     text-align: center;
     margin: 10px 0px;
     border-radius: 10px;

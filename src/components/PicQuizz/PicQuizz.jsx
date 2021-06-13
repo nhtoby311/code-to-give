@@ -41,7 +41,10 @@ const PicArea = styled.div`
     grid-template-areas:
     "one two three"
     "four five six";
-
+    @media (max-width:500px)
+    {
+        grid-area:2 / 1 / span 1 / 6;
+    }
 `
 
 const AnswerArea = styled.div`
@@ -58,6 +61,10 @@ const AnswerArea = styled.div`
         text-align: center;
         font-size: 1.5rem;
         border-bottom: 2px #FFD42A solid;
+    }
+    @media (max-width:500px)
+    {
+       grid-area: 3 / 1 / span 1 / 6;
     }
 `
 const AnswerBox = styled.div`

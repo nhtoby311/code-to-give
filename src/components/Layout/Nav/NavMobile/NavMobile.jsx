@@ -62,6 +62,8 @@ const ItemLine = styled.div`
     align-items: center;
     p{
         margin: auto 20px auto;
+        font-size: 1.2rem;
+        font-weight: 600;
     }
 `
 const StyledLink = styled(Link)`
@@ -111,6 +113,31 @@ export default function NavMobile() {
                     <ItemLine onClick={()=>{setIsopen(false)}}>
                         <StyledLink to='/profile'>
                             <p>Profile</p>
+                        </StyledLink>
+                    </ItemLine>
+                    <ItemLine onClick={()=>{setIsopen(false)}}>
+                        <StyledLink to='/profile'>
+                            <p>Activites</p>
+                        </StyledLink>
+                    </ItemLine>
+                    <ItemLine onClick={()=>{setIsopen(false)}}>
+                        <StyledLink to='/profile'>
+                            <p>Badges</p>
+                        </StyledLink>
+                    </ItemLine>
+                    <ItemLine onClick={()=>{setIsopen(false)}}>
+                        <StyledLink to='/profile'>
+                            <p>Inventory</p>
+                        </StyledLink>
+                    </ItemLine>
+                    <ItemLine onClick={()=>{setIsopen(false)}}>
+                        <StyledLink to='/profile'>
+                            <p>Settings</p>
+                        </StyledLink>
+                    </ItemLine>
+                    <ItemLine onClick={()=>{setIsopen(false)}}>
+                        <StyledLink to='/profile'>
+                            <p>Logout</p>
                         </StyledLink>
                     </ItemLine>
                 </div>
