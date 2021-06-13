@@ -6,26 +6,31 @@ import { useRef } from "react"
 import gsap from "gsap"
 import NavItem from "../NavItem/NavItem"
 import "../Nav.scss"
-const Bell = styled.div`
+import Menu from "../../../Common/Menu/Menu"
+import Bell from '../../../Common/Bell/Bell'
 
+const BellDiv = styled.div`
     display: none;
     @media screen and (max-width: 750px)
     {
-        display: block;
-        width: 50px;
-        height: 50px;
-        background:var(--greenGradientColor);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
     }
 
 `
 const Burger = styled.div`
     display: none;
-
     @media screen and (max-width: 750px)
     {
-        display: block;
-        width: 50px;
-        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        width: 35px;
+        height: 35px;
         background:var(--greenGradientColor);
     }
 `
@@ -33,8 +38,7 @@ const HorBav = styled.div`
     display: none;
     @media screen and (max-width:750px)
     {
-        margin: 0px 0px 10vw;
-        padding: 20px 40px;
+        padding: 45px 50px;
         display: flex;
         position:fixed;
         z-index: 99;
@@ -44,10 +48,10 @@ const HorBav = styled.div`
     }
 `
 const Dropdown = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100vw;
     height: 0px;
     position: fixed;
@@ -89,8 +93,12 @@ export default function NavMobile() {
     return (
         <>
             <HorBav>
-                <Burger onClick={() => setIsopen(!isOpen)}>Burger</Burger>
-                <Bell>Bell</Bell>
+                <Burger onClick={() => setIsopen(!isOpen)}>
+                    <Menu/>
+                </Burger>
+                <BellDiv>
+                    <Bell></Bell>
+                </BellDiv>
             </HorBav>
             <Dropdown ref={dropRef}>
                 <div className="nav-items">
