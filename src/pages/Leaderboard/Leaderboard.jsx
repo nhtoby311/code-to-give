@@ -5,13 +5,15 @@ import LeaderboardCard from './LeaderboardCard/LeaderboardCard';
 
 export default function Leaderboard()
 {
+    const width = window.innerWidth
+    console.log(width)
     return (
         <div className="leaderboard-cont">
             <div className= "leaderboard-title">
                 <h1>Hall of Fame</h1>
             </div>
             <div className="leaderboard">
-                <Splide
+                {width > 500 ? (<Splide
                     options={ {
                         type      : 'loop',
                         width : '80vw',
@@ -32,7 +34,30 @@ export default function Leaderboard()
                     <SplideSlide>
                         <LeaderboardCard/>
                     </SplideSlide>
-                </Splide>
+                </Splide>) 
+                : (<Splide
+                    options={ {
+                        type      : 'loop',
+                        width : '80vw',
+                        perPage   : 1,
+                        perMove   : 1,
+                        gap       : '5vw',
+                        pagination: false,
+                    } }>
+                    <SplideSlide>
+                        <LeaderboardCard/>
+                    </SplideSlide>
+                    <SplideSlide>
+                        <LeaderboardCard/>
+                    </SplideSlide>
+                    <SplideSlide>
+                        <LeaderboardCard/>
+                    </SplideSlide>
+                    <SplideSlide>
+                        <LeaderboardCard/>
+                    </SplideSlide>
+                </Splide>)}
+                
             </div>
         </div>
     )
