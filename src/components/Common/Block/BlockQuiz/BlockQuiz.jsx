@@ -8,6 +8,10 @@ const QuizContainer = styled.div`
     flex-direction: column;
     gap: 35px;
     overflow-y: auto;
+    @media (max-width:500px)
+    {
+        gap: 20px;
+    }
 `
 
 export default function BlockQuiz(props)//Take in array of object quizLine

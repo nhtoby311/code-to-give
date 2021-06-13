@@ -27,6 +27,7 @@ const Avatar = styled.img`
     @media (max-width:500px)
     {
         width: 100%;
+        position: static;
     }
     `
 const Name = styled.h3`
@@ -37,7 +38,9 @@ const Name = styled.h3`
     z-index: 90;
     @media (max-width:500px){
         margin-top: 30px;
-        padding-bottom: 50px;
+        padding:  10px 0px;
+        margin: auto;
+        position: static;
     }
 
 `
@@ -45,10 +48,7 @@ const Badge = styled.div`
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding: 20px;
-    padding-left: 70px;
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding: 70px 70px 30px;
     display: grid;
     grid-template-columns: 40% 200px;
     align-items: flex-end;
@@ -78,7 +78,7 @@ const InforContainer = styled.div`
     @media (max-width:500px)
     {
         flex-direction: column;
-        padding: 30px;
+        padding: 20px;
         align-items: center;
     }
     `
@@ -86,7 +86,7 @@ function getWidth(a) {
     return a.offsetWidth;
 }
 export default function ProfileBlock(props) {
-    const {logout} = useContext(AuthContext)
+    const { logout } = useContext(AuthContext)
     const pf = useRef(null)
     const bd = useRef(null)
     const inforRef = useRef(null)
@@ -95,20 +95,20 @@ export default function ProfileBlock(props) {
         const tmp = bd.current.offsetHeight;
         if (window.innerWidth > 500)
             gsap.to(inforRef.current, {
-                duration:0,
+                duration: 0,
                 bottom: tmp - 50,
             })
         gsap.to(avaRef.current, {
             height: getWidth(avaRef.current),
         })
-        if (window.innerWidth > 500) {
+        if (window.innerWidth < 500) {
             gsap.to(pf.current, {
-                height: tmp + inforRef.current.offsetHeight +50,
+                height: tmp + avaRef.current.offsetHeight + 100,
             })
         }
         else {
             gsap.to(pf.current, {
-                height: tmp + inforRef.current.offsetHeight,
+                height: tmp + avaRef.current.offsetHeight + 50,
             })
         }
 
