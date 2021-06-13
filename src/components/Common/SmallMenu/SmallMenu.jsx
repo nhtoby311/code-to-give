@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 const SmMenu = styled.div`

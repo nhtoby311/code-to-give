@@ -8,6 +8,7 @@ import Button from "../Common/Button/Button"
 import { QuizContext } from "../../context/QuizContext"
 import { useLocation, useParams } from "react-router"
 import Letter from "../Common/Letter/Letter"
+import { useHistory } from "react-router-dom"
 const QuizzTitle = styled.div`
     width: 100%;
 
@@ -114,8 +115,9 @@ export default function PicQuizz() {
     const [array, setArray] = useState([])
     const [currentWindow, setCurrentWindow] = useState(0) //CLICK ON ANOTHER QUIZ WILL REMOVE THE CURRENT QUIZ
     const params = useParams()              //Getting ID route
-    const { dataToDo } = useContext(QuizContext)
-
+    const {dataToDo} = useContext(QuizContext)
+    const history = useHistory()
+    
     //console.log(params.id)
     console.log(dataToDo)
     const quizData = linearSearch(dataToDo, params.id)
@@ -137,10 +139,23 @@ export default function PicQuizz() {
         setArray(temp)
     }
 
-    const done = () => {
-        if (array.filter((ele) => ele.value === true).length === Letters.filter((ele) => { return ele != ' ' }).length)        //If number of true inputs same as number of letter of answer minus space ' ', then correct
+    const submitHandler = async()=>{
+        if(array.filter((ele)=>ele.value===true).length === Letters.filter((ele)=>{return ele!= ' '}).length)        //If number of true inputs same as number of letter of answer minus space ' ', then correct
         {
-            console.log("yeet")
+            console.log("/api/pic-quiz/submit/:quizId")
+            const formData = new FormData()  
+            const date = new Date
+            formData.append("takenDate",date)
+            const response = await fetch (`https://code-to-give.herokuapp.com/api/pic-quiz/submit/${params.id}`,{
+                method:"POST",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+                body:formData
+            })
+            const result = await response.json()
+            console.log(result)
+            history.push('/games/PicQuizz')
         }
     }
 
@@ -172,7 +187,7 @@ export default function PicQuizz() {
                             }
                         })}
                     </LetterCont>
-                    <Button content="SUBMIT" pad="15px" />
+                    <Button func={submitHandler} content="SUBMIT" pad="15px"/>
                 </AnswerBox>
             </AnswerArea>
         </div>

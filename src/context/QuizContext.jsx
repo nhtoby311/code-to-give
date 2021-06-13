@@ -19,7 +19,7 @@ export function QuizProvider({children})
                 }
             })
             const resultTodo = await responseTodo.json()
-            console.log(resultTodo)
+            //console.log(resultTodo)
             setLoadingToDo(false)
             console.log(resultTodo.quizzes)             //set temp for picquizz
             
@@ -38,6 +38,7 @@ export function QuizProvider({children})
             })
             const resultFinished = await responseFinished.json()
             setDataFinished(resultFinished.quizzes)
+            console.log(resultFinished.quizzes)
             setLoadingFinished(false)
         }
     }

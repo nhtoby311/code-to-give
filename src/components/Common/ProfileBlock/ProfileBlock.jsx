@@ -117,16 +117,16 @@ export default function ProfileBlock(props) {
     return (
         <>
             <Pf img={props.data && props.data.coverPhotoURL} ref={pf}>
-                <InforContainer ref={inforRef}>
-                    <Avatar ref={avaRef} src={props.data && props.data.avatarURL}></Avatar>
-                    <Name>{props.data && props.data.firstName + " " + props.data.lastName}</Name>
-                </InforContainer>
-                <Badge ref={bd}>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi, enim veritatis! Placeat fugiat impedit animi hic praesentium nobis molestias minima aut architecto a nostrum ea veniam, laudantium cumque ex neque.</p>
-                    <div onClick={logout}>
-                        <Button pad="10px" content="Edit Profile"></Button>
-                    </div>
-                </Badge>
+                    <InforContainer ref={inforRef}>
+                        <Avatar ref={avaRef} src={props.data && props.data.avatarURL}></Avatar>
+                        <Name>{props.data && props.data.firstName +" "+ props.data.lastName}</Name>
+                    </InforContainer>
+                    <Badge ref={bd}>
+                        <p>{props.data.profileDescription}</p> 
+                        <div onClick={logout}>
+                            <Button pad="10px" content="Edit Profile"></Button>
+                        </div>
+                    </Badge>
             </Pf>
         </>
     )

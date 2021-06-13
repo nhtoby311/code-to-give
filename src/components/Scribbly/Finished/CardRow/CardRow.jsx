@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import Emoji from "../../../Common/Emoji/Emoji"
 
 const Card = styled.div`
     width: 100%;
@@ -20,27 +21,32 @@ const UserGrid = styled.div`
     grid-template-areas: 
     "avatar name"
     "avatar date"; 
-    div{
-        grid-area:avatar;
-        width: 55px;
-        height: 55px;
-        background: grey;
-        border-radius: 15px;
-        margin-right: 10px;
-    }
     h2{
         grid-area: name;
         font-size: 1.3rem;
-    }
-    h3{
-        position: relative;
-        grid-area: date;
     }
     h4{
         font-size: 0.8rem;
         position: absolute;
         bottom: 0;
     }
+`
+
+const UserAvatar = styled.div`
+    grid-area:avatar;
+    width: 55px;
+    height: 55px;
+    background: grey;
+    border-radius: 15px;
+    margin-right: 10px;
+    background-image: url(${props => props.img});
+    background-size: cover;
+    background-position: center;
+`
+
+const H4div = styled.aside`
+    position: relative;
+    grid-area: date;
 `
 
 const Grid = styled.div`
@@ -60,7 +66,10 @@ const Avatar = styled.div`
     grid-area: avatar;
     width: 200px;
     height:150px;
-    background: grey;
+    background: #b6b6b6;
+    background-image: url(${props => props.img});
+    background-size: cover;
+    background-position: center;
     border-radius: 15px;
 `
 const Emojis = styled.div`
@@ -74,44 +83,55 @@ const Emojis = styled.div`
     }
     p{
         font-size: 25px;
-    }
-    h4{
-        margin-top: 0.3rem;
-        font-size: 1.15rem;
+        cursor: pointer;
     }
 `
 
 
 
-export default function CardRow(){
+export default function CardRow(props){
+    console.log(props.data)
+
+    const handleEmojiAPI = async (url) =>{
+        const response = await fetch(url,{
+            method:"POST",
+            headers:{
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body:{}
+        })
+        const result = await response.json()
+        console.log(result)
+    }
+
     return(
         <Card>
             <User>
                 <UserGrid>
-                    <div></div>
-                    <h2>User_6969</h2>
-                    <h3>
+                    <UserAvatar img={props.data.author[0].avatarURL}/>
+                    <h2>{props.data.author && props.data.author[0].firstName + " " + props.data.author[0].lastName}</h2>
+                    <H4div>
                         <h4>24 April 2021</h4>
-                    </h3>
+                    </H4div>
                 </UserGrid>
             </User>
             <Grid>
                 <h2>MY ART</h2>
                 <Emojis>
-                    <div>
-                        <p>😍</p>
-                        <h4>123</h4>
-                    </div>
-                    <div>
-                        <p>😂</p>
-                        <h4>123</h4>
-                    </div>
-                    <div>
-                        <p>😲</p>
-                        <h4>123</h4>
-                    </div>
+                    <Emoji count={props.data.loveReact} 
+                    submitFunc={()=>handleEmojiAPI(props.data.loveReactAPI_URL)}
+                    isVoted={props.data.isLoveVoted}
+                    emoji="😍" />
+                    <Emoji count={props.data.hahaReact} 
+                    submitFunc={()=>handleEmojiAPI(props.data.hahaReactAPI_URL)} 
+                    isVoted={props.data.isHahaVoted}
+                    emoji="😂" />
+                    <Emoji count={props.data.wowReact} 
+                    submitFunc={()=>handleEmojiAPI(props.data.wowReactAPI_URL)}
+                    isVoted={props.data.isWowVoted} 
+                    emoji="😲" />
                 </Emojis>
-                <Avatar/>
+                <Avatar img={props.data.studentWorkURL}/>
             </Grid>
         </Card>
     )

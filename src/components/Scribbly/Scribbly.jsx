@@ -10,6 +10,7 @@ import Redo from './Tools/Redo/Redo'
 import Clear from './Tools/Clear/Clear'
 import { useLocation, useParams } from 'react-router'
 import { QuizContext } from '../../context/QuizContext'
+import { useHistory } from 'react-router-dom'
 
 const Container = styled.div`
     width: 80%;
@@ -78,8 +79,8 @@ const linearSearch = (list, item) => {
 export default function Scribbly()
 {
     const [color,setColor] = useState('black')
-    const [data,setData] = useState()
     const params = useParams() 
+    const history = useHistory()
 
     const canvasRef = useRef(null)
     const parentCanvasRef = useRef(null)
@@ -126,17 +127,23 @@ export default function Scribbly()
 
     const exportImage = async() => {
         const img = await canvasRef.current.exportImage("png")
-        let file;
-        fetch(img)
-        .then(res => res.blob())
-        .then(blob => {
-            file = new File([blob], "File name",{ type: "image/png" })
-            console.log(file)
-        })
+        function dataURLtoFile(dataurl, filename) {                 //MAGIC
+            var arr = dataurl.split(','),
+                mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]), 
+                n = bstr.length, 
+                u8arr = new Uint8Array(n);
+                
+            while(n--){
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            
+            return new File([u8arr], filename, {type:mime});
+        }
 
+        const file = dataURLtoFile(img,'img.png');
         const formData = new FormData()  
         formData.append("studentWork",file)
-        //console.log(img)
         const response = await fetch (`https://code-to-give.herokuapp.com/api/scribbly/submit/${params.id}`,{
             method:"POST",
             headers: {
@@ -146,6 +153,7 @@ export default function Scribbly()
         })
         const result = await response.json()
         console.log(result)
+        history.push('/games/Scribbly')
     }
 
 
