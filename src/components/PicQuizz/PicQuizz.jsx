@@ -34,6 +34,8 @@ const PicArea = styled.div`
     background: aqua;
     background-image: url(${props => props.url});  /*ENABLE LATER */
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: grid;
     position: relative;
     grid-template-columns: 1fr 1fr 1fr;
@@ -42,7 +44,10 @@ const PicArea = styled.div`
     grid-template-areas:
     "one two three"
     "four five six";
-
+    @media (max-width:500px)
+    {
+        grid-area:2 / 1 / span 1 / 6;
+    }
 `
 
 const AnswerArea = styled.div`
@@ -59,6 +64,10 @@ const AnswerArea = styled.div`
         text-align: center;
         font-size: 1.5rem;
         border-bottom: 2px #FFD42A solid;
+    }
+    @media (max-width:500px)
+    {
+       grid-area: 3 / 1 / span 1 / 6;
     }
 `
 const AnswerBox = styled.div`
@@ -95,37 +104,37 @@ const Space = styled.div`
 
 const linearSearch = (list, item) => {
     for (const element of list.entries()) {
-      if (element[1].quizId === item) {
-        return element[1]
-      }
+        if (element[1].quizId === item) {
+            return element[1]
+        }
     }
 }
-  
+
 
 export default function PicQuizz() {
-    const [array,setArray] = useState([])
-    const [currentWindow,setCurrentWindow] = useState(0) //CLICK ON ANOTHER QUIZ WILL REMOVE THE CURRENT QUIZ
+    const [array, setArray] = useState([])
+    const [currentWindow, setCurrentWindow] = useState(0) //CLICK ON ANOTHER QUIZ WILL REMOVE THE CURRENT QUIZ
     const params = useParams()              //Getting ID route
     const {dataToDo} = useContext(QuizContext)
     const history = useHistory()
     
     //console.log(params.id)
     console.log(dataToDo)
-    const quizData = linearSearch(dataToDo,params.id)
+    const quizData = linearSearch(dataToDo, params.id)
     //console.log(quizData)
     const Letters = [...quizData.bigAnswer]
 
 
-    const addValue = (e) =>{
+    const addValue = (e) => {
         const temp = array;              //Add Object to array of true
         temp.push(e)
         console.log(array)
         setArray(temp)
     }
 
-    const removeValue = (i) =>{
+    const removeValue = (i) => {
         let temp = array;
-        temp = temp.filter((ele)=>{return ele.ind !== i})       //remove an value with index of input send from Letter JSX{value:bool,ind:int}
+        temp = temp.filter((ele) => { return ele.ind !== i })       //remove an value with index of input send from Letter JSX{value:bool,ind:int}
         console.log(array)
         setArray(temp)
     }
@@ -154,27 +163,27 @@ export default function PicQuizz() {
         <div className="container pic-quizz-container">
             <QuizzTitle><p>{quizData.bigQuestion}</p></QuizzTitle>
             <PicArea url={quizData.bigQuestionImageURL}>
-                {quizData.smallQuestions && quizData.smallQuestions.map((ele,ind)=>{
-                    return <SmallQuizz key={ind} cur={currentWindow} funcCur={()=>setCurrentWindow(ind+1)} number={ind+1} data={ele} />
+                {quizData.smallQuestions && quizData.smallQuestions.map((ele, ind) => {
+                    return <SmallQuizz key={ind} cur={currentWindow} funcCur={() => setCurrentWindow(ind + 1)} number={ind + 1} data={ele} />
                 })}
             </PicArea>
             <AnswerArea>
                 <AnswerBox>
                     <h3>Answer</h3>
                     <LetterCont>
-                        { dataToDo && Letters.map((ele,ind)=>{
-                            if(ele === " "){
-                                return <Space key={ind}/>
+                        {dataToDo && Letters.map((ele, ind) => {
+                            if (ele === " ") {
+                                return <Space key={ind} />
                             }
                             else {
-                                return <Letter 
-                                ind = {ind}
-                                answer={ele} 
-                                funcAdd={(e)=>addValue(e)} 
-                                funcRemove={(i)=>removeValue(i)}
-                                color="red" 
-                                type="text" 
-                                key={ind}/>
+                                return <Letter
+                                    ind={ind}
+                                    answer={ele}
+                                    funcAdd={(e) => addValue(e)}
+                                    funcRemove={(i) => removeValue(i)}
+                                    color="red"
+                                    type="text"
+                                    key={ind} />
                             }
                         })}
                     </LetterCont>

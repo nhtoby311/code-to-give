@@ -17,7 +17,7 @@ const Color = styled.div`
 
 export default function Colors(props)
 {
-    const colors = ['red','blue','yellow','teal','brown','navy','cyan','black']
+    const colors = ['#fe0000', '#1060ff', '#fef200', '#24b550', 'brown', '#7a1fa0','#fe8f00','black']
 
     return(
         <Container>

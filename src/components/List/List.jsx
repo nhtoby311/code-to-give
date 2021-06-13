@@ -26,7 +26,7 @@ const Container = styled.div`
     grid-gap: 50px 30px;
     margin-top: 150px;
     
-` 
+`
 const TitleBlock = styled.div`
     width: 100%;
     padding: 30px;
@@ -64,21 +64,27 @@ export const Window = styled.div`
     box-shadow: 12px 10px 10px 7px rgba(0,0,0,0.25);
     align-items: center;
     opacity: 0;
+    @media (max-width:500px)
+    {
+        left: 20px;
+        right: 20px;
+        margin-left: 0px;
+        width: auto;
+    }
 `
 
 
 
-export default function List(props)
-{
-    const {handleGameFetching,dataToDo,loadingToDo,dataFinished,loadingFinished,resetLoading} = useContext(QuizContext)
+export default function List(props) {
+    const { handleGameFetching, dataToDo, loadingToDo, dataFinished, loadingFinished, resetLoading } = useContext(QuizContext)
 
-    useEffect(()=>{
+    useEffect(() => {
         resetLoading()
         handleGameFetching(props.game)
         // eslint-disable-next-line
-    },[])
-    
-    return(
+    }, [])
+
+    return (
         <Container>
             <TitleBlock>
                 <span>{props.game}</span>
