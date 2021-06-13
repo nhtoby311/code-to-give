@@ -45,19 +45,12 @@ export default function DescriptionBlock(props)
                 Let's Draw
             </QuizTitle>
             <QuizDescriptions>              
-                {/* ARRAY OF QUIZ DESCRIPTION */}
-                <QuizDescription>
-                    {props.data && props.data.quizName}
-                </QuizDescription>
-                <QuizDescription>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, exercitationem!
-                </QuizDescription>
-                <QuizDescription>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, exercitationem!
-                </QuizDescription>
-                <QuizDescription>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, exercitationem!
-                </QuizDescription>
+                {/* ARRAY OF QUIZ DESCRIPTION */} {/* NEED TO REPLACE taksDescription to taskDescription*/}
+                {props.data.taskDescription && props.data.taskDescription.map((ele,ind)=>{
+                    return (<QuizDescription key={ind}>
+                            {ele}
+                        </QuizDescription>)
+                })}
                 
             </QuizDescriptions>
             <ButtonDiv onClick={props.func}>

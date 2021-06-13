@@ -21,7 +21,7 @@ export function QuizProvider({children})
             const resultTodo = await responseTodo.json()
             //console.log(resultTodo)
             setLoadingToDo(false)
-            //console.log(resultTodo.quizzes)             //set temp for picquizz
+            console.log(resultTodo.quizzes)             //set temp for picquizz
             
             setDataToDo(resultTodo.quizzes)
         }

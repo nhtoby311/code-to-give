@@ -79,7 +79,6 @@ const linearSearch = (list, item) => {
 export default function Scribbly()
 {
     const [color,setColor] = useState('black')
-    const [data,setData] = useState()
     const params = useParams() 
     const history = useHistory()
 

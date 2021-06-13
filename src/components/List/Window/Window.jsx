@@ -87,9 +87,12 @@ export default function Window(props) {
                 <p>Due date: {props.data.dueDate && props.data.dueDate.substring(0,10)}</p>
                 <p>Possible Attemps: {props.data.numberOfAttempt}</p>
             </Grid>
-            <Link to={`${props.data.quizType}/${props.data.quizId}`}>
+            {props.data.status === 'finished' ? (<Link to={`${props.data.quizType}/${props.data.status}/${props.data.quizId}`}>   {/*NEED `status` key in order to Link to correct route */} 
+                <Button content="view" pad="15px"></Button>
+            </Link>) : (<Link to={`${props.data.quizType}/${props.data.quizId}`}>    {/*Handle status of the quizline, 'finished' or 'to-do' */}
                 <Button content="start" pad="15px"></Button>
-            </Link>
+            </Link>)}
+            
         </WindowDiv>
     )
 }

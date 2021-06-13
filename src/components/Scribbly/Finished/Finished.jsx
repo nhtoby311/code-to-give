@@ -1,4 +1,7 @@
+import { useContext } from "react"
+import { useParams } from "react-router-dom"
 import styled from "styled-components"
+import { QuizContext } from "../../../context/QuizContext"
 import Card from "./Card/Card"
 import CardRow from "./CardRow/CardRow"
 
@@ -84,23 +87,37 @@ const H2 = styled.h2`
     margin-bottom: 12px;
 `
 
+const linearSearch = (list, item) => {
+    for (const element of list.entries()) {
+      if (element[1].quizId === item) {
+        return element[1]
+      }
+    }
+}
+
+
 export default function Finished(){
+    const {dataFinished} = useContext(QuizContext)
+    const params = useParams()
+    //console.log(dataFinished)
+    const quizData = linearSearch(dataFinished,params.id)
+    console.log(quizData)
     return (
         <Container>
             <TitleBlock>
-                <span>Quiz</span>
+                <span>{quizData.quizName}</span>
             </TitleBlock>
             <Blocked title="your-classmates">
                 <H2>Your Classmates</H2>
                 <Cont>
-                    <CardRow/>
-                    <CardRow/>
-                    <CardRow/>
+                    {quizData && quizData.classmateWork.map((ele,ind)=>{
+                        return (<CardRow key={ind} data={ele}/>)
+                    })}
                 </Cont>
             </Blocked>
             <Blocked title="your-submission">
                 <H2>Your submission</H2>
-                <Card/>
+                <Card data={quizData.myWork}/>
             </Blocked>
         </Container>
     )
