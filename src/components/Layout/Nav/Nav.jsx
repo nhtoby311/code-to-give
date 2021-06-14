@@ -46,7 +46,6 @@ export default function Nav()
     }
 
     useEffect(()=>{
-        console.log("runn")
         getImg64(img)                                                       //getImage whenever the user got update, mean after fetched
         // eslint-disable-next-line
     },[user])

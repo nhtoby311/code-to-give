@@ -11,6 +11,8 @@ import Clear from './Tools/Clear/Clear'
 import { useParams } from 'react-router'
 import { QuizContext } from '../../context/QuizContext'
 import { useHistory } from 'react-router-dom'
+import domtoimage from 'dom-to-image';
+import { useEffect } from 'react'
 
 const Container = styled.div`
     width: 80%;
@@ -91,13 +93,13 @@ export default function Scribbly()
 
     const canvasRef = useRef(null)
     const parentCanvasRef = useRef(null)
+    const picCanvasRef = useRef(null)
 
     const {dataToDo} = useContext(QuizContext)
     const quizData = linearSearch(dataToDo,params.id)
     console.log(quizData)
 
-
-
+    
     const undoHandle = () => {
         canvasRef.current.undo()
     }
@@ -114,15 +116,23 @@ export default function Scribbly()
         console.log(canvasRef.current)
         canvasRef.current.eraseMode(true)
     }
-
+    
     const setColorHandle = (color) => {
         console.log(color)
         setColor(color)
     }
+    
+
+    const captureImage = async ()=>{                                //USE domtoimage to convert SVG and background IMG to a base64 img file
+        let node = picCanvasRef.current;
+        const response = await domtoimage.toPng(node).catch(err => console.error('oops, something went wrong!', err))
+        return response
+    }
 
 
     const exportImage = async() => {
-        const img = await canvasRef.current.exportImage("png")
+        const img = await captureImage()
+        //console.log(img)
         function dataURLtoFile(dataurl, filename) {                 //MAGIC
             var arr = dataurl.split(','),
                 mime = arr[0].match(/:(.*?);/)[1],
@@ -156,13 +166,14 @@ export default function Scribbly()
     return (
         <Container>
             <CanvasContainer ref={parentCanvasRef}>
-                <CanvasDiv>
+                <CanvasDiv ref ={picCanvasRef}>
                     <ReactSketchCanvas
                         style={styles}
                         strokeWidth={4}
                         strokeColor={color}
                         eraserWidth={28}
                         ref={canvasRef}
+                        background={`no-repeat url(${quizData.studentWorkURL})`}
                     />
                 </CanvasDiv>
                     <CanvasToolCont>
