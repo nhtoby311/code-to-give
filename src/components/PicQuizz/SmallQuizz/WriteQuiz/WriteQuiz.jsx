@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import Button from '../../../Common/Button/Button'
 import Letter from '../../../Common/Letter/Letter'
@@ -52,7 +52,7 @@ export default function WriteQuiz(props)
     }
 
     const handleDone = ()=>{
-        if(arrayLetters.filter((ele)=>ele.value===true).length === Letters.filter((ele)=>{return ele!= ' '}).length)        //If number of true inputs same as number of letter of answer minus space ' ', then correct
+        if(arrayLetters.filter((ele)=>ele.value===true).length === Letters.filter((ele)=>{return ele!== ' '}).length)        //If number of true inputs same as number of letter of answer minus space ' ', then correct
         {
             props.func()
         }

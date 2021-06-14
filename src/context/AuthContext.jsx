@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import useIsMounted from "../hooks/useIsMounted";
 
 export  const  AuthContext  =  React.createContext();
@@ -56,6 +56,7 @@ export function AuthProvider({children})
         if(auth){
             getData()
         }
+        // eslint-disable-next-line
     },[auth])
 
     return(

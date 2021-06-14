@@ -19,6 +19,7 @@ const Pic = styled.div`
     background-size: cover;
     background-position: center;
     border-radius: 15px;
+    cursor: pointer;
 `
 
 const EnlargePic = styled.div`
@@ -36,6 +37,7 @@ const EnlargePic = styled.div`
     border-radius: 15px;
     box-shadow: 12px 10px 10px 7px rgba(0,0,0,0.25);
     opacity: 0;
+    cursor: pointer;
 `
 
 const Emojis = styled.div`

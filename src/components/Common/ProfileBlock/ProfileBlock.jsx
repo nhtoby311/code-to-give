@@ -1,9 +1,7 @@
 import styled from "styled-components"
 import Button from "../Button/Button"
 import * as vars from "../../../styles/var"
-import { useContext } from "react"
-import { AuthContext } from "../../../context/AuthContext"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef} from "react"
 import gsap from "gsap"
 
 const Pf = styled.div`
@@ -86,7 +84,6 @@ function getWidth(a) {
     return a.offsetWidth;
 }
 export default function ProfileBlock(props) {
-    const { logout } = useContext(AuthContext)
     const pf = useRef(null)
     const bd = useRef(null)
     const inforRef = useRef(null)
@@ -123,7 +120,7 @@ export default function ProfileBlock(props) {
                     </InforContainer>
                     <Badge ref={bd}>
                         <p>{props.data && props.data.profileDescription}</p> 
-                        <div onClick={logout}>
+                        <div>
                             <Button pad="10px" content="Edit Profile"></Button>
                         </div>
                     </Badge>

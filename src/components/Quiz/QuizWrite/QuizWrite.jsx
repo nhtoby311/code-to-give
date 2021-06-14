@@ -1,11 +1,16 @@
 import styled from 'styled-components'
 import * as vars from '../../../styles/var'
 import Button from '../../Common/Button/Button'
+import img from '../../../assets/mock_assets/neptune.png'
 
 const DivContent = styled.div`
-width: 70%;
-height: 350px;
-background: ${vars.greenColor};
+    width: 60%;
+    height: 550px;
+    background: ${vars.greenColor};
+    background: ${vars.greenColor};
+    background-image: url(${props => props.img});
+    background-size: cover;
+    background-position: center;
 `
 
 const Wrapper = styled.div`
@@ -44,14 +49,34 @@ const ButtonDiv = styled.div`
     margin: 50px 0;
 `
 
+const QuizTask = styled.div`
+    width: 100%;
+    height: 100px;
+    background: ${vars.greenColor};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    h3{
+        font-size: 2rem;
+    }
+`
+
+
 export default function QuizWrite(props)
 {
     return(
         <>
-            <DivContent/>
+            <QuizTask>
+                <h3>What is this planet?</h3>
+            </QuizTask>
+
+            <DivContent img={img}/>
             <Wrapper>
                 <DivAnswerCont>
                     {/* MOCK DATA, PROPS ARRAY */}
+                    <Letter type="text" maxLength="1"/>
+                    <Letter type="text" maxLength="1"/>
                     <Letter type="text" maxLength="1"/>
                     <Letter type="text" maxLength="1"/>
                     <Letter type="text" maxLength="1"/>

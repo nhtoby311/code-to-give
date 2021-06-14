@@ -46,7 +46,7 @@ export const LinkStyled = styled(Link)`
 export default function Login()
 {
     const {register , handleSubmit} = useForm()
-    const { auth , login } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
     const history = useHistory()
     //console.log(auth)
 

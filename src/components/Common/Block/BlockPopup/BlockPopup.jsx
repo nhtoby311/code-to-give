@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import QuizLine from '../../../Common/QuizLine/QuizLine'
 import Notification from '../../../Common/Notification/Notification'
-import { useContext, useState } from 'react'
-import { QuizContext } from '../../../../context/QuizContext'
+import { useState } from 'react'
 import Loading from '../../../Common/Loading/Loading'
 
 const QuizContainer = styled.div`

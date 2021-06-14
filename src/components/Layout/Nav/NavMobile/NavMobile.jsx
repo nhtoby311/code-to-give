@@ -1,10 +1,9 @@
 import styled from "styled-components"
-import { Link, useLocation } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import { useState } from "react"
 import { useEffect } from "react"
 import { useRef } from "react"
 import gsap from "gsap"
-import NavItem from "../NavItem/NavItem"
 import "../Nav.scss"
 import Menu from "../../../Common/Menu/Menu"
 import Bell from '../../../Common/Bell/Bell'

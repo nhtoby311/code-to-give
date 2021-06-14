@@ -4,6 +4,8 @@ import styled from "styled-components"
 import {Window} from '../../List/List'
 import FourQuiz from "./FourQuiz/FourQuiz"
 import WriteQuiz from "./WriteQuiz/WriteQuiz"
+import Cross from "../../Common/Cross/Cross"
+
 const SmQuizz = styled.div`
     background: #77BC1F;
     border: 2px solid #FFD42A;
@@ -30,6 +32,15 @@ const SmQuizz = styled.div`
     &:hover{
         background: #3CA915;
     }
+    @media (max-width:500px){
+        .lable {
+            width: 40px;
+            height: 40px;
+        }
+        p{
+            font-size: 1rem;
+        }
+    }
 `
 
 const QuestionTitle = styled.h3`
@@ -47,8 +58,8 @@ const QuestionContent = styled.div`
 const Close = styled.h3`
     font-size: 1.5rem;
     position: absolute;
-    top: 35px;
-    right: 35px;
+    top: 32px;
+    right: 45px;
     cursor: pointer;
 `
 
@@ -115,12 +126,12 @@ export default function SmallQuizz(props) {
     // 
     return (
         <>
-            <Window className="test" ref={windowRef}>
+            <Window ref={windowRef}>
                 <Close onClick={()=>{setWindow(false)}}>
-                    X
+                    <Cross/>
                 </Close>
                 <QuestionTitle>{quizData.question}</QuestionTitle>
-                <QuestionContent/>
+                {quizData.questionImageURL ? <QuestionContent/> : (null) }
                 {handleTypeQuiz()}
             </Window>
             <SmQuizz className={`${doneClass()}`} onClick={()=>{

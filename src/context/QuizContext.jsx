@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 
 export const QuizContext = React.createContext();
 
@@ -48,6 +48,16 @@ export function QuizProvider({children})
         setLoadingFinished(true)
     }
 
+    //USE FOR MOCK DATA ONLY
+    const getDataMock = async(url)=>{
+        const response = await fetch(url)
+        const result = await response.json()
+        setLoadingToDo(false)
+        setLoadingFinished(false)
+        setDataToDo(result)
+        setDataFinished([])
+    }
+
     const handleGameFetching = (gameType)=>{
         switch (gameType)
         {
@@ -56,11 +66,12 @@ export function QuizProvider({children})
                     getDataFinished('https://code-to-give.herokuapp.com/api/scribbly/finished')
                     getDataToDo('https://code-to-give.herokuapp.com/api/scribbly/need-to-do')
                     break;
-                }/*
+                }
             case 'Quiz':
                 {
-                    return getData('../mock_data/Quiz.json')
-                }*/
+                    getDataMock('../mock_data/Quiz.json')
+                    break;
+                }
             case 'PicQuizz':
                 {
                     getDataFinished('https://code-to-give.herokuapp.com/api/pic-quiz/get-list/finished')

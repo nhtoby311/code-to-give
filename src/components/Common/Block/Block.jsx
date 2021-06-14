@@ -3,7 +3,6 @@ import BlockCards from './BlockCards/BlockCards'
 import BlockQuiz from './BlockQuiz/BlockQuiz'
 import TextBlock from './TextBlock/TextBlock'
 import BlockPopup from './BlockPopup/BlockPopup'
-import * as vars from '../../../styles/var'
 
 const Blocked = styled.div`
         min-width:100%;     //to make the horizontal not passed to parent flex div

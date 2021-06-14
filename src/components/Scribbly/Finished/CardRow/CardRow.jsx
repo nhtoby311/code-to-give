@@ -1,3 +1,5 @@
+import gsap from "gsap"
+import { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import Emoji from "../../../Common/Emoji/Emoji"
 
@@ -62,7 +64,7 @@ const Grid = styled.div`
         font-size: 2rem;
     }
 `
-const Avatar = styled.div`
+const Pic = styled.div`
     grid-area: avatar;
     width: 200px;
     height:150px;
@@ -71,6 +73,7 @@ const Avatar = styled.div`
     background-size: cover;
     background-position: center;
     border-radius: 15px;
+    cursor: pointer;
 `
 const Emojis = styled.div`
     grid-area: emojis;
@@ -87,10 +90,53 @@ const Emojis = styled.div`
     }
 `
 
+const EnlargePic = styled.div`
+    position: fixed;
+    z-index: 90;
+    left: 50%;
+    top: 18%;
+    margin-left: -30%;
+    width: 60vw;
+    height: 70vh;
+    background: #b6b6b6;
+    background-image: url(${props => props.img});
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    box-shadow: 12px 10px 10px 7px rgba(0,0,0,0.25);
+    opacity: 0;
+    cursor: pointer;
+`
+
 
 
 export default function CardRow(props){
     console.log(props.data)
+    const [enlarge,setEnlarge] = useState(false)
+    const enlargeRef = useRef(null)
+
+    const togglePic = ()=>{
+        console.log("yetet")
+        setEnlarge(!enlarge)
+    }
+
+    useEffect(()=>{                 //Animating enlarge image
+        console.log(enlarge)
+        if(enlarge){
+            gsap.to(enlargeRef.current,{
+                opacity: 1,
+                pointerEvents:'auto',
+                duration:0.4
+            })
+        }
+        else{
+            gsap.to(enlargeRef.current,{
+                opacity: 0,
+                pointerEvents:'none',
+                duration:0.4
+            })
+        }
+    },[enlarge])
 
     const handleEmojiAPI = async (url) =>{
         const response = await fetch(url,{
@@ -106,6 +152,7 @@ export default function CardRow(props){
 
     return(
         <Card>
+            <EnlargePic onClick={togglePic} ref={enlargeRef} img={props.data && props.data.studentWorkURL}/>
             <User>
                 <UserGrid>
                     <UserAvatar img={props.data.author[0].avatarURL}/>
@@ -116,7 +163,7 @@ export default function CardRow(props){
                 </UserGrid>
             </User>
             <Grid>
-                <h2>MY ART</h2>
+                {/* <h2>MY ART</h2> */}
                 <Emojis>
                     <Emoji count={props.data.loveReact} 
                     submitFunc={()=>handleEmojiAPI(props.data.loveReactAPI_URL)}
@@ -131,7 +178,7 @@ export default function CardRow(props){
                     isVoted={props.data.isWowVoted} 
                     emoji="😲" />
                 </Emojis>
-                <Avatar img={props.data.studentWorkURL}/>
+                <Pic onClick={togglePic} img={props.data.studentWorkURL}/>
             </Grid>
         </Card>
     )

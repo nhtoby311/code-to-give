@@ -14,16 +14,16 @@ export default function Answer(props)
     const handleColor = ()=>{
         switch(props.color){
             case 0:{
-                return 'red'
+                return '#ff2525'
             }
             case 1:{
-                return 'blue'
+                return '#5d5dff'
             }
             case 2:{
-                return 'yellow'
+                return '#ffff1e'
             }
             case 3:{
-                return 'green'
+                return '#36ff32'
             }
             default:{
                 return 'black'

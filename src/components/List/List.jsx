@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import Block from '../Common/Block/Block'
-import * as vars from '../../styles/var'
-import { useContext, useEffect, useState } from 'react'
-import { QuizContext, QuizProvider } from '../../context/QuizContext'
+import { useContext, useEffect} from 'react'
+import { QuizContext} from '../../context/QuizContext'
 
 const Container = styled.div`
     width: 80%;
@@ -52,8 +51,9 @@ const TitleBlock = styled.div`
 export const Window = styled.div`
     position: fixed;
     width: 40%;
+    min-height: 500px;
     padding: 30px;
-    background: ${vars.greenPlainLightColor};
+    background: linear-gradient(271.53deg, #68c720 24.62%, #79da30 74.93%);
     border-radius: 25px;
     left: 50%;
     top: 20%;

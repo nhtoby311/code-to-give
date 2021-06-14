@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route,Switch, useLocation, useParams} from 'react-router-dom';
+import { BrowserRouter as Router, Route,Switch} from 'react-router-dom';
 import Background from './components/Layout/Background/Background';
 import Nav from './components/Layout/Nav/Nav';
 import List from './components/List/List';
@@ -12,8 +12,6 @@ import './styles/style.scss'
 import PicQuizz from './components/PicQuizz/PicQuizz';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
-import { useContext, useState } from 'react';
-import { AuthContext } from './context/AuthContext';
 import AuthRoute from './components/AuthRoute/AuthRoute';
 import { QuizProvider } from './context/QuizContext';
 import Dashboard from './components/Admin/Dashboard/Dashboard';

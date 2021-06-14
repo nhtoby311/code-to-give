@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useContext } from 'react'
+import { useState, useRef, useContext } from 'react'
 import styled from 'styled-components'
 import DescriptionBlock from '../Common/DescriptionBlock/DescriptionBlock'
 import { ReactSketchCanvas } from "react-sketch-canvas"
@@ -8,7 +8,7 @@ import Colors from './Tools/Colors/Colors'
 import Undo from './Tools/Undo/Undo'
 import Redo from './Tools/Redo/Redo'
 import Clear from './Tools/Clear/Clear'
-import { useLocation, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { QuizContext } from '../../context/QuizContext'
 import { useHistory } from 'react-router-dom'
 
@@ -40,6 +40,13 @@ const CanvasContainer = styled.div`
     display: flex;
     border-radius: 25px;
     overflow: hidden;
+    background: white;
+`
+
+const CanvasDiv = styled.div`
+    width: 100%;
+    max-height: 80%;
+    display: flex;
 `
 
 const CanvasToolCont = styled.div`
@@ -88,17 +95,6 @@ export default function Scribbly()
     const {dataToDo} = useContext(QuizContext)
     const quizData = linearSearch(dataToDo,params.id)
     console.log(quizData)
-
-    /*const fetchData = async () => {
-        const response = await fetch('../../../mock_data/Scribbly.json')
-        const result = await response.json()
-
-        setData(result.filter((ele)=>{return (ele.id == id)}))
-    }
-
-    useEffect(() => {
-        fetchData()
-    }, [])*/
 
 
 
@@ -160,23 +156,25 @@ export default function Scribbly()
     return (
         <Container>
             <CanvasContainer ref={parentCanvasRef}>
-                <ReactSketchCanvas
-                    style={styles}
-                    strokeWidth={4}
-                    strokeColor={color}
-                    eraserWidth={28}
-                    ref={canvasRef}
-                />
-                <CanvasToolCont>
-                    <CanvasTools>
-                        <Undo func={undoHandle} />
-                        <Pen func={penHandle} />
-                        <Eraser func={eraseHandle} />
-                        <Colors func={(e) => { setColorHandle(e) }} />
-                        <Redo func={redoHandle} />
-                        <Clear func={clearHandle} />
-                    </CanvasTools>
-                </CanvasToolCont>
+                <CanvasDiv>
+                    <ReactSketchCanvas
+                        style={styles}
+                        strokeWidth={4}
+                        strokeColor={color}
+                        eraserWidth={28}
+                        ref={canvasRef}
+                    />
+                </CanvasDiv>
+                    <CanvasToolCont>
+                        <CanvasTools>
+                            <Undo func={undoHandle} />
+                            <Pen func={penHandle} />
+                            <Eraser func={eraseHandle} />
+                            <Colors func={(e) => { setColorHandle(e) }} />
+                            <Redo func={redoHandle} />
+                            <Clear func={clearHandle} />
+                        </CanvasTools>
+                    </CanvasToolCont>
             </CanvasContainer>
             <DescriptionBlock data={quizData} func={exportImage} />
         </Container>

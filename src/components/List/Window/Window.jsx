@@ -1,8 +1,8 @@
-import { useEffect } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import * as vars from "../../../styles/var"
 import Button from '../../Common/Button/Button'
+import Cross from "../../Common/Cross/Cross"
+
 const WindowDiv = styled.div`
     position: fixed;
     z-index: 90;
@@ -67,8 +67,8 @@ const Grid = styled.div`
 const Close = styled.h3`
     font-size: 1.5rem;
     position: absolute;
-    top: 35px;
-    right: 35px;
+    top: 45px;
+    right: 45px;
     cursor: pointer;
 `
 export default function Window(props) {
@@ -76,22 +76,25 @@ export default function Window(props) {
 
         <WindowDiv className="window" ref={props.windowRef}>
             <Close onClick={props.funcClose}>
-                X
+                <Cross/>
             </Close>
             <TitleWindow>
                 <p>{props.data.quizName}</p>
             </TitleWindow>
             <Grid>
-                <p>Time-limit: {props.data.maxTime && props.data.maxTime/60} minutes</p>
+                <p>Time-limit: {props.data.maxTime && Math.round(props.data.maxTime/60)} minutes</p>
                 <p>Point: {props.data.maxPoint}pts</p>
                 <p>Due date: {props.data.dueDate && props.data.dueDate.substring(0,10)}</p>
                 <p>Possible Attemps: {props.data.numberOfAttempt}</p>
             </Grid>
-            {props.data.status === 'finished' ? (<Link to={`${props.data.quizType}/${props.data.status}/${props.data.quizId}`}>   {/*NEED `status` key in order to Link to correct route */} 
+
+            {props.data.quizType === "Scribbly" ? (props.data.status === 'finished' ? (<Link to={`${props.data.quizType}/${props.data.status}/${props.data.quizId}`}>   {/*NEED `status` key in order to Link to correct route */} 
                 <Button content="view" pad="15px"></Button>
             </Link>) : (<Link to={`${props.data.quizType}/${props.data.quizId}`}>    {/*Handle status of the quizline, 'finished' or 'to-do' */}
                 <Button content="start" pad="15px"></Button>
-            </Link>)}
+            </Link>)) : (props.data.status === 'finished' ? (null) : (<Link to={`${props.data.quizType}/${props.data.quizId}`}>    {/*Handle status of the quizline, 'finished' or 'to-do' */}
+                <Button content="start" pad="15px"></Button>
+            </Link>))}
             
         </WindowDiv>
     )

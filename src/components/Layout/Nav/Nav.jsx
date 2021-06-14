@@ -3,7 +3,7 @@ import './Nav.scss'
 import NavItem from './NavItem/NavItem'
 import NavMobile from './NavMobile/NavMobile'
 import SmallMenu from '../../Common/SmallMenu/SmallMenu'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../../context/AuthContext'
 import styled from 'styled-components'
 
@@ -22,7 +22,6 @@ export default function Nav()
     const [base,setBase] = useState(null)                   //since avatar store in here so when navigate through pages, it wont reload since no state update
     const {user} = useContext(AuthContext)
     const img = user && user.avatarURL
-    console.log(user)
 
     const getImg64 = async(URL) => {
         const convertImgToBase64URL = (url) => {
@@ -49,6 +48,7 @@ export default function Nav()
     useEffect(()=>{
         console.log("runn")
         getImg64(img)                                                       //getImage whenever the user got update, mean after fetched
+        // eslint-disable-next-line
     },[user])
 
     useEffect(()=>{

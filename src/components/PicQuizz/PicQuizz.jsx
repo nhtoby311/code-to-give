@@ -6,7 +6,7 @@ import SmallQuizz from "./SmallQuizz/SmallQuizz"
 import { useContext, useState } from "react"
 import Button from "../Common/Button/Button"
 import { QuizContext } from "../../context/QuizContext"
-import { useLocation, useParams } from "react-router"
+import { useParams } from "react-router"
 import Letter from "../Common/Letter/Letter"
 import { useHistory } from "react-router-dom"
 const QuizzTitle = styled.div`
@@ -25,6 +25,11 @@ const QuizzTitle = styled.div`
         font-size: 3rem;
         font-weight: bold;
         color: #353331;
+    }
+    @media (max-width:500px){
+        p{
+            font-size: 2rem;
+        }
     }
 `
 const PicArea = styled.div`
@@ -140,11 +145,11 @@ export default function PicQuizz() {
     }
 
     const submitHandler = async()=>{
-        if(array.filter((ele)=>ele.value===true).length === Letters.filter((ele)=>{return ele!= ' '}).length)        //If number of true inputs same as number of letter of answer minus space ' ', then correct
+        if(array.filter((ele)=>ele.value===true).length === Letters.filter((ele)=>{return ele!== ' '}).length)        //If number of true inputs same as number of letter of answer minus space ' ', then correct
         {
             console.log("/api/pic-quiz/submit/:quizId")
             const formData = new FormData()  
-            const date = new Date
+            const date = new Date()
             formData.append("takenDate",date)
             const response = await fetch (`https://code-to-give.herokuapp.com/api/pic-quiz/submit/${params.id}`,{
                 method:"POST",

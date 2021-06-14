@@ -1,8 +1,9 @@
 import styled from "styled-components"
-import * as vars from '../../../styles/var'
 import Window from "../../List/Window/Window"
 import { useEffect, useRef, useState } from 'react'
 import gsap from "gsap"
+import Arrow from '../Arrow/Arrow'
+
 const Qline = styled.div`
     width: 100%;
     background: var(--yellowColor);
@@ -76,7 +77,7 @@ export default function QuizLine(props) {
             <p>{props.data.quizName}</p>
             <DateAndArrow>
                 <p>Due {props.data.dueDate && props.data.dueDate.substring(0, 10)}</p>
-                <p>A</p>
+                <Arrow/>
             </DateAndArrow>
         </Qline>
         </>

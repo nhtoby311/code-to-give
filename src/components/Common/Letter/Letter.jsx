@@ -33,6 +33,7 @@ export default function Letter(props){
         }else{
             firstRender.current = false
         }
+        // eslint-disable-next-line
     },[value])
 
     return (

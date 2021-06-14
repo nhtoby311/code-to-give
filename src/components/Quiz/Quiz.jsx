@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import * as vars from '../../styles/var'
 import QuizFour from './QuizFour/QuizFour'
 import QuizWrite from './QuizWrite/QuizWrite'
 import {Link} from 'react-router-dom'
@@ -10,22 +9,11 @@ const QuizCont = styled.div`
     width:80%;
     min-height: 95vh;
     margin: 60px 0;
-    border: blue solid 1px;
     margin-left: 12%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-`
-
-const QuizTask = styled.div`
-    width: 100%;
-    height: 100px;
-    background: ${vars.greenColor};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 25px;
 `
 
 const ButtonDiv = styled.div`
@@ -34,7 +22,7 @@ const ButtonDiv = styled.div`
 
 export default function Quiz()
 {
-    const quizData =['w','w','f','w','f']
+    const quizData =['w','f']
     const [quizInd,setQuizInd] = useState(0)
     const [quiz,setQuiz] = useState(null)
 
@@ -60,9 +48,10 @@ export default function Quiz()
                 break;
             default:
                 setQuiz(<>
+                <div></div>
                 <ButtonDiv>
                     <Link to="/games">
-                        <Button content="Return to Games"/>
+                        <Button pad="35px" content="Finished! Return to Games"/>
                     </Link>
                 </ButtonDiv>
                 <div></div>
@@ -77,9 +66,6 @@ export default function Quiz()
 
     return(
         <QuizCont>
-            <QuizTask>
-                <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem, nisi!</h3>
-            </QuizTask>
             {quiz}
         </QuizCont>
     )
