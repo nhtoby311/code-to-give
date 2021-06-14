@@ -22,6 +22,11 @@ export const Form = styled.form`
     {
         font-size: 3rem;
     }
+    @media (max-width:500px)
+    {
+        width: 100%;
+        padding: 20px;
+    }
 `
 
 export const Button = styled.button`
@@ -74,7 +79,6 @@ export default function Login()
     return(
         <Form onSubmit={handleSubmit((data)=>handleSubmitCallBack(data))}>
             <h2>Log in</h2>
-
             <Input label="Username" register={register('account')}/>
             <Input label="Password" type="password" register={register('password')}/>
 
