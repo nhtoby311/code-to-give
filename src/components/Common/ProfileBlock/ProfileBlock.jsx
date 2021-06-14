@@ -122,7 +122,7 @@ export default function ProfileBlock(props) {
                         <Name>{props.data && props.data.firstName +" "+ props.data.lastName}</Name>
                     </InforContainer>
                     <Badge ref={bd}>
-                        <p>{props.data.profileDescription}</p> 
+                        <p>{props.data && props.data.profileDescription}</p> 
                         <div onClick={logout}>
                             <Button pad="10px" content="Edit Profile"></Button>
                         </div>
