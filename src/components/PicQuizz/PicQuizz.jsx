@@ -151,7 +151,7 @@ export default function PicQuizz() {
             const formData = new FormData()  
             const date = new Date()
             formData.append("takenDate",date)
-            const response = await fetch (`https://code-to-give.herokuapp.com/api/pic-quiz/submit/${params.id}`,{
+            const response = await fetch (`${process.env.REACT_APP_DOMAIN}/api/pic-quiz/submit/${params.id}`,{
                 method:"POST",
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,

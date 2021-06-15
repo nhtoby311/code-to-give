@@ -12,9 +12,8 @@ export function AuthProvider({children})
     const login = () =>{
         setAuth(true)
     }
-
     const logout = async() =>{
-        const response = await fetch('https://code-to-give.herokuapp.com/api/users/logout',{
+        const response = await fetch(`${process.env.REACT_APP_DOMAIN}/api/users/logout`,{
             method:"POST",
             headers:{
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -31,7 +30,7 @@ export function AuthProvider({children})
     const getData = () =>{
         const getUserData = async()=>
         {
-            const response = await fetch('https://code-to-give.herokuapp.com/api/users/me',{
+            const response = await fetch(`${process.env.REACT_APP_DOMAIN}/api/users/me`,{
                 method:"GET",
                 headers:{
                     'Authorization': `Bearer ${localStorage.getItem('token')}`

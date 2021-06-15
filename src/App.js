@@ -25,7 +25,6 @@ const ContainerAdmin = styled.div`
   width: 75%;
   margin-left: 20%;
   margin-top: 150px;
-  border: blue solid 2px;
 `
 
 const AdminRoute = (path) => {

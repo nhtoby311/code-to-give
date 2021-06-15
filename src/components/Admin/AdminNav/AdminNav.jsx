@@ -8,7 +8,7 @@ const Nav = styled.div`
     padding: 80px 0;
     height:100vh;
     position: fixed;
-    background: green;
+    background: #4cbe1b;
     border-radius: 0 25px 25px 0;
     left:0;
     top: 0;
@@ -22,7 +22,7 @@ const NavItem = styled(NavLink)`
         color: white;
     }
     &:hover{
-        background: red;
+        background: #479F21;
     }
 `
 

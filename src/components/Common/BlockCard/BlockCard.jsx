@@ -6,10 +6,10 @@ const Card = styled.div`
     flex-direction: column;
     padding: 50px 20px;
     width: 500px;
-    background: grey;
+    background: #afafaf;
     padding-bottom: 70px;
     gap: 50px;
-    border-radius: 15px;
+    border-radius: 25px;
     h3{
         font-size: 4.2rem;
     }

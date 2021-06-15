@@ -31,7 +31,7 @@ export default function Create(){
 
         console.log(formData)
 
-        /*const response = await fetch ('https://code-to-give.herokuapp.com/api/pic-quiz/create',{
+        /*const response = await fetch (`${process.env.REACT_APP_DOMAIN}/api/pic-quiz/create`,{
             method:"POST",
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,

@@ -63,8 +63,8 @@ export function QuizProvider({children})
         {
             case 'Scribbly':
                 {
-                    getDataFinished('https://code-to-give.herokuapp.com/api/scribbly/finished')
-                    getDataToDo('https://code-to-give.herokuapp.com/api/scribbly/need-to-do')
+                    getDataFinished(`${process.env.REACT_APP_DOMAIN}/api/scribbly/finished`)
+                    getDataToDo(`${process.env.REACT_APP_DOMAIN}/api/scribbly/need-to-do`)
                     break;
                 }
             case 'Quiz':
@@ -74,8 +74,8 @@ export function QuizProvider({children})
                 }
             case 'PicQuizz':
                 {
-                    getDataFinished('https://code-to-give.herokuapp.com/api/pic-quiz/get-list/finished')
-                    getDataToDo('https://code-to-give.herokuapp.com/api/pic-quiz/get-list/need-to-do')
+                    getDataFinished(`${process.env.REACT_APP_DOMAIN}/api/pic-quiz/get-list/finished`)
+                    getDataToDo(`${process.env.REACT_APP_DOMAIN}/api/pic-quiz/get-list/need-to-do`)
                     break;
                 }
             default:

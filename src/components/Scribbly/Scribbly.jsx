@@ -149,7 +149,7 @@ export default function Scribbly()
         const file = dataURLtoFile(img,'img.png');
         const formData = new FormData()  
         formData.append("studentWork",file)
-        const response = await fetch (`https://code-to-give.herokuapp.com/api/scribbly/submit/${params.id}`,{
+        const response = await fetch (`${process.env.REACT_APP_DOMAIN}/api/scribbly/submit/${params.id}`,{
             method:"POST",
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
