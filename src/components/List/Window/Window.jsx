@@ -36,7 +36,10 @@ const TitleWindow = styled.div`
     align-items: center;
     margin-bottom: 35px;
     p{
+        text-align: center;
         font-size: 2.6rem;
+        margin-left: 40px;
+        margin-right: 40px;
     }
 `
 const Grid = styled.div`

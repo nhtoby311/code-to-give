@@ -17,11 +17,11 @@
 {
     grid-template-areas:
     "new-assignment new-assignment reminder"
-    "best-student best-student best-student";
+    "recent-finished recent-finished recent-finished";
     @media screen and (max-width: 500px){
         grid-template-areas:
         "new-assignment"
         "reminder"
-        "best-student";
+        "recent-finished";
     }
 }

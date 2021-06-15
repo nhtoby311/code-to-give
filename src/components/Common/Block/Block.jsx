@@ -17,6 +17,8 @@ const Blocked = styled.div`
                     return 'var(--greenGradientColor)'
                 case 'orange-red':
                     return 'linear-gradient(110.47deg, #f1bf19 13.07%, #e78308 87.95%);'
+                case 'yellow-orange':
+                    return 'linear-gradient(110.47deg, #fad149 13.07%, #f6d029 100%);'
                 default :
                     return '#76BA1B'
             }}

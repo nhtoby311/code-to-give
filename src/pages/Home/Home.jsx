@@ -42,7 +42,7 @@ export default function Home() {
         <div className="container home-cont">
             <Block title="new-assignment" color="" type="text" data={newAssignmentData}/>
             <Block title="reminder" color="orange-red" type="text" data={reminderData}/>
-            <Block title="best-student" type="slide" data={bestStudentData}/>
+            <Block title="recent-finished" color="yellow-orange" type="slide" data={bestStudentData}/>
         </div>
     )
 }
