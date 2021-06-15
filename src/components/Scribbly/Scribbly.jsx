@@ -12,7 +12,6 @@ import { useParams } from 'react-router'
 import { QuizContext } from '../../context/QuizContext'
 import { useHistory } from 'react-router-dom'
 import domtoimage from 'dom-to-image';
-import { useEffect } from 'react'
 
 const Container = styled.div`
     width: 80%;
