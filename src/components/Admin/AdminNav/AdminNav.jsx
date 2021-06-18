@@ -1,5 +1,7 @@
+import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+import { AuthContext } from '../../../context/AuthContext'
 import './AdminNav.scss'
 
 const Nav = styled.div`
@@ -27,6 +29,8 @@ const NavItem = styled(NavLink)`
 `
 
 export default function AdminNav(){
+    const {logout} = useContext(AuthContext)
+
     return(
         <Nav>
             <NavItem exact activeClassName="active-admin-nav" to="/admin" >
@@ -38,6 +42,7 @@ export default function AdminNav(){
             <NavItem exact activeClassName="active-admin-nav" to="/admin/student" >
                 <span>Student</span>
             </NavItem>
+            <span onClick={logout}>Log out</span>
         </Nav>
     )
 }

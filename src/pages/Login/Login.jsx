@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form'
 import Input from '../../components/Common/Input/Input'
 import { AuthContext } from '../../context/AuthContext'
 import { useContext } from 'react'
+import { useEffect } from 'react'
+import { useRef } from 'react'
 
 export const Form = styled.form`
     width: 50%;
@@ -51,7 +53,8 @@ export const LinkStyled = styled(Link)`
 export default function Login()
 {
     const {register , handleSubmit} = useForm()
-    const { login } = useContext(AuthContext);
+    const { login, auth ,authAdmin } = useContext(AuthContext);
+    const firstRender = useRef(true)
     const history = useHistory()
     //console.log(auth)
 
@@ -68,13 +71,29 @@ export default function Login()
                 throw new Error(response.statusText)
             const result = await response.json()
             localStorage.setItem('token',result.token)      //save token to localStorage
-            login()                                 //UPDATE CONTEXT AUTH STATE
-            console.log(localStorage.getItem('token'))
-            history.push('/')
+            await login()                                 //UPDATE CONTEXT AUTH STATE
+            //console.log(localStorage.getItem('token'))
+            
         } catch(err){
             console.log(err)
         }
     }
+
+    useEffect(()=>{                                     //When ever the the auth state change, depend on them then redirect, prevent first render so reload doesn't cause error
+        if(!firstRender.current){
+            if(auth === true){
+                history.push('/')
+            }
+            else if (authAdmin === true){
+                history.push('/admin')
+            }
+        }
+        else {
+            firstRender.current = false
+        }
+        // eslint-disable-next-line
+    },[auth,authAdmin])
+
 
     return(
         <Form onSubmit={handleSubmit((data)=>handleSubmitCallBack(data))}>

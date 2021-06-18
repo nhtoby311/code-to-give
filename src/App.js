@@ -20,6 +20,7 @@ import AdminNav from './components/Admin/AdminNav/AdminNav';
 import styled from 'styled-components'
 import Create from './components/Admin/Assignment/Create/Create';
 import Finished from './components/Scribbly/Finished/Finished';
+import AuthAdminRoute from './components/AuthAdminRoute/AuthAdminRoute'
 
 const ContainerAdmin = styled.div`
   width: 75%;
@@ -28,14 +29,12 @@ const ContainerAdmin = styled.div`
 `
 
 const AdminRoute = (path) => {
-  //const location = useLocation()
-  console.log(path)
 
   const routers = (
     <Switch>
-      <Route exact path={`${path}`}component={Dashboard}/>
-      <Route exact path={`${path}/assignment`}component={Assignment}/>
-      <Route exact path={`${path}/assignment/create`}component={Create}/>
+      <AuthAdminRoute exact path={`${path}`}component={Dashboard}/>
+      <AuthAdminRoute exact path={`${path}/assignment`}component={Assignment}/>
+      <AuthAdminRoute exact path={`${path}/assignment/create`}component={Create}/>
     </Switch>
   )
   return (
@@ -75,7 +74,7 @@ const MainRoute = () => {
 
 const routes = (
   <Switch>
-    <AuthRoute path="/admin" component={()=>AdminRoute("/admin")}/>      {/*need to pass parameter to make path route*/}
+    <Route path="/admin" component={()=>AdminRoute("/admin")}/>      {/*need to pass parameter to make path route*/}
     <Route path="/" component={MainRoute} />
     <Route component={()=>{return "404 NOT FOUND 404 NOT FOUND"}}/>
   </Switch>

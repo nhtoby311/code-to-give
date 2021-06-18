@@ -6,6 +6,7 @@ import SmallMenu from '../../Common/SmallMenu/SmallMenu'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../../context/AuthContext'
 import styled from 'styled-components'
+import useIsMounted from '../../../hooks/useIsMounted'
 
 const ImgDiv = styled.div`
     background-color: grey;
@@ -21,6 +22,7 @@ export default function Nav()
     const [isShow, setIsShow] = useState(false);
     const [base,setBase] = useState(null)                   //since avatar store in here so when navigate through pages, it wont reload since no state update
     const {user} = useContext(AuthContext)
+    const isMounted = useIsMounted()                    //prevent data leak when setState before mounted
     const img = user && user.avatarURL
 
     const getImg64 = async(URL) => {
@@ -42,7 +44,7 @@ export default function Nav()
           })
         }
         const image = await convertImgToBase64URL(URL)
-        setBase(image)
+        if (isMounted.current) setBase(image)
     }
 
     useEffect(()=>{
@@ -51,7 +53,7 @@ export default function Nav()
     },[user])
 
     useEffect(()=>{
-        //console.log(base)
+        //console.log(base)                                             //need to store in localstorage so doesnt have to fetch again
     },[base])
 
     const {match} = usePathDisable(["/login/*","/register/*","/admin/*"])
