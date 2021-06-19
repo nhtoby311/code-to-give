@@ -21,6 +21,7 @@ import styled from 'styled-components'
 import Create from './components/Admin/Assignment/Create/Create';
 import Finished from './components/Scribbly/Finished/Finished';
 import AuthAdminRoute from './components/AuthAdminRoute/AuthAdminRoute'
+import Shop from './pages/Shop/Shop';
 
 const ContainerAdmin = styled.div`
   width: 75%;
@@ -57,6 +58,7 @@ const MainRoute = () => {
         <AuthRoute exact path="/leaderboard" component={Leaderboard}/>
         <AuthRoute exact path="/games" component={Games}/>
         <AuthRoute exact path="/profile" component={Profile}/>
+        <AuthRoute exact path="/shop" component={Shop}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/register" component={Register}/>
         <AuthRoute exact path="/games/Quiz" component={()=>{return <List game="Quiz"/>}}/>
