@@ -1,7 +1,6 @@
 import * as vars from '../../../styles/var'
 import styled from 'styled-components'
-import QuizAnswer from './QuizAnswer/QuizAnswer'
-import img from '../../../assets/mock_assets/apple_mock.jpg'        /*MOCK ONLY,REMOVE LATER */
+import QuizAnswer from './QuizAnswer/QuizAnswer'      /*MOCK ONLY,REMOVE LATER */
 
 const DivContent = styled.div`
     width: 65%;
@@ -36,19 +35,19 @@ const QuizTask = styled.div`
 
 export default function QuizFour(props)
 {
+    console.log(props.data)
     return (
         <>
             <QuizTask>
-                <h3>How many apple in the basket?</h3>
+                <h3>{props.data && props.data.question}</h3>
             </QuizTask>
 
-            <DivContent img={img}/>
+            <DivContent img={props.data.questionImageURL}/>
 
             <DivAnswerCont>
-                <QuizAnswer color={0} funcNext= {props.funcNext} content="1"/>
-                <QuizAnswer color={1} funcNext= {props.funcNext} content="2"/>
-                <QuizAnswer color={2} funcNext= {props.funcNext} content="3"/>
-                <QuizAnswer color={3} funcNext= {props.funcNext} content="4"/>
+                {props.data.options && props.data.options.map((ele,ind)=>{
+                    return <QuizAnswer key={ind} color={ind} funcNext= {props.funcNext} content={ele}/>
+                })}
             </DivAnswerCont>
         </>
     )  

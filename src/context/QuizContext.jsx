@@ -69,7 +69,9 @@ export function QuizProvider({children})
                 }
             case 'Quiz':
                 {
-                    getDataMock('../mock_data/Quiz.json')
+                    //getDataMock('../mock_data/Quiz.json')
+                    getDataFinished(`${process.env.REACT_APP_DOMAIN}/api/quiz/get-list/finished`)
+                    getDataToDo(`${process.env.REACT_APP_DOMAIN}/api/quiz/get-list/need-to-do`)
                     break;
                 }
             case 'PicQuizz':
