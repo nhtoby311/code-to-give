@@ -22,7 +22,7 @@ export default function Add(props){
     return(
         <Container onClick={props.func}>
             <Bubble></Bubble>
-            <Descrip>Add another one</Descrip>
+            <Descrip>{props.label}</Descrip>
         </Container>
     )
 }

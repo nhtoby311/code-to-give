@@ -16,8 +16,12 @@ const Qline = styled.div`
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
+    transition: background 0.3s;
     p{
         font-weight: 500;
+    }
+    &:hover{
+        background: #ffb300;
     }
     @media (max-width:500px)
     {

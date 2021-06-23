@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
 const StyledSVG = styled.svg`
+    cursor: pointer;
     &:hover rect{
         fill: yellow;
         transition: fill 0.5s;

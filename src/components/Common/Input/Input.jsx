@@ -26,6 +26,16 @@ const SpanN = styled.span`
     font-weight: 600;
 `
 
+const InputD = styled.input`
+    width: 100%;
+    padding: 20px 25px;
+    border-radius: 25px;
+    border: solid 2px var(--blackColor);
+    outline: none;
+    font-size: 1.4rem;
+`
+
+
 const InputN = styled.input`
     width: 100%;
     padding: 20px 25px;
@@ -33,6 +43,15 @@ const InputN = styled.input`
     border: solid 2px var(--blackColor);
     outline: none;
     font-size: 1.4rem;
+
+    &:valid{
+        border: solid 2px #05b105;
+        color : #077407;
+        
+        & ~span{
+            color: #05b105;
+        }
+    }
 `
 
 const InputF = styled.input`
@@ -42,6 +61,15 @@ const InputF = styled.input`
     border: solid 2px var(--blackColor);
     outline: none;
     font-size: 1rem;
+
+    &:valid{
+        border: solid 2px #05b105;
+        color : #077407;
+        
+        & ~span{
+            color: #05b105;
+        }
+    }
 `
 const SpanF = styled.span`
     color: var(--blackColor);
@@ -70,6 +98,14 @@ const InputS = styled.select`
     outline: none;
     font-size: 1rem;
     font-weight: 600;
+
+    &:valid{
+        border: solid 2px #05b105;
+        color : #077407;
+        & ~span{
+            color: #05b105;
+        }
+    }
 `
 
 
@@ -85,17 +121,23 @@ export default function Input(props)
             }
             case 'select':{
                 return (<>
-                    <InputS {...props.register} required="required">
+                    <InputS {...props.register} required>
                         {props.options && props.options.map((ele,ind)=>{
-                            return <option key={ind} value={ele}>{ele}</option>
+                            return <option key={ind} value={ele.value}>{ele.label}</option>
                         })}
                     </InputS>
                     <SpanF>{props.label}</SpanF>
                 </>)
             }
+            case 'text':{
+                return (<>
+                    <InputN type='text' {...props.register} required="required"/>
+                    <SpanN>{props.label}</SpanN>
+                </>)
+            }
             default:{
                 return (<>
-                    <InputN type={props.type} {...props.register} required="required"/>
+                    <InputD type={props.type} {...props.register} required="required"/>
                     <SpanN>{props.label}</SpanN>
                 </>
                 )

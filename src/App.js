@@ -25,8 +25,8 @@ import Shop from './pages/Shop/Shop';
 
 const ContainerAdmin = styled.div`
   width: 75%;
+  margin: 150px 0;
   margin-left: 20%;
-  margin-top: 150px;
 `
 
 const AdminRoute = (path) => {

@@ -49,14 +49,14 @@ export function QuizProvider({children})
     }
 
     //USE FOR MOCK DATA ONLY
-    const getDataMock = async(url)=>{
+    /*const getDataMock = async(url)=>{
         const response = await fetch(url)
         const result = await response.json()
         setLoadingToDo(false)
         setLoadingFinished(false)
         setDataToDo(result)
         setDataFinished([])
-    }
+    }*/
 
     const handleGameFetching = (gameType)=>{
         switch (gameType)

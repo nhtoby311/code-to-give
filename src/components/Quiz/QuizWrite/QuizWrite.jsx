@@ -1,9 +1,5 @@
 import styled from 'styled-components'
 import * as vars from '../../../styles/var'
-import Button from '../../Common/Button/Button'
-import img from '../../../assets/mock_assets/neptune.png'
-import Letter from '../../Common/Letter/Letter'
-import { useState } from 'react'
 import FillInBlankQuiz from '../../FillInBlankQuiz/FillInBlankQuiz'
 
 const DivContent = styled.div`
