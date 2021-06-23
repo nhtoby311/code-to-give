@@ -53,6 +53,10 @@ const QuestionContent = styled.div`
     width: 60%;
     height: 200px;
     background: #12b127;
+    background-image: url(${props => props.img});  /*ENABLE LATER */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     margin-bottom: 35px;
 `
 const Close = styled.h3`
@@ -131,7 +135,7 @@ export default function SmallQuizz(props) {
                     <Cross/>
                 </Close>
                 <QuestionTitle>{quizData.question}</QuestionTitle>
-                {quizData.questionImageURL ? <QuestionContent/> : (null) }
+                {quizData.questionImageURL ? <QuestionContent img={quizData.questionImageURL}/> : (null) }
                 {handleTypeQuiz()}
             </Window>
             <SmQuizz className={`${doneClass()}`} onClick={()=>{
