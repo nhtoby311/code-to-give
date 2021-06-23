@@ -44,7 +44,7 @@ export default function LeaderboardItem() {
     }, [expandItem])
     return (
         <Item ref={itemRef} onClick={()=>{setExpandItem(!expandItem)}}>
-            <p>abcd</p>
+            <p>quiz</p>
             <Content>
                 <Hline></Hline>
                 <TitleCard rank="gold"></TitleCard>

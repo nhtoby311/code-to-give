@@ -5,7 +5,7 @@ export default function LeaderboardCard(props)
 {
     return(
         <div className="leaderboardcard">
-            <h2>title</h2>
+            <h2>Game</h2>
             <div className="leaderboardcard-scroll">
                 <LeaderboardItem/>
                 <LeaderboardItem/>
