@@ -1,5 +1,6 @@
 # About
 The Amigos Children’s Foundation is a nonprofit helping children battling chronic diseases in 12 hospitals across 4 Hungarian cities. Their aim is to help children keep their learning on-track while they are unable to attend school. 
+
 Due to the pandemic, Amigos can not meet with the kids in hospital. Therefore, Morgan Stanley company decided to hold a hackathon for all universities student in Hungary to design and create a web application for Amigos where they can give assignment and monitor the kids performance online. 
 
 
