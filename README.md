@@ -8,7 +8,7 @@ Our team **HTN** came in [3rd place](https://www.codetogive.hu/results) at the f
 ## Video Demo
 [Youtube](https://www.youtube.com/watch?v=eKfQYZgQtIg)
 ## Live Demo
-[Website](code-to-give.vercel.app)
+[Website](https://code-to-give.vercel.app)
 ## Design
 We design two type of interfaces for two different type of users: **Admin** & **Student**.
 
