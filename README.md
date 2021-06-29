@@ -13,10 +13,19 @@ Our team **HTN** came in [3rd place](https://www.codetogive.hu/results) at the f
 ## Design
 We design two type of interfaces for two different type of users: **Admin** & **Student**.
 
-### Admin
-.
 ### Student
-.
+
+***Pages***
+![enter image description here](https://i.imgur.com/Qkp4Fq9.jpg)
+
+***Games***
+![enter image description here](https://i.imgur.com/J5SlbSw.jpg)
+
+### Admin
+
+***Pages***
+![enter image description here](https://i.imgur.com/JCNniTM.jpg)
+
 ## Technology Stacks
 ### Front-End
  - React.js 
